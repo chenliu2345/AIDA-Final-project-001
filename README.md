@@ -1,8 +1,22 @@
 # Used Car Optimal Price Prediction System
 **A Data-Driven Decision Engine for Secondary Auto Markets**
 
+## Disclaimer
+This project is for learning and research purposes only. Any commercial use is strictly prohibited, and we are not responsible for any disputes arising from its use.
+
+This project is licensed under the **Apache License 2.0**. This license provides a clear limitation of liability, stating that the authors are not liable for any damages or legal issues arising from the use of this software.
+
+## Academic Use Only
+All data collected through this project is utilized exclusively for a group assignment within the AI and Data Analytics (AIDA) program at Red Deer Polytechnic.
+
+1. No Data Distribution: No raw data or personal information is hosted, shared, or distributed in this repository.
+
+2. Non-Commercial: This project is not used for any commercial gain or third-party services.
+
+3. Fair Dealing: This work is conducted for educational research purposes under the Canadian Copyright Act.
+
 ## 📌 Project Overview
-This system provides sellers with a competitive edge by predicting the **Optimal Listing Price** and **Estimated Time-to-Sell**. By analyzing real-time market data scraped from Kijiji, the platform generates three distinct selling strategies (Quick Sale, Max Profit, and Balanced) to align with diverse user needs.
+This system provides sellers with a competitive edge by predicting the **Optimal Listing Price** and **Estimated Time-to-Sell**. By analyzing market data samples derived from Kijiji, the platform generates three distinct selling strategies (Quick Sale, Max Profit, and Balanced) to align with diverse user needs.
 
 ## 🏗️ Technical Architecture
 
@@ -29,17 +43,3 @@ Note: These use cases are for demonstrative purposes within the AIDA program onl
 ## 👥 Team & Roles
 * **Miles Zhang (Lead Data Engineer)**: Database architecture, 3NF normalization, and integrity constraints.
 * **Chen Liu (Lead Data Scientist)**: ETL pipeline development, feature engineering, and model tuning.
-
-## Disclaimer
-This project is for learning and research purposes only. Any commercial use is strictly prohibited, and we are not responsible for any disputes arising from its use.
-
-This project is licensed under the Apache License 2.0. This license provides a clear limitation of liability, stating that the authors are not liable for any damages or legal issues arising from the use of this software.
-
-## Academic Use Only
-All data collected through this project is utilized exclusively for a group assignment within the AI and Data Analytics (AIDA) program at Red Deer Polytechnic.
-
-1. No Data Distribution: No raw data or personal information is hosted, shared, or distributed in this repository.
-
-2. Non-Commercial: This project is not used for any commercial gain or third-party services.
-
-3. Fair Dealing: This work is conducted for educational research purposes under the Canadian Copyright Act.
