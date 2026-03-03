@@ -17,12 +17,14 @@ Two interconnected machine learning models drive the decision logic:
 * **Time Model**: Predicts market duration using vehicle features and the predicted price.
 * **Key Predictors (X)**: Kilometres, Model, Transmission, Colour, Seats, Body Style, Drivetrain, Status, Location, and Condition.
 
-## 💼 Business Use Cases
+## 💼 Potential Applications (Theoretical/Research Only)
+While this project is strictly academic, the underlying methodology demonstrates how data analytics could theoretically be applied to:
 1. **Individual Sellers**: Optimize personal sales based on urgency or profit.
 2. **Dealerships**: Manage inventory turnover and maximize cash flow.
 3. **Buyers**: Identify fair pricing to avoid overpaying.
 4. **Marketplace Platforms**: Enhance user experience and transaction success rates.
 5. **Insurance Companies**: Establish accurate vehicle valuations for premium setting.
+Note: These use cases are for demonstrative purposes within the AIDA program only and do not imply any authorized commercial deployment.
 
 ## 👥 Team & Roles
 * **Miles Zhang (Lead Data Engineer)**: Database architecture, 3NF normalization, and integrity constraints.
