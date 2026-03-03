@@ -27,3 +27,9 @@ Two interconnected machine learning models drive the decision logic:
 ## 👥 Team & Roles
 * **Miles Zhang (Lead Data Engineer)**: Database architecture, 3NF normalization, and integrity constraints.
 * **Chen Liu (Lead Data Scientist)**: ETL pipeline development, feature engineering, and model tuning.
+
+## Disclaimer
+This project is for learning and research purposes only. Any commercial use is strictly prohibited, and I am not responsible for any disputes arising from its use.
+
+## Academic Use Only
+All data collected through this project is utilized exclusively for a group assignment within the AI and Data Analytics (AIDA) program at Red Deer Polytechnic. No data is shared with third parties or used for commercial gain.
