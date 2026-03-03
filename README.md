@@ -31,5 +31,13 @@ Two interconnected machine learning models drive the decision logic:
 ## Disclaimer
 This project is for learning and research purposes only. Any commercial use is strictly prohibited, and we are not responsible for any disputes arising from its use.
 
+This project is licensed under the Apache License 2.0. This license provides a clear limitation of liability, stating that the authors are not liable for any damages or legal issues arising from the use of this software.
+
 ## Academic Use Only
-All data collected through this project is utilized exclusively for a group assignment within the AI and Data Analytics (AIDA) program at Red Deer Polytechnic. No data is shared with third parties or used for commercial gain.
+All data collected through this project is utilized exclusively for a group assignment within the AI and Data Analytics (AIDA) program at Red Deer Polytechnic.
+
+1. No Data Distribution: No raw data or personal information is hosted, shared, or distributed in this repository.
+
+2. Non-Commercial: This project is not used for any commercial gain or third-party services.
+
+3. Fair Dealing: This work is conducted for educational research purposes under the Canadian Copyright Act.
