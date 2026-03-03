@@ -60,5 +60,4 @@ SELECT
      CASE WHEN Colour = 'UNKNOWN' THEN 1 ELSE 0 END +
      CASE WHEN Trim = 'UNKNOWN' THEN 1 ELSE 0 END) AS Unknown_Score
 FROM V_Y1;
-
 GO
