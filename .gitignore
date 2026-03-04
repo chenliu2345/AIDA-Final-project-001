@@ -217,3 +217,7 @@ Snapshots/
 *.suo
 *.user
 *.sln.docstates
+
+# Project Specific Data
+*.csv
+*.xlsx
