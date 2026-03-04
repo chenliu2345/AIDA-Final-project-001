@@ -1,6 +1,7 @@
 import pandas as pd
 import pyodbc
 import logging
+import os
 
 # 1. System Logging
 logging.basicConfig(
@@ -21,15 +22,13 @@ def get_db_connection():
         return pyodbc.connect(conn_str)
     except Exception as e:
         logging.error(f"Database connection failed: {e}")
-        return None
+        raise RuntimeError(f"Database connection failed: {e}")
 
 def transform_data(df):
-    """Cleans data and handles PII masking."""
-    # Physical removal of Link for privacy compliance
+    """Cleans data and handles privacy masking."""
     if 'Link' in df.columns:
         df = df.drop(columns=['Link'])
-    
-    # Cleaning Kilometres and filtering outliers
+
     df['Kilometres'] = (
         df['Kilometres']
         .astype(str)
@@ -37,97 +36,110 @@ def transform_data(df):
         .str.replace(' ', '')
     )
     df['Kilometres'] = pd.to_numeric(df['Kilometres'], errors='coerce').fillna(0).astype(int)
-    
-    # Business logic filters
+    df['Year'] = pd.to_numeric(df['Year'], errors='coerce').fillna(0).astype(int)
     df = df[(df['Price(CA$)'] >= 500) & (df['Year'] <= 2026)]
     df = df.fillna('UNKNOWN')
+    df = df.reset_index(drop=True)
     return df
 
 def populate_lookup(cursor, table_name, col_name, id_col, unique_vals):
-    """Explicitly maps strings to IDs using a provided ID column name."""
+    """Maps values to IDs for dimension table normalization."""
     mapping = {}
     for i, val in enumerate(unique_vals, start=1):
+        native_val = val.item() if hasattr(val, 'item') else val
         try:
             cursor.execute(
-                f"INSERT INTO {table_name} ({id_col}, {col_name}) VALUES (?, ?)", 
-                (i, val)
+                f"INSERT INTO {table_name} ({id_col}, {col_name}) VALUES (?, ?)",
+                (i, native_val)
             )
-            mapping[val] = i
+            mapping[native_val] = i
         except Exception as e:
-            logging.warning(f"Lookup error in {table_name}: {e}")
+            logging.error(f"INSERT FAILED [{table_name}] val={native_val} error={e}")
+            raise RuntimeError(f"INSERT FAILED [{table_name}] val={native_val} error={e}")
     return mapping
 
 def run_etl_pipeline(csv_path):
-    """Main Orchestrator for high-performance ETL."""
+    """Main orchestrator for data migration."""
     conn = get_db_connection()
-    if not conn: return
     cursor = conn.cursor()
-    
+
     try:
         df = pd.read_csv(csv_path)
         df = transform_data(df)
 
-        # Step 1: Mapping all 11 required Lookup tables
-        m_map = populate_lookup(cursor, "Models", "Base_Model", "Model_ID", df['Base_Model'].unique())
-        y_map = populate_lookup(cursor, "Years", "Year", "Year_ID", df['Year'].unique())
-        t_map = populate_lookup(cursor, "Trims", "Trim", "Trim_ID", df['Trim'].unique())
-        l_map = populate_lookup(cursor, "Locations", "City_Name", "City_ID", df['Location'].unique())
-        s_map = populate_lookup(cursor, "Statuses", "Status_Label", "Status_ID", df['Status'].unique())
-        c_map = populate_lookup(cursor, "Conditions", "Condition_Label", "Condition_ID", df['Condition'].unique())
+        # Dimension Table Population
+        m_map  = populate_lookup(cursor, "Models",        "Base_Model",        "Model_ID",        df['Base_Model'].unique())
+        y_map  = populate_lookup(cursor, "Years",         "Year",              "Year_ID",         df['Year'].astype(int).unique())
+        t_map  = populate_lookup(cursor, "Trims",         "Trim",              "Trim_ID",         df['Trim'].unique())
+        l_map  = populate_lookup(cursor, "Locations",     "City_Name",         "Location_ID",     df['Location'].unique())
+        s_map  = populate_lookup(cursor, "Statuses",      "Status_Label",      "Status_ID",       df['Status'].unique())
+        c_map  = populate_lookup(cursor, "Conditions",    "Condition_Label",   "Condition_ID",    df['Condition'].unique())
         tr_map = populate_lookup(cursor, "Transmissions", "Transmission_Type", "Transmission_ID", df['Transmission'].unique())
-        d_map = populate_lookup(cursor, "Drivetrains", "Drivetrain_Type", "Drivetrain_ID", df['Drivetrain'].unique())
-        b_map = populate_lookup(cursor, "Body_Styles", "Body_Style", "Body_Style_ID", df['Body Style'].unique())
-        co_map = populate_lookup(cursor, "Colours", "Colour", "Colour_ID", df['Colour'].unique())
-        st_map = populate_lookup(cursor, "Seats", "Seats_Label", "Seats_ID", df['Seats'].unique())
+        d_map  = populate_lookup(cursor, "Drivetrains",   "Drivetrain_Type",   "Drivetrain_ID",   df['Drivetrain'].unique())
+        b_map  = populate_lookup(cursor, "Body_Styles",   "Body_Style",        "Body_Style_ID",   df['Body Style'].unique())
+        co_map = populate_lookup(cursor, "Colours",       "Colour",            "Colour_ID",       df['Colour'].unique())
+        st_map = populate_lookup(cursor, "Seats",         "Seats_Label",       "Seats_ID",        df['Seats'].unique())
 
-        # Step 2: High-Performance Bulk Insertion for Vehicles_table
-        cursor.fast_executemany = True 
-
+        # Build both payloads in a single pass
         vehicle_payload = []
+        listing_payload = []
+
         for idx, row in df.iterrows():
             vehicle_payload.append((
-                idx, m_map[row['Base_Model']], y_map[row['Year']], 
-                t_map[row['Trim']], b_map[row['Body Style']], 
-                tr_map[row['Transmission']], d_map[row['Drivetrain']], 
-                co_map[row['Colour']], st_map[row['Seats']], 
-                s_map[row['Status']], # FIXED: Included Status_ID
-                row['Listing title']
+                idx,
+                m_map[row['Base_Model']],
+                y_map[int(row['Year'])],
+                t_map[row['Trim']],
+                b_map[row['Body Style']],
+                tr_map[row['Transmission']],
+                d_map[row['Drivetrain']],
+                co_map[row['Colour']],
+                st_map[row['Seats']],
+                row['Listing title'],
+                'REDACTED'
+            ))
+            listing_payload.append((
+                idx, idx,
+                l_map[row['Location']],
+                row['Price(CA$)'],
+                row['Kilometres'],
+                c_map[row['Condition']]
             ))
 
+        # Fact Table 1: Vehicles
         veh_sql = """
             INSERT INTO Vehicles_table (
-                Vehicle_ID, Model_ID, Year_ID, Trim_ID, Body_Style_ID, 
-                Transmission_ID, Drivetrain_ID, Colour_ID, Seats_ID, 
-                Status_ID, Listing_Title
+                Vehicle_ID, Model_ID, Year_ID, Trim_ID, Body_Style_ID,
+                Transmission_ID, Drivetrain_ID, Colour_ID, Seats_ID,
+                Listing_Title, Link_URL
             ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """
         cursor.executemany(veh_sql, vehicle_payload)
 
-        # Step 3: Populate Listings_table (Fact table 2)
-        listing_payload = []
-        for idx, row in df.iterrows():
-            listing_payload.append((
-                idx, idx, l_map[row['Location']], 
-                row['Price(CA$)'], row['Kilometres'], 
-                c_map[row['Condition']]
-            ))
-
+        # Fact Table 2: Listings
         list_sql = """
             INSERT INTO Listings_table (
-                Listing_ID, Vehicle_ID, Location_ID, 
+                Listing_ID, Vehicle_ID, Location_ID,
                 Price_CAD, Kilometres, Condition_ID
             ) VALUES (?, ?, ?, ?, ?, ?)
         """
         cursor.executemany(list_sql, listing_payload)
 
         conn.commit()
-        print(f"Success: Processed {len(df)} records into 13 tables.")
+        print(f"Success: {len(df)} records migrated.")
+        logging.info(f"ETL complete: {len(df)} records migrated.")
 
     except Exception as e:
         conn.rollback()
-        print(f"Pipeline failure: {e}")
+        logging.error(f"Pipeline failed, transaction rolled back: {e}")
+        print(f"Pipeline Failed: {type(e).__name__} - {e}")
     finally:
         conn.close()
 
 if __name__ == "__main__":
-    run_etl_pipeline('Optimized_Alberta_owner_sales_car_clean.csv')
+    TARGET_FILE = r"C:\Users\chenl\GitHub\AIDA-Final-project-001\Data_Raw\Optimized_Alberta_owner_sales_car_clean.csv"
+
+    if os.path.exists(TARGET_FILE):
+        run_etl_pipeline(TARGET_FILE)
+    else:
+        print(f"File Not Found: {TARGET_FILE}")
