@@ -1,15 +1,3 @@
-"""
-================================================================================
- ETL Script — AB_CarSale_DB  |  AIDA 1145 Phase 2
-================================================================================
- Table names match the CURRENT SQL schema (no tbl_ prefix yet).
- When your teammate updates the SQL naming convention to tbl_, update the
- TABLE_NAMES dict at the top of this file to match.
-
- Requires: pip install sqlalchemy pyodbc pandas
-================================================================================
-"""
-
 import re
 import sys
 import hashlib
@@ -20,7 +8,7 @@ from sqlalchemy import create_engine, text, Engine
 from sqlalchemy.exc import SQLAlchemyError
 
 # ─────────────────────────────────────────────────────────────────────────────
-# CONFIGURATION  ← edit before running
+# CONFIGURATION
 # ─────────────────────────────────────────────────────────────────────────────
 DB_CONFIG = {
     "server":       ".",           # e.g. "localhost\\SQLEXPRESS"
@@ -33,7 +21,7 @@ CSV_PATH   = r"C:\Users\chenl\GitHub\AIDA-Final-project-001\Data_Raw\Optimized_A
 LOG_FILE   = "etl_run.log"     # persistent log file written next to this script
 CHUNK_SIZE = 500               # rows per bulk insert batch
 
-# ── Table name map — update here if teammate renames tables to tbl_ prefix ──
+# ── Table name map
 TABLE = {
     "models":        "Models",
     "years":         "Years",
@@ -174,34 +162,36 @@ def transform(df: pd.DataFrame) -> pd.DataFrame:
 # STEP 3a — PYTHON VALIDATION LAYER  (Req 9)
 # ─────────────────────────────────────────────────────────────────────────────
 def validate(df: pd.DataFrame) -> pd.DataFrame:
-    """Validate data ranges in Python before SQL INSERT. Log and drop bad rows."""
+    """Validate data ranges using vectorized operations. Log and drop bad rows."""
     log.info("[VALIDATE] Running validation ...")
-    clean_idx = []
 
-    for i, r in enumerate(df.to_dict("records")):
-        errors = []
-        if not (PRICE_MIN <= float(r["Price_CAD"]) <= PRICE_MAX):
-            errors.append(f"Price_CAD={r['Price_CAD']} out of range")
-        kms = int(r["Kilometres"])
-        if not (KMS_MIN <= kms <= KMS_MAX):
-            errors.append(f"Kilometres={kms} out of range")
-        if kms in KMS_BLACKLIST:
-            errors.append(f"Kilometres={kms} is a placeholder value")
-        if not (YEAR_MIN <= int(r["Year"]) <= YEAR_MAX):
-            errors.append(f"Year={r['Year']} out of range (2028+ rejected)")
-        if r["Status"] not in VALID_STATUSES:
-            errors.append(f"Status='{r['Status']}' invalid")
-        if r["Condition"] not in VALID_CONDITIONS:
-            errors.append(f"Condition='{r['Condition']}' invalid")
-        if r["Transmission"] not in VALID_TRANS:
-            errors.append(f"Transmission='{r['Transmission']}' invalid")
+    # ── Build one boolean mask per rule (True = row passes) ──────────────────
+    price_ok   = df["Price_CAD"].between(PRICE_MIN, PRICE_MAX)
+    kms_range  = df["Kilometres"].between(KMS_MIN, KMS_MAX)
+    kms_real   = ~df["Kilometres"].isin(KMS_BLACKLIST)
+    year_ok    = df["Year"].between(YEAR_MIN, YEAR_MAX)
+    status_ok  = df["Status"].isin(VALID_STATUSES)
+    cond_ok    = df["Condition"].isin(VALID_CONDITIONS)
+    trans_ok   = df["Transmission"].isin(VALID_TRANS)
 
-        if errors:
-            log.warning(f"[VALIDATE] Row {i} REJECTED — {'; '.join(errors)}")
-        else:
-            clean_idx.append(i)
+    # ── Log per-rule rejection counts (replaces per-row error messages) ───────
+    rules = {
+        "Price_CAD out of range":          ~price_ok,
+        "Kilometres out of range":         ~kms_range,
+        "Kilometres is a placeholder":     ~kms_real,
+        "Year out of range (2028+ reject)":~year_ok,
+        "Status invalid":                  ~status_ok,
+        "Condition invalid":               ~cond_ok,
+        "Transmission invalid":            ~trans_ok,
+    }
+    for reason, bad_mask in rules.items():
+        count = bad_mask.sum()
+        if count:
+            log.warning(f"[VALIDATE] {count} row(s) failed — {reason}")
 
-    clean_df = df.iloc[clean_idx].reset_index(drop=True)
+    # ── Combined mask: row must pass ALL rules ────────────────────────────────
+    all_ok   = price_ok & kms_range & kms_real & year_ok & status_ok & cond_ok & trans_ok
+    clean_df = df[all_ok].reset_index(drop=True)
     rejected = len(df) - len(clean_df)
     log.info(f"[VALIDATE] {len(clean_df):,} passed | {rejected} rejected.")
     return clean_df
