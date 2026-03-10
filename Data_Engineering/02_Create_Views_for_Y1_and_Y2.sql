@@ -1,7 +1,7 @@
 USE AB_CarSale_DB;
 GO
 
-CREATE VIEW V_Y1 AS
+CREATE OR ALTER VIEW V_Y1 AS
 SELECT 
     L.Listing_ID,
     M.Base_Model,
@@ -17,29 +17,29 @@ SELECT
     BS.Body_Style,
     COL.Colour,
     ST.Seats_Label AS Seats_Count
-FROM Listings_table L
-JOIN Vehicles_table V ON L.Vehicle_ID = V.Vehicle_ID
-JOIN Models M ON V.Model_ID = M.Model_ID
-JOIN Years Y ON V.Year_ID = Y.Year_ID
-JOIN Trims T ON V.Trim_ID = T.Trim_ID
-JOIN Locations LOC ON L.Location_ID = LOC.Location_ID
-JOIN Conditions C ON L.Condition_ID = C.Condition_ID
-JOIN Listing_Status_table LS ON L.Listing_ID = LS.Listing_ID
-JOIN Statuses S ON LS.Status_ID = S.Status_ID
-JOIN Transmissions TR ON V.Transmission_ID = TR.Transmission_ID
-JOIN Drivetrains D ON V.Drivetrain_ID = D.Drivetrain_ID
-JOIN Body_Styles BS ON V.Body_Style_ID = BS.Body_Style_ID
-JOIN Colours COL ON V.Colour_ID = COL.Colour_ID
-JOIN Seats ST ON V.Seats_ID = ST.Seats_ID;
+FROM tbl_Listings L
+JOIN tbl_Vehicles V ON L.Vehicle_ID = V.Vehicle_ID
+JOIN tbl_Models M ON V.Model_ID = M.Model_ID
+JOIN tbl_Years Y ON V.Year_ID = Y.Year_ID
+JOIN tbl_Trims T ON V.Trim_ID = T.Trim_ID
+JOIN tbl_Locations LOC ON L.Location_ID = LOC.Location_ID
+JOIN tbl_Conditions C ON L.Condition_ID = C.Condition_ID
+JOIN tbl_Listing_Status LS ON L.Listing_ID = LS.Listing_ID
+JOIN tbl_Statuses S ON LS.Status_ID = S.Status_ID
+JOIN tbl_Transmissions TR ON V.Transmission_ID = TR.Transmission_ID
+JOIN tbl_Drivetrains D ON V.Drivetrain_ID = D.Drivetrain_ID
+JOIN tbl_Body_Styles BS ON V.Body_Style_ID = BS.Body_Style_ID
+JOIN tbl_Colours COL ON V.Colour_ID = COL.Colour_ID
+JOIN tbl_Seats ST ON V.Seats_ID = ST.Seats_ID;
 GO
 
-CREATE VIEW V_Y2 AS
+CREATE OR ALTER VIEW V_Y2 AS
 SELECT 
     V.*,
     DATEDIFF(day, LS.Scrape_Date, LS.Sold_Date) AS Days_to_Sell
 FROM V_Y1 V
-JOIN Listing_Status_table LS ON V.Listing_ID = LS.Listing_ID
-JOIN Statuses S ON LS.Status_ID = S.Status_ID
+JOIN tbl_Listing_Status LS ON V.Listing_ID = LS.Listing_ID
+JOIN tbl_Statuses S ON LS.Status_ID = S.Status_ID
 WHERE LS.Sold_Date IS NOT NULL
   AND S.Status_Label = 'Sold';
 GO
