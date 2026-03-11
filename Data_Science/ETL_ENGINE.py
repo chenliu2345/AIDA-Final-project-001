@@ -4,6 +4,7 @@ import hashlib
 import logging
 import datetime
 import pandas as pd
+from pathlib import Path
 from sqlalchemy import create_engine, text, Engine
 from sqlalchemy.exc import SQLAlchemyError
 
@@ -17,7 +18,8 @@ DB_CONFIG = {
     "use_trusted": True,                      # set False and add uid/pwd for SQL auth
 }
 
-CSV_PATH   = r"C:\Users\chenl\GitHub\AIDA-Final-project-001\Data_Raw\Optimized_Alberta_owner_sales_car_clean.csv"
+BASE_DIR = Path(__file__).parent.parent
+CSV_PATH = BASE_DIR / "Data_Raw" / "Optimized_Alberta_owner_sales_car_clean.csv"
 LOG_FILE   = "etl_run.log"
 CHUNK_SIZE = 1000          # rows per bulk-insert batch (raised from 500)
 
@@ -46,7 +48,7 @@ TABLE = {
 VALID_STATUSES   = {"SOLD", "ACTIVE", "ACTIVE_REPOST", "RESHELVED"}
 VALID_CONDITIONS = {"USED", "DAMAGED", "SALVAGE", "LEASE TAKEOVER", "UNKNOWN"}
 VALID_TRANS      = {"AUTOMATIC", "MANUAL", "SEMI-AUTOMATIC", "OTHER", "UNKNOWN"}
-PRICE_MIN,  PRICE_MAX = 1,         10_000_000
+PRICE_MIN,  PRICE_MAX = 1,           10_000_000
 KMS_MIN,    KMS_MAX   = 0,          2_000_000
 YEAR_MIN,   YEAR_MAX  = 1900,            2027
 KMS_BLACKLIST = {1, 99, 123, 1234, 12345, 123456, 999999, 111111}
@@ -76,7 +78,7 @@ log = _setup_logging()
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-#  ENGINE  [Req 6]
+#  ENGINE 
 # ─────────────────────────────────────────────────────────────────────────────
 def build_engine() -> Engine:
     cfg = DB_CONFIG
@@ -103,7 +105,7 @@ def build_engine() -> Engine:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-#  STEP 1 — EXTRACT  [Req 5]
+#  STEP 1 — EXTRACT  
 # ─────────────────────────────────────────────────────────────────────────────
 def extract(csv_path: str) -> pd.DataFrame:
     try:
@@ -174,7 +176,7 @@ def transform(df: pd.DataFrame) -> pd.DataFrame:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-#  STEP 3 — VALIDATE (vectorized)  [Req 9]
+#  STEP 3 — VALIDATE 
 # ─────────────────────────────────────────────────────────────────────────────
 def validate(df: pd.DataFrame) -> pd.DataFrame:
     """Validate data ranges using vectorized operations. Log and drop bad rows."""
@@ -204,6 +206,9 @@ def validate(df: pd.DataFrame) -> pd.DataFrame:
         if count:
             log.warning(f"[VALIDATE] {count} row(s) failed — {reason}")
 
+    for _, row in df[df["Price_CAD"] < 500].iterrows():
+        log.info(f"[AFFORDABLE VEHICLE DETECTED] 价格: ${row['Price_CAD']:.2f} CAD | 车型: {row['Base_Model']} | 城市: {row['City_Name']}")
+
     all_ok   = price_ok & kms_range & kms_real & year_ok & status_ok & cond_ok & trans_ok
     clean_df = df[all_ok].reset_index(drop=True)
     rejected = len(df) - len(clean_df)
@@ -212,7 +217,7 @@ def validate(df: pd.DataFrame) -> pd.DataFrame:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-#  STEP 4a — LOAD STAGING  [Req 12]
+#  STEP 4a — LOAD STAGING  
 #  Raw validated data → tbl_stg_Raw first
 # ─────────────────────────────────────────────────────────────────────────────
 def load_staging(df: pd.DataFrame, engine: Engine) -> None:
@@ -269,7 +274,7 @@ def load_staging(df: pd.DataFrame, engine: Engine) -> None:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-#  STEP 4b — DIMENSION HELPERS  [Req 8] Idempotency / [Req 13] Incremental
+#  STEP 4b — DIMENSION HELPERS  Idempotency / Incremental
 # ─────────────────────────────────────────────────────────────────────────────
 def _upsert_dimension(conn, table: str, pk_col: str, value_col: str,
                       values: list) -> dict:
@@ -292,19 +297,7 @@ def _upsert_dimension(conn, table: str, pk_col: str, value_col: str,
         log.info(f"  {table}: +{len(new_vals)} new row(s)")
     return lookup
 
-def _upsert_years(conn, years: list) -> dict:
-    t       = TABLE["years"]
-    result  = conn.execute(text(f"SELECT Year_ID, Year FROM {t}"))
-    lookup  = {row[1]: row[0] for row in result}
-    next_id = max(lookup.values(), default=0) + 1
-    new_yrs = [y for y in years if y not in lookup]
-    if new_yrs:
-        rows = [{"pk": next_id + i, "val": y} for i, y in enumerate(new_yrs)]
-        conn.execute(text(f"INSERT INTO {t} (Year_ID, Year) VALUES (:pk, :val)"), rows)
-        for i, y in enumerate(new_yrs):
-            lookup[y] = next_id + i
-        log.info(f"  {t}: +{len(new_yrs)} new row(s)")
-    return lookup
+
 
 def _next_id(conn, table: str, pk_col: str) -> int:
     row = conn.execute(text(f"SELECT MAX({pk_col}) FROM {table}")).fetchone()
@@ -325,7 +318,7 @@ def load_normalized(df: pd.DataFrame, engine: Engine) -> None:
         log.info("[LOAD] Upserting dimension tables ...")
         T = TABLE
         models_lkp        = _upsert_dimension(conn, T["models"],        "Model_ID",        "Base_Model",        df["Base_Model"].unique().tolist())
-        years_lkp         = _upsert_years(conn,                                                                  df["Year"].unique().tolist())
+        years_lkp         = _upsert_dimension(conn, TABLE["years"],        "Year_ID",         "Year",              df["Year"].unique().tolist())
         trims_lkp         = _upsert_dimension(conn, T["trims"],          "Trim_ID",         "Trim",              df["Trim"].unique().tolist())
         locations_lkp     = _upsert_dimension(conn, T["locations"],      "Location_ID",     "City_Name",         df["City_Name"].unique().tolist())
         statuses_lkp      = _upsert_dimension(conn, T["statuses"],       "Status_ID",       "Status_Label",      df["Status"].unique().tolist())
@@ -428,7 +421,7 @@ def load_normalized(df: pd.DataFrame, engine: Engine) -> None:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-#  STEP 4d — TRUNCATE STAGING  [Req 12]
+#  STEP 4d — TRUNCATE STAGING  
 #  Clean up staging table after successful normalized load
 # ─────────────────────────────────────────────────────────────────────────────
 def truncate_staging(engine: Engine) -> None:
@@ -441,7 +434,7 @@ def truncate_staging(engine: Engine) -> None:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-#  ENTRY POINT  [Req 5] Single-click execution
+#  ENTRY POINT  Single-click execution
 # ─────────────────────────────────────────────────────────────────────────────
 def run_etl(csv_path: str = CSV_PATH) -> None:
     run_start = datetime.datetime.now()
