@@ -36,10 +36,16 @@ GO
 CREATE OR ALTER VIEW V_Y2 AS
 SELECT 
     V.*,
-    DATEDIFF(day, LS.Scrape_Date, LS.Sold_Date) AS Days_to_Sell
+    DATEDIFF(day, LS.Scrape_Date, LS.Sold_Date) AS Days_to_Sell,
+    W.Temperature_C,
+    WC.Condition_Label AS Weather_Condition
 FROM V_Y1 V
 JOIN tbl_Listing_Status LS ON V.Listing_ID = LS.Listing_ID
 JOIN tbl_Statuses S ON LS.Status_ID = S.Status_ID
+JOIN tbl_Listings L ON V.Listing_ID = L.Listing_ID
+LEFT JOIN tbl_Weather W ON L.Location_ID = W.Location_ID 
+                        AND LS.Sold_Date = W.Weather_Date
+LEFT JOIN tbl_Weather_Conditions WC ON W.Condition_ID = WC.Condition_ID
 WHERE LS.Sold_Date IS NOT NULL
   AND S.Status_Label = 'Sold';
 GO
