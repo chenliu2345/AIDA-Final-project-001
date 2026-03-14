@@ -35,10 +35,37 @@ WMO_MAP = {
 GEOCODING_URL = "https://geocoding-api.open-meteo.com/v1/search"
 HISTORICAL_URL = "https://archive-api.open-meteo.com/v1/archive"
 DB_CONFIG = "DRIVER={ODBC Driver 17 for SQL Server};SERVER=MilesZhang;DATABASE=AB_CarSale_DB;Trusted_Connection=yes;"
+from functools import lru_cache
+@lru_cache(maxsize=None)
 def get_lat_lon(city_name):
-    res = requests.get(GEOCODING_URL, params={'name': city_name, 'count': 1},timeout=15).json()
-    if 'results' in res:
-        return res['results'][0]['latitude'], res['results'][0]['longitude']
+    name = city_name.upper().strip()
+    mapping = {
+        "STRATHCONA COUNTY": "Sherwood Park",
+        "ROCKY VIEW COUNTY": "Balzac",
+        "FOOTHILLS COUNTY": "High River",
+        "TSUU T'INA": "Calgary",
+        "BANFF / CANMORE": "Canmore",
+        "SOUTH LETHBRIDGE": "Lethbridge",
+        "ALBERTA": "Edmonton",
+        "OTHER": "Red Deer"
+    }
+    if name in mapping:
+        search_query = mapping[name]
+    elif "CALGARY" in name:
+        search_query = "Calgary"
+    elif "EDMONTON" in name:
+        search_query = "Edmonton"
+    else:
+        search_query = city_name.strip()
+    print(f"DEBUG: SERACHING -> {search_query}")
+    try:
+        res = requests.get(GEOCODING_URL, params={'name': search_query, 'count': 1}, timeout=15).json()
+        if 'results' in res:
+            return res['results'][0]['latitude'], res['results'][0]['longitude']
+        else:
+            print(f"!!! API NOT FOUND: {search_query}")
+    except Exception as e:
+        print(f"Error finding {search_query}: {e}")
     return None, None
 def open_meteo_pipeline():
     conn = pyodbc.connect(DB_CONFIG)
