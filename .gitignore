@@ -225,3 +225,10 @@ Snapshots/
 # pyc
 __pycache__/
 *.pyc
+
+# models
+*.pkl
+*.cbm
+*.joblib
+*.pth
+*.onnx
