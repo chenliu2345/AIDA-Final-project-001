@@ -221,3 +221,7 @@ Snapshots/
 # Project Specific Data
 *.csv
 *.xlsx
+
+# pyc
+__pycache__/
+*.pyc
