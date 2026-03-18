@@ -13,15 +13,15 @@ from sklearn.metrics import mean_absolute_error, root_mean_squared_error, r2_sco
 DB_SERVER   = "."
 DB_NAME     = "AB_CarSale_DB"
 DB_DRIVER   = "ODBC+Driver+17+for+SQL+Server"
-VIEW_NAME   = "dbo.V_CarSales_ML"
+VIEW_NAME   = "dbo.V_Y1"
 from pathlib import Path
-MODEL_PATH  = Path(__file__).parent / "catboost_price_model.cbm"
+MODEL_PATH  = Path(__file__).parent.parent / "models" / "catboost_price_model.cbm"
 CV_FOLDS    = 5
 RANDOM_SEED = 42
 
-NUM_FEATURES = ["Kilometres", "Vehicle_Age"]
-CAT_FEATURES = ["Condition", "Transmission", "Drivetrain", "Body_Style",
-                "Colour", "Seats", "City", "Base_Model", "Trim"]
+NUM_FEATURES = ["Year", "Kilometres"]
+CAT_FEATURES = ["Condition_Label", "Transmission_Type", "Drivetrain_Type", "Body_Style",
+                "Colour", "Seats_Count", "City_Name", "Base_Model", "Trim"]
 ALL_FEATURES = NUM_FEATURES + CAT_FEATURES
 TARGET       = "Price_CAD"
 
