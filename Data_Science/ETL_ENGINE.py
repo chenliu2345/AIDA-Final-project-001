@@ -12,7 +12,7 @@ from sqlalchemy.exc import SQLAlchemyError
 #  CONFIGURATION  ← edit before running
 # ─────────────────────────────────────────────────────────────────────────────
 DB_CONFIG = {
-    "server":      ".",                       # e.g. "localhost\\SQLEXPRESS"
+    "server":      ".", 
     "database":    "AB_CarSale_DB",
     "driver":      "ODBC+Driver+17+for+SQL+Server",
     "use_trusted": True,                      # set False and add uid/pwd for SQL auth
