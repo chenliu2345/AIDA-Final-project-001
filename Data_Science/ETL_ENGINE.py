@@ -12,7 +12,7 @@ from sqlalchemy.exc import SQLAlchemyError
 #  CONFIGURATION  ← edit before running
 # ─────────────────────────────────────────────────────────────────────────────
 DB_CONFIG = {
-    "server":      ".",
+    "server":      ".",                       # e.g. "localhost\\SQLEXPRESS"
     "database":    "AB_CarSale_DB",
     "driver":      "ODBC+Driver+17+for+SQL+Server",
     "use_trusted": True,                      # set False and add uid/pwd for SQL auth
@@ -25,7 +25,7 @@ CHUNK_SIZE = 1000          # rows per bulk-insert batch
 
 # ── Table name map (matches tbl_ naming convention in SQL schema) ─────────────
 TABLE = {
-    "stg":           "tbl_stg_Raw", 
+    "stg":           "tbl_stg_Raw",        # retained in DB for architecture
     "models":        "tbl_Models",
     "years":         "tbl_Years",
     "trims":         "tbl_Trims",
@@ -56,7 +56,7 @@ KMS_BLACKLIST = {1, 99, 123, 1234, 12345, 123456, 999999, 111111}
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-#  LOGGING  — persistent .log file + console output
+#  LOGGING — persistent .log file + console output
 # ─────────────────────────────────────────────────────────────────────────────
 def _setup_logging() -> logging.Logger:
     logger = logging.getLogger("etl_ab_carsales")
@@ -95,7 +95,7 @@ def build_engine() -> Engine:
                 f"@{cfg['server']}/{cfg['database']}"
                 f"?driver={cfg['driver']}"
             )
-        engine = create_engine(url, connect_args={"fast_executemany": True})  # [Req 16]
+        engine = create_engine(url, connect_args={"fast_executemany": True})
         with engine.connect() as c:
             c.execute(text("SELECT 1"))
         log.info(f"Connected → {cfg['server']} / {cfg['database']}")
@@ -140,7 +140,7 @@ def _clean_kilometres(value) -> int:
         return 0
 
 def _hash_url(url: str) -> str:
-    """SHA-256 hash of URL — PII masking [Req 15]."""
+    """SHA-256 hash of URL — PII masking."""
     return hashlib.sha256(str(url).encode("utf-8")).hexdigest()
 
 def transform(df: pd.DataFrame) -> pd.DataFrame:
@@ -170,7 +170,7 @@ def transform(df: pd.DataFrame) -> pd.DataFrame:
                 "Condition", "Status", "Trim", "Base_Model", "City_Name"]:
         df[col] = df[col].fillna("UNKNOWN").str.strip().str.upper()
 
-    # PII masking [Req 15] — store hash instead of raw URL
+    # PII masking — store hash instead of raw URL
     df["Link_URL_Hash"] = df["Link_URL"].apply(_hash_url)
 
     # Truncate title to DB column limit
@@ -181,7 +181,7 @@ def transform(df: pd.DataFrame) -> pd.DataFrame:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-#  STEP 3 — VALIDATE 
+#  STEP 3 — VALIDATE
 #  Bad rows are written to tbl_Rejected_Rows for inspection,
 #  then dropped from the load. Audit of that table is handled
 #  by the database trigger trg_Audit_Rejected_Rows (if added),
@@ -285,13 +285,13 @@ def _write_rejected(df: pd.DataFrame, engine: Engine, source_file: str) -> None:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-#  STEP 4a — DIMENSION HELPERS  Idempotency / Incremental 
+#  STEP 4a — DIMENSION HELPERS  Idempotency / Incremental
 # ─────────────────────────────────────────────────────────────────────────────
 def _upsert_dimension(conn, table: str, pk_col: str, value_col: str,
                       values: list) -> dict:
     """
-    Idempotent dimension upsert — safe to re-run [Req 8].
-    Only inserts values that don't already exist (incremental) [Req 13].
+    Idempotent dimension upsert — safe to re-run.
+    Only inserts values that don't already exist (incremental).
     Returns a {value: id} lookup dict for FK mapping.
     """
     result = conn.execute(text(f"SELECT {pk_col}, {value_col} FROM {table}"))
@@ -321,7 +321,7 @@ def _next_id(conn, table: str, pk_col: str) -> int:
 def load_normalized(df: pd.DataFrame, engine: Engine) -> None:
     """
     Distribute validated data into normalized tables inside a single transaction.
-    engine.begin() auto-COMMITs on success, auto-ROLLBACKs on any exception [Req 11].
+    engine.begin() auto-COMMITs on success, auto-ROLLBACKs on any exception.
     Audit of each INSERT is handled automatically by database triggers.
     """
     with engine.begin() as conn:
@@ -359,11 +359,11 @@ def load_normalized(df: pd.DataFrame, engine: Engine) -> None:
                 "cid":  colours_lkp[r["Colour"]],
                 "sid":  seats_lkp[r["Seats"]],
                 "title": r["Listing_Title"],
-                "hash":  r["Link_URL_Hash"],   
+                "hash":  r["Link_URL_Hash"],   # hashed URL only
             }
             for i, r in enumerate(records)
         ]
-        for start in range(0, len(vehicle_rows), CHUNK_SIZE):   
+        for start in range(0, len(vehicle_rows), CHUNK_SIZE):
             conn.execute(
                 text(f"""
                     INSERT INTO {T['vehicles']}
@@ -428,7 +428,7 @@ def load_normalized(df: pd.DataFrame, engine: Engine) -> None:
             )
         log.info(f"[LOAD] tbl_Listing_Status: {len(status_rows):,} row(s) inserted.")
 
-    # engine.begin() auto-COMMITs here [Req 11]
+    # engine.begin() auto-COMMITs here
     log.info("[LOAD] Transaction committed successfully.")
 
 
@@ -455,12 +455,12 @@ def run_etl(csv_path: str = CSV_PATH) -> None:
             log.warning("[ETL] All rows failed validation. Nothing loaded.")
             return
 
-        # Staging table exists in DB for architecture demonstration [Req 12]
+        # Staging table exists in DB for architecture demonstration
         # but is not written to during ETL — CSV is the source of truth.
         # load_staging(df_valid, engine)   ← intentionally skipped
         # truncate_staging(engine)         ← intentionally skipped
 
-        load_normalized(df_valid, engine)    # [Req 11] Transactional load
+        load_normalized(df_valid, engine)    # Transactional load
 
         elapsed = (datetime.datetime.now() - run_start).total_seconds()
         log.info("=" * 65)
