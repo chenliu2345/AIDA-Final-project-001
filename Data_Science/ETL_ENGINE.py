@@ -12,7 +12,7 @@ from sqlalchemy.exc import SQLAlchemyError
 #  CONFIGURATION  ← edit before running
 # ─────────────────────────────────────────────────────────────────────────────
 DB_CONFIG = {
-    "server":      ".",                       # e.g. "localhost\\SQLEXPRESS"
+    "server":      ".",
     "database":    "AB_CarSale_DB",
     "driver":      "ODBC+Driver+17+for+SQL+Server",
     "use_trusted": True,                      # set False and add uid/pwd for SQL auth
@@ -21,11 +21,11 @@ DB_CONFIG = {
 BASE_DIR = Path(__file__).parent.parent
 CSV_PATH = BASE_DIR / "Data_Raw" / "Optimized_Alberta_owner_sales_car_clean.csv"
 LOG_FILE   = "etl_run.log"
-CHUNK_SIZE = 1000          # rows per bulk-insert batch (raised from 500)
+CHUNK_SIZE = 1000          # rows per bulk-insert batch
 
 # ── Table name map (matches tbl_ naming convention in SQL schema) ─────────────
 TABLE = {
-    "stg":           "tbl_stg_Raw",
+    "stg":           "tbl_stg_Raw", 
     "models":        "tbl_Models",
     "years":         "tbl_Years",
     "trims":         "tbl_Trims",
@@ -40,22 +40,23 @@ TABLE = {
     "vehicles":      "tbl_Vehicles",
     "listings":      "tbl_Listings",
     "status_log":    "tbl_Listing_Status",
+    "rejected":      "tbl_Rejected_Rows",
 }
 
 # ─────────────────────────────────────────────────────────────────────────────
-#  VALIDATION RULES  [Req 9]
+#  VALIDATION RULES
 # ─────────────────────────────────────────────────────────────────────────────
 VALID_STATUSES   = {"SOLD", "ACTIVE", "ACTIVE_REPOST", "RESHELVED"}
 VALID_CONDITIONS = {"USED", "DAMAGED", "SALVAGE", "LEASE TAKEOVER", "UNKNOWN"}
 VALID_TRANS      = {"AUTOMATIC", "MANUAL", "SEMI-AUTOMATIC", "OTHER", "UNKNOWN"}
-PRICE_MIN,  PRICE_MAX = 1,           10_000_000
-KMS_MIN,    KMS_MAX   = 0,          2_000_000
-YEAR_MIN,   YEAR_MAX  = 1900,            2027
+PRICE_MIN,  PRICE_MAX = 1,        10_000_000
+KMS_MIN,    KMS_MAX   = 0,         2_000_000
+YEAR_MIN,   YEAR_MAX  = 1900,           2027
 KMS_BLACKLIST = {1, 99, 123, 1234, 12345, 123456, 999999, 111111}
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-#  LOGGING  [Req 7] — persistent .log file + console output
+#  LOGGING  — persistent .log file + console output
 # ─────────────────────────────────────────────────────────────────────────────
 def _setup_logging() -> logging.Logger:
     logger = logging.getLogger("etl_ab_carsales")
@@ -78,7 +79,7 @@ log = _setup_logging()
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-#  ENGINE 
+#  ENGINE
 # ─────────────────────────────────────────────────────────────────────────────
 def build_engine() -> Engine:
     cfg = DB_CONFIG
@@ -105,7 +106,7 @@ def build_engine() -> Engine:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-#  STEP 1 — EXTRACT  
+#  STEP 1 — EXTRACT
 # ─────────────────────────────────────────────────────────────────────────────
 def extract(csv_path: str) -> pd.DataFrame:
     try:
@@ -151,19 +152,23 @@ def transform(df: pd.DataFrame) -> pd.DataFrame:
         "Location":      "City_Name",
         "Body Style":    "Body_Style",
     })
+
     # Numeric cleaning
-    df["Kilometres"]  = df["Kilometres"].apply(_clean_kilometres)
-    df["Price_CAD"]   = pd.to_numeric(df["Price_CAD"], errors="coerce").fillna(0)
+    df["Kilometres"] = df["Kilometres"].apply(_clean_kilometres)
+    df["Price_CAD"]  = pd.to_numeric(df["Price_CAD"], errors="coerce").fillna(0)
+
+    # Year: coerce to numeric before validation to handle any string/NaN values
+    df["Year"] = pd.to_numeric(df["Year"], errors="coerce").fillna(0).astype(int)
 
     # Date parsing
     df["Scrape_Date"] = pd.to_datetime(df["Scrape_Date"], errors="coerce").dt.date
     df["Sold_Date"]   = pd.to_datetime(df["Sold_Date"],   errors="coerce").dt.date
 
     # Categorical normalization
-    df["Body_Style"]  = df["Body_Style"].apply(_normalize_body_style)
+    df["Body_Style"] = df["Body_Style"].apply(_normalize_body_style)
     for col in ["Transmission", "Drivetrain", "Seats", "Colour",
                 "Condition", "Status", "Trim", "Base_Model", "City_Name"]:
-        df[col] = df[col].str.strip().str.upper().fillna("UNKNOWN")
+        df[col] = df[col].fillna("UNKNOWN").str.strip().str.upper()
 
     # PII masking [Req 15] — store hash instead of raw URL
     df["Link_URL_Hash"] = df["Link_URL"].apply(_hash_url)
@@ -177,9 +182,17 @@ def transform(df: pd.DataFrame) -> pd.DataFrame:
 
 # ─────────────────────────────────────────────────────────────────────────────
 #  STEP 3 — VALIDATE 
+#  Bad rows are written to tbl_Rejected_Rows for inspection,
+#  then dropped from the load. Audit of that table is handled
+#  by the database trigger trg_Audit_Rejected_Rows (if added),
+#  or simply tracked via the ETL log file.
 # ─────────────────────────────────────────────────────────────────────────────
-def validate(df: pd.DataFrame) -> pd.DataFrame:
-    """Validate data ranges using vectorized operations. Log and drop bad rows."""
+def validate(df: pd.DataFrame, engine: Engine, source_file: str) -> pd.DataFrame:
+    """
+    Validate data ranges using vectorized operations.
+    Rejected rows → tbl_Rejected_Rows.
+    Clean rows    → returned for loading.
+    """
     log.info("[VALIDATE] Running validation ...")
 
     # One boolean mask per rule (True = row passes)
@@ -191,99 +204,98 @@ def validate(df: pd.DataFrame) -> pd.DataFrame:
     cond_ok   = df["Condition"].isin(VALID_CONDITIONS)
     trans_ok  = df["Transmission"].isin(VALID_TRANS)
 
-    # Log per-rule rejection counts
+    all_ok   = price_ok & kms_range & kms_real & year_ok & status_ok & cond_ok & trans_ok
+    clean_df = df[all_ok].reset_index(drop=True)
+
+    # ── Log per-rule rejection counts ────────────────────────────────────────
     rules = {
-        "Price_CAD out of range":           ~price_ok,
-        "Kilometres out of range":          ~kms_range,
-        "Kilometres is a placeholder":      ~kms_real,
-        "Year out of range (2028+ reject)": ~year_ok,
-        "Status invalid":                   ~status_ok,
-        "Condition invalid":                ~cond_ok,
-        "Transmission invalid":             ~trans_ok,
+        "Price_CAD out of range":        ~price_ok,
+        "Kilometres out of range":        ~kms_range,
+        "Kilometres is a placeholder":    ~kms_real,
+        "Year out of range":              ~year_ok,
+        "Status invalid":                 ~status_ok,
+        "Condition invalid":              ~cond_ok,
+        "Transmission invalid":           ~trans_ok,
     }
     for reason, bad_mask in rules.items():
         count = int(bad_mask.sum())
         if count:
             log.warning(f"[VALIDATE] {count} row(s) failed — {reason}")
 
-    for _, row in df[df["Price_CAD"] < 500].iterrows():
-        log.info(f"[AFFORDABLE VEHICLE DETECTED] 价格: ${row['Price_CAD']:.2f} CAD | 车型: {row['Base_Model']} | 城市: {row['City_Name']}")
+    # ── Write rejected rows to DB ─────────────────────────────────────────────
+    rejected_df = df[~all_ok].copy()
+    if not rejected_df.empty:
+        # Tag each row with its first failing reason (priority order)
+        priority = [
+            (~price_ok,  "Price_CAD out of range"),
+            (~kms_range, "Kilometres out of range"),
+            (~kms_real,  "Kilometres is a placeholder"),
+            (~year_ok,   "Year out of range"),
+            (~status_ok, "Status invalid"),
+            (~cond_ok,   "Condition invalid"),
+            (~trans_ok,  "Transmission invalid"),
+        ]
+        reason_series = pd.Series("Unknown", index=df.index)
+        for mask, label in reversed(priority):   # reversed so highest priority wins
+            reason_series[mask] = label
+        rejected_df["Reject_Reason"] = reason_series[~all_ok].values
 
-    all_ok   = price_ok & kms_range & kms_real & year_ok & status_ok & cond_ok & trans_ok
-    clean_df = df[all_ok].reset_index(drop=True)
-    rejected = len(df) - len(clean_df)
-    log.info(f"[VALIDATE] {len(clean_df):,} passed | {rejected} rejected.")
+        _write_rejected(rejected_df, engine, source_file)
+        log.info(f"[VALIDATE] {len(rejected_df):,} rejected row(s) written to {TABLE['rejected']}.")
+
+    log.info(f"[VALIDATE] {len(clean_df):,} passed | {len(rejected_df):,} rejected.")
     return clean_df
 
 
-# ─────────────────────────────────────────────────────────────────────────────
-#  STEP 4a — LOAD STAGING  
-#  Raw validated data → tbl_stg_Raw first
-# ─────────────────────────────────────────────────────────────────────────────
-def load_staging(df: pd.DataFrame, engine: Engine) -> None:
-    """
-    Insert validated rows into tbl_stg_Raw using chunked bulk insert.
-    Uses the same fast_executemany approach as normalized tables [Req 16].
-    Load_Timestamp is filled automatically by DEFAULT GETDATE() in SQL.
-    """
-    log.info("[STAGING] Loading into tbl_stg_Raw ...")
-
-    stg_rows = [
+def _write_rejected(df: pd.DataFrame, engine: Engine, source_file: str) -> None:
+    """Insert rejected rows into tbl_Rejected_Rows as raw strings."""
+    rows = [
         {
-            "title":  r["Listing_Title"],
-            "price":  float(r["Price_CAD"]),
-            "hash":   r["Link_URL_Hash"],
-            "city":   r["City_Name"],
-            "scrape": r["Scrape_Date"],
-            "status": r["Status"],
-            "sold":   r["Sold_Date"] if pd.notna(r["Sold_Date"]) else None,
-            "cond":   r["Condition"],
-            "kms":    int(r["Kilometres"]),
-            "trans":  r["Transmission"],
-            "drive":  r["Drivetrain"],
-            "seats":  r["Seats"],
-            "body":   r["Body_Style"],
-            "colour": r["Colour"],
-            "year":   int(r["Year"]),
-            "trim":   r["Trim"],
-            "model":  r["Base_Model"],
+            "source": str(source_file),
+            "reason": str(r.get("Reject_Reason", "Unknown")),
+            "title":  str(r.get("Listing_Title", ""))[:500],
+            "price":  str(r.get("Price_CAD", "")),
+            "kms":    str(r.get("Kilometres", "")),
+            "year":   str(r.get("Year", "")),
+            "status": str(r.get("Status", "")),
+            "cond":   str(r.get("Condition", "")),
+            "trans":  str(r.get("Transmission", "")),
+            "city":   str(r.get("City_Name", "")),
+            "scrape": str(r.get("Scrape_Date", "")),
+            "sold":   str(r.get("Sold_Date", "")),
         }
         for r in df.to_dict("records")
     ]
-
     with engine.begin() as conn:
-        for start in range(0, len(stg_rows), CHUNK_SIZE):
-            conn.execute(
-                text(f"""
-                    INSERT INTO {TABLE['stg']}
-                        (Listing_Title, Price_CAD, Link_URL_Hash, City_Name,
-                         Scrape_Date, Status, Sold_Date, Condition_Label,
-                         Kilometres, Transmission, Drivetrain, Seats,
-                         Body_Style, Colour, Year, Trim, Base_Model)
-                    VALUES
-                        (:title, :price, :hash, :city,
-                         :scrape, :status, :sold, :cond,
-                         :kms, :trans, :drive, :seats,
-                         :body, :colour, :year, :trim, :model)
-                """),
-                stg_rows[start: start + CHUNK_SIZE],
-            )
-            log.debug(f"[STAGING] Inserted rows {start}–{min(start+CHUNK_SIZE, len(stg_rows))}")
-
-    log.info(f"[STAGING] {len(stg_rows):,} rows inserted into {TABLE['stg']}.")
+        conn.execute(
+            text(f"""
+                INSERT INTO {TABLE['rejected']}
+                    (Source_File, Reject_Reason,
+                     Raw_Title, Raw_Price, Raw_Kilometres, Raw_Year,
+                     Raw_Status, Raw_Condition, Raw_Transmission,
+                     Raw_City, Raw_Scrape_Date, Raw_Sold_Date)
+                VALUES
+                    (:source, :reason,
+                     :title, :price, :kms, :year,
+                     :status, :cond, :trans,
+                     :city, :scrape, :sold)
+            """),
+            rows,
+        )
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-#  STEP 4b — DIMENSION HELPERS  Idempotency / Incremental
+#  STEP 4a — DIMENSION HELPERS  Idempotency / Incremental 
 # ─────────────────────────────────────────────────────────────────────────────
 def _upsert_dimension(conn, table: str, pk_col: str, value_col: str,
                       values: list) -> dict:
     """
     Idempotent dimension upsert — safe to re-run [Req 8].
     Only inserts values that don't already exist (incremental) [Req 13].
+    Returns a {value: id} lookup dict for FK mapping.
     """
-    result  = conn.execute(text(f"SELECT {pk_col}, {value_col} FROM {table}"))
-    lookup  = {row[1]: row[0] for row in result}
+    result = conn.execute(text(f"SELECT {pk_col}, {value_col} FROM {table}"))
+    lookup = {row[1]: row[0] for row in result}
     next_id = max(lookup.values(), default=0) + 1
     new_vals = [v for v in values if v not in lookup]
     if new_vals:
@@ -294,9 +306,8 @@ def _upsert_dimension(conn, table: str, pk_col: str, value_col: str,
         )
         for i, v in enumerate(new_vals):
             lookup[v] = next_id + i
-        log.info(f"  {table}: +{len(new_vals)} new row(s)")
+        log.info(f"  {table}: +{len(new_vals)} new value(s)")
     return lookup
-
 
 
 def _next_id(conn, table: str, pk_col: str) -> int:
@@ -305,12 +316,13 @@ def _next_id(conn, table: str, pk_col: str) -> int:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-#  STEP 4c — LOAD NORMALIZED TABLES  [Req 11] Transaction Management
+#  STEP 4b — LOAD NORMALIZED TABLES Transaction Management
 # ─────────────────────────────────────────────────────────────────────────────
 def load_normalized(df: pd.DataFrame, engine: Engine) -> None:
     """
-    Distribute staging data into normalized tables inside a single transaction.
+    Distribute validated data into normalized tables inside a single transaction.
     engine.begin() auto-COMMITs on success, auto-ROLLBACKs on any exception [Req 11].
+    Audit of each INSERT is handled automatically by database triggers.
     """
     with engine.begin() as conn:
 
@@ -318,40 +330,40 @@ def load_normalized(df: pd.DataFrame, engine: Engine) -> None:
         log.info("[LOAD] Upserting dimension tables ...")
         T = TABLE
         models_lkp        = _upsert_dimension(conn, T["models"],        "Model_ID",        "Base_Model",        df["Base_Model"].unique().tolist())
-        years_lkp         = _upsert_dimension(conn, TABLE["years"],        "Year_ID",         "Year",              df["Year"].unique().tolist())
-        trims_lkp         = _upsert_dimension(conn, T["trims"],          "Trim_ID",         "Trim",              df["Trim"].unique().tolist())
-        locations_lkp     = _upsert_dimension(conn, T["locations"],      "Location_ID",     "City_Name",         df["City_Name"].unique().tolist())
-        statuses_lkp      = _upsert_dimension(conn, T["statuses"],       "Status_ID",       "Status_Label",      df["Status"].unique().tolist())
-        conditions_lkp    = _upsert_dimension(conn, T["conditions"],     "Condition_ID",    "Condition_Label",   df["Condition"].unique().tolist())
-        transmissions_lkp = _upsert_dimension(conn, T["transmissions"],  "Transmission_ID", "Transmission_Type", df["Transmission"].unique().tolist())
-        drivetrains_lkp   = _upsert_dimension(conn, T["drivetrains"],    "Drivetrain_ID",   "Drivetrain_Type",   df["Drivetrain"].unique().tolist())
-        body_styles_lkp   = _upsert_dimension(conn, T["body_styles"],    "Body_Style_ID",   "Body_Style",        df["Body_Style"].unique().tolist())
-        colours_lkp       = _upsert_dimension(conn, T["colours"],        "Colour_ID",       "Colour",            df["Colour"].unique().tolist())
-        seats_lkp         = _upsert_dimension(conn, T["seats"],          "Seats_ID",        "Seats_Label",       df["Seats"].unique().tolist())
+        years_lkp         = _upsert_dimension(conn, T["years"],         "Year_ID",         "Year",              df["Year"].unique().tolist())
+        trims_lkp         = _upsert_dimension(conn, T["trims"],         "Trim_ID",         "Trim",              df["Trim"].unique().tolist())
+        locations_lkp     = _upsert_dimension(conn, T["locations"],     "Location_ID",     "City_Name",         df["City_Name"].unique().tolist())
+        statuses_lkp      = _upsert_dimension(conn, T["statuses"],      "Status_ID",       "Status_Label",      df["Status"].unique().tolist())
+        conditions_lkp    = _upsert_dimension(conn, T["conditions"],    "Condition_ID",    "Condition_Label",   df["Condition"].unique().tolist())
+        transmissions_lkp = _upsert_dimension(conn, T["transmissions"], "Transmission_ID", "Transmission_Type", df["Transmission"].unique().tolist())
+        drivetrains_lkp   = _upsert_dimension(conn, T["drivetrains"],   "Drivetrain_ID",   "Drivetrain_Type",   df["Drivetrain"].unique().tolist())
+        body_styles_lkp   = _upsert_dimension(conn, T["body_styles"],   "Body_Style_ID",   "Body_Style",        df["Body_Style"].unique().tolist())
+        colours_lkp       = _upsert_dimension(conn, T["colours"],       "Colour_ID",       "Colour",            df["Colour"].unique().tolist())
+        seats_lkp         = _upsert_dimension(conn, T["seats"],         "Seats_ID",        "Seats_Label",       df["Seats"].unique().tolist())
         log.info("[LOAD] Dimension tables done.")
 
-        records   = df.to_dict("records")
+        records = df.to_dict("records")
 
         # ── tbl_Vehicles ─────────────────────────────────────────────────────
         log.info("[LOAD] Inserting tbl_Vehicles ...")
         base_vid = _next_id(conn, T["vehicles"], "Vehicle_ID")
         vehicle_rows = [
             {
-                "vid":   base_vid + i,
-                "mid":   models_lkp[r["Base_Model"]],
-                "yid":   years_lkp[r["Year"]],
-                "tid":   trims_lkp[r["Trim"]],
-                "bsid":  body_styles_lkp[r["Body_Style"]],
-                "trid":  transmissions_lkp[r["Transmission"]],
-                "did":   drivetrains_lkp[r["Drivetrain"]],
-                "cid":   colours_lkp[r["Colour"]],
-                "sid":   seats_lkp[r["Seats"]],
+                "vid":  base_vid + i,
+                "mid":  models_lkp[r["Base_Model"]],
+                "yid":  years_lkp[r["Year"]],
+                "tid":  trims_lkp[r["Trim"]],
+                "bsid": body_styles_lkp[r["Body_Style"]],
+                "trid": transmissions_lkp[r["Transmission"]],
+                "did":  drivetrains_lkp[r["Drivetrain"]],
+                "cid":  colours_lkp[r["Colour"]],
+                "sid":  seats_lkp[r["Seats"]],
                 "title": r["Listing_Title"],
-                "hash":  r["Link_URL_Hash"],   # [Req 15] hashed URL only
+                "hash":  r["Link_URL_Hash"],   
             }
             for i, r in enumerate(records)
         ]
-        for start in range(0, len(vehicle_rows), CHUNK_SIZE):   # [Req 16]
+        for start in range(0, len(vehicle_rows), CHUNK_SIZE):   
             conn.execute(
                 text(f"""
                     INSERT INTO {T['vehicles']}
@@ -421,19 +433,6 @@ def load_normalized(df: pd.DataFrame, engine: Engine) -> None:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-#  STEP 4d — TRUNCATE STAGING  
-#  Clean up staging table after successful normalized load
-# ─────────────────────────────────────────────────────────────────────────────
-def truncate_staging(engine: Engine) -> None:
-    try:
-        with engine.begin() as conn:
-            conn.execute(text(f"TRUNCATE TABLE {TABLE['stg']}"))
-        log.info(f"[STAGING] {TABLE['stg']} truncated after successful load.")
-    except Exception as exc:
-        log.warning(f"[STAGING] Could not truncate staging table: {exc}")
-
-
-# ─────────────────────────────────────────────────────────────────────────────
 #  ENTRY POINT  Single-click execution
 # ─────────────────────────────────────────────────────────────────────────────
 def run_etl(csv_path: str = CSV_PATH) -> None:
@@ -444,18 +443,24 @@ def run_etl(csv_path: str = CSV_PATH) -> None:
 
     engine = None
     try:
-        engine     = build_engine()
-        df_raw     = extract(csv_path)
-        df_clean   = transform(df_raw)
-        df_valid   = validate(df_clean)
+        engine   = build_engine()
+        df_raw   = extract(csv_path)
+        df_clean = transform(df_raw)
+
+        # validate() now needs engine to write rejected rows,
+        # and source_file for traceability in tbl_Rejected_Rows
+        df_valid = validate(df_clean, engine, source_file=csv_path)
 
         if df_valid.empty:
             log.warning("[ETL] All rows failed validation. Nothing loaded.")
             return
 
-        load_staging(df_valid, engine)       # [Req 12] Stage first
+        # Staging table exists in DB for architecture demonstration [Req 12]
+        # but is not written to during ETL — CSV is the source of truth.
+        # load_staging(df_valid, engine)   ← intentionally skipped
+        # truncate_staging(engine)         ← intentionally skipped
+
         load_normalized(df_valid, engine)    # [Req 11] Transactional load
-        truncate_staging(engine)             # [Req 12] Clean up staging
 
         elapsed = (datetime.datetime.now() - run_start).total_seconds()
         log.info("=" * 65)
