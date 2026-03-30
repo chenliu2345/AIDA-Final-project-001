@@ -1,8 +1,20 @@
 """
-Model 2 — CatBoost: Days-to-Sell Prediction   (training only)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Model 2 — CatBoost: Days-to-Sell Classification   (training only)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Data source : V_Y2  (SOLD records with Days_to_Sell)
-Target      : Days_to_Sell
+Task        : Binary classification
+Target      : Fast_Sale  =  1 if Days_to_Sell <= 7, else 0
+
+Why classification instead of regression?
+  The raw Days_to_Sell range is capped at 36 days because the scraping
+  window was ~5 weeks.  That truncated range produces near-zero variance
+  in the target, making R² meaningless for a regressor.  Framing the
+  problem as "will this car sell within a week?" is both statistically
+  valid and practically useful for a seller.
+
+Threshold = 7 days chosen because it gives the most balanced classes:
+  Fast (<=7 days) : ~55.6%   Slow (>7 days) : ~44.4%
+
 Features    : vehicle attributes  +  actual Price_CAD from DB
               +  Distance_from_Edmonton_KM / Distance_from_Calgary_KM
               (distances are pre-stored in tbl_Locations by the ETL;
@@ -11,9 +23,8 @@ Features    : vehicle attributes  +  actual Price_CAD from DB
 Filters applied before training
   - Days_to_Sell >= 1   : exclude same-day sales (noise)
   - exclude listings whose Scrape_Date = first scrape day in the DB
-    (those vehicles were already on the market before data collection
-     started — their true listing date is unknown, so Days_to_Sell
-     would be artificially short)
+    (those vehicles were on the market before data collection started —
+     their true listing date is unknown so Days_to_Sell is unreliable)
 
 Output
   models/catboost_days_model.pkl   (sklearn Pipeline)
@@ -28,13 +39,18 @@ import joblib
 from pathlib import Path
 from sqlalchemy import create_engine, text
 
-from catboost import CatBoostRegressor
-from sklearn.base import BaseEstimator, RegressorMixin
+from catboost import CatBoostClassifier
+from sklearn.base import BaseEstimator, ClassifierMixin
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
-from sklearn.model_selection import KFold
-from sklearn.metrics import mean_absolute_error, root_mean_squared_error, r2_score
+from sklearn.model_selection import StratifiedKFold
+from sklearn.metrics import (
+    accuracy_score,
+    f1_score,
+    roc_auc_score,
+    classification_report,
+)
 
 # ─────────────────────────────────────────────────────────────────────────────
 #  CONFIGURATION
@@ -45,15 +61,10 @@ DB_DRIVER = "ODBC+Driver+17+for+SQL+Server"
 
 MODEL_PATH = Path(__file__).parent.parent / "models" / "catboost_days_model.pkl"
 
-CV_FOLDS    = 5
-RANDOM_SEED = 42
+FAST_SALE_THRESHOLD = 7   # days — sell within a week = Fast (1), otherwise Slow (0)
+CV_FOLDS            = 5
+RANDOM_SEED         = 42
 
-# Numeric features — Price_CAD and distances are known at training time
-# because they come directly from the database (V_Y2 + tbl_Locations).
-# At inference time these three values are supplied externally:
-#   Price_CAD                  ← predicted by Model 1
-#   Distance_from_Edmonton_KM  ← real-time OSRM  (see inference/distance_api.py)
-#   Distance_from_Calgary_KM   ← real-time OSRM
 NUM_FEATURES = [
     "Year", "Kilometres", "Price_CAD",
     "Distance_from_Edmonton_KM", "Distance_from_Calgary_KM",
@@ -63,10 +74,8 @@ CAT_FEATURES = [
     "Body_Style", "Colour", "Seats_Count", "City_Name", "Base_Model", "Trim",
 ]
 ALL_FEATURES = NUM_FEATURES + CAT_FEATURES
-TARGET       = "Days_to_Sell"
+TARGET       = "Fast_Sale"   # engineered from Days_to_Sell
 
-# Indices of categorical columns after ColumnTransformer output
-# (numeric columns come first, then categoricals — same order as ALL_FEATURES)
 CAT_INDICES = list(range(len(NUM_FEATURES), len(NUM_FEATURES) + len(CAT_FEATURES)))
 
 CATBOOST_PARAMS = {
@@ -75,8 +84,9 @@ CATBOOST_PARAMS = {
     "depth":                 8,
     "l2_leaf_reg":           3.0,
     "subsample":             0.8,
-    "early_stopping_rounds": 50,   # stops early per fold — no manual tuning needed
-    "loss_function":         "RMSE",
+    "early_stopping_rounds": 50,
+    "loss_function":         "Logloss",   # binary classification loss
+    "eval_metric":           "AUC",
     "random_seed":           RANDOM_SEED,
     "verbose":               False,
 }
@@ -84,12 +94,12 @@ CATBOOST_PARAMS = {
 
 # ─────────────────────────────────────────────────────────────────────────────
 #  CATBOOST WRAPPER
-#  sklearn's clone() is incompatible with CatBoostRegressor when cat_features
+#  sklearn's clone() is incompatible with CatBoostClassifier when cat_features
 #  is set in the constructor.  This wrapper stores all params as plain
 #  attributes so sklearn can safely clone it during cross-validation,
-#  then builds the real CatBoostRegressor only at fit() time.
+#  then builds the real CatBoostClassifier only at fit() time.
 # ─────────────────────────────────────────────────────────────────────────────
-class CatBoostWrapper(BaseEstimator, RegressorMixin):
+class CatBoostWrapper(BaseEstimator, ClassifierMixin):
     def __init__(
         self,
         iterations=2000,
@@ -99,7 +109,8 @@ class CatBoostWrapper(BaseEstimator, RegressorMixin):
         subsample=0.8,
         early_stopping_rounds=50,
         cat_features=None,
-        loss_function="RMSE",
+        loss_function="Logloss",
+        eval_metric="AUC",
         random_seed=42,
         verbose=False,
     ):
@@ -111,11 +122,12 @@ class CatBoostWrapper(BaseEstimator, RegressorMixin):
         self.early_stopping_rounds = early_stopping_rounds
         self.cat_features          = cat_features
         self.loss_function         = loss_function
+        self.eval_metric           = eval_metric
         self.random_seed           = random_seed
         self.verbose               = verbose
 
     def fit(self, X, y, eval_set=None):
-        self.model_ = CatBoostRegressor(
+        self.model_ = CatBoostClassifier(
             iterations=self.iterations,
             learning_rate=self.learning_rate,
             depth=self.depth,
@@ -124,6 +136,7 @@ class CatBoostWrapper(BaseEstimator, RegressorMixin):
             early_stopping_rounds=self.early_stopping_rounds,
             cat_features=self.cat_features,
             loss_function=self.loss_function,
+            eval_metric=self.eval_metric,
             random_seed=self.random_seed,
             verbose=self.verbose,
         )
@@ -132,6 +145,9 @@ class CatBoostWrapper(BaseEstimator, RegressorMixin):
 
     def predict(self, X):
         return self.model_.predict(X)
+
+    def predict_proba(self, X):
+        return self.model_.predict_proba(X)
 
     def get_feature_importance(self):
         return self.model_.get_feature_importance()
@@ -175,23 +191,28 @@ def load_data() -> pd.DataFrame:
 # ─────────────────────────────────────────────────────────────────────────────
 def prepare(df: pd.DataFrame):
     """
-    Select the required columns and drop rows where the target
-    or distance columns are NULL (listings with no geocoded location).
-    No log transform is applied — Days_to_Sell is not as skewed as price
-    and the RMSE loss function handles the raw scale well.
+    Engineer the binary target and drop rows with missing distances.
+    Fast_Sale = 1  if Days_to_Sell <= FAST_SALE_THRESHOLD (7 days)
+    Fast_Sale = 0  otherwise
     """
-    df = df[ALL_FEATURES + [TARGET]].copy()
+    df = df[ALL_FEATURES + ["Days_to_Sell"]].copy()
 
     before = len(df)
-    df = df.dropna(subset=[TARGET, "Distance_from_Edmonton_KM", "Distance_from_Calgary_KM"])
+    df = df.dropna(subset=["Days_to_Sell", "Distance_from_Edmonton_KM", "Distance_from_Calgary_KM"])
     dropped = before - len(df)
     if dropped:
         print(f"[PREPARE] Dropped {dropped} rows with NULL target or distances")
 
+    df[TARGET] = (df["Days_to_Sell"] <= FAST_SALE_THRESHOLD).astype(int)
+
+    fast = df[TARGET].sum()
+    slow = len(df) - fast
+    print(f"[PREPARE] {len(df):,} rows ready")
+    print(f"          Fast (<=7 days) : {fast:,} ({fast/len(df)*100:.1f}%)")
+    print(f"          Slow (> 7 days) : {slow:,} ({slow/len(df)*100:.1f}%)")
+
     X = df[ALL_FEATURES]
-    y = df[TARGET].astype(float)
-    print(f"[PREPARE] {len(X):,} rows ready  |  target range: "
-          f"{y.min():.0f} – {y.max():.0f} days  |  median: {y.median():.0f} days")
+    y = df[TARGET]
     return X, y
 
 
@@ -201,7 +222,7 @@ def prepare(df: pd.DataFrame):
 def build_pipeline() -> Pipeline:
     """
     Preprocessing:
-      Numeric    → median imputation  (handles the rare NULL distance)
+      Numeric    → median imputation
       Categorical → fill NULL with 'UNKNOWN', passed as-is to CatBoost
                     (CatBoost handles raw strings natively — no OHE needed)
     """
@@ -226,37 +247,45 @@ def build_pipeline() -> Pipeline:
 # ─────────────────────────────────────────────────────────────────────────────
 def evaluate(X: pd.DataFrame, y: pd.Series) -> None:
     """
-    5-fold cross-validation.  Metrics reported in original days (no transform).
-    MAE is the most interpretable metric here: on average the model is off
-    by MAE days when predicting how long a listing will take to sell.
+    Stratified 5-fold CV — StratifiedKFold preserves the Fast/Slow ratio
+    in every fold, which matters when classes are not perfectly balanced.
+
+    Metrics:
+      Accuracy  — overall correctness
+      F1        — harmonic mean of precision and recall (robust to imbalance)
+      ROC-AUC   — model's ability to rank Fast above Slow regardless of threshold
     """
-    cv      = KFold(n_splits=CV_FOLDS, shuffle=True, random_state=RANDOM_SEED)
-    metrics = {"R2": [], "MAE": [], "RMSE": []}
+    cv      = StratifiedKFold(n_splits=CV_FOLDS, shuffle=True, random_state=RANDOM_SEED)
+    metrics = {"Accuracy": [], "F1": [], "AUC": []}
 
     print(f"\n{'─' * 55}")
-    print(f"CatBoost — Days-to-Sell  |  {CV_FOLDS}-Fold Cross-Validation")
+    print(f"CatBoost — Fast Sale Classifier  |  {CV_FOLDS}-Fold CV")
+    print(f"Threshold : Days_to_Sell <= {FAST_SALE_THRESHOLD} days = Fast (1)")
     print(f"{'─' * 55}")
 
-    for fold, (train_idx, val_idx) in enumerate(cv.split(X), 1):
-        X_tr,  X_val = X.iloc[train_idx], X.iloc[val_idx]
-        y_tr,  y_val = y.iloc[train_idx], y.iloc[val_idx]
+    for fold, (train_idx, val_idx) in enumerate(cv.split(X, y), 1):
+        X_tr, X_val = X.iloc[train_idx], X.iloc[val_idx]
+        y_tr, y_val = y.iloc[train_idx], y.iloc[val_idx]
 
         pipeline = build_pipeline()
         pipeline.fit(X_tr, y_tr)
-        y_pred = pipeline.predict(X_val)
 
-        metrics["R2"].append(r2_score(y_val, y_pred))
-        metrics["MAE"].append(mean_absolute_error(y_val, y_pred))
-        metrics["RMSE"].append(root_mean_squared_error(y_val, y_pred))
+        y_pred      = pipeline.predict(X_val)
+        y_pred_prob = pipeline.predict_proba(X_val)[:, 1]
 
-        print(f"  Fold {fold}:  R²={metrics['R2'][-1]:.4f}  "
-              f"MAE={metrics['MAE'][-1]:.1f} days  "
-              f"RMSE={metrics['RMSE'][-1]:.1f} days")
+        metrics["Accuracy"].append(accuracy_score(y_val, y_pred))
+        metrics["F1"].append(f1_score(y_val, y_pred))
+        metrics["AUC"].append(roc_auc_score(y_val, y_pred_prob))
+
+        print(f"  Fold {fold}:  "
+              f"Accuracy={metrics['Accuracy'][-1]:.4f}  "
+              f"F1={metrics['F1'][-1]:.4f}  "
+              f"AUC={metrics['AUC'][-1]:.4f}")
 
     print(f"{'─' * 55}")
     for name, vals in metrics.items():
         arr = np.array(vals)
-        print(f"  CV {name:4s}: {arr.mean():.4f} ± {arr.std():.4f}")
+        print(f"  CV {name:8s}: {arr.mean():.4f} ± {arr.std():.4f}")
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -264,20 +293,23 @@ def evaluate(X: pd.DataFrame, y: pd.Series) -> None:
 # ─────────────────────────────────────────────────────────────────────────────
 def fit_final(X: pd.DataFrame, y: pd.Series) -> None:
     """
-    Re-fit on the full dataset (all folds) and save the pipeline.
-    Feature importances show which variables drive Days_to_Sell —
-    useful to discuss during the demo.
+    Re-fit on the full dataset and save the pipeline.
+    Prints a classification report and feature importances for the demo.
     """
     print(f"\n[TRAIN] Fitting final pipeline on full dataset ...")
     pipeline = build_pipeline()
     pipeline.fit(X, y)
+
+    y_pred = pipeline.predict(X)
+    print("\n  Classification report (training set — for reference only):")
+    print(classification_report(y, y_pred, target_names=["Slow (0)", "Fast (1)"]))
 
     imp = pd.Series(
         pipeline.named_steps["model"].get_feature_importance(),
         index=ALL_FEATURES,
     ).sort_values(ascending=False)
 
-    print("\n  Feature importances (Days-to-Sell model):")
+    print("  Feature importances (Fast-Sale classifier):")
     print(imp.to_string())
 
     MODEL_PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -289,7 +321,7 @@ def fit_final(X: pd.DataFrame, y: pd.Series) -> None:
 #  ENTRY POINT
 # ─────────────────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
-    df       = load_data()
-    X, y     = prepare(df)
+    df   = load_data()
+    X, y = prepare(df)
     evaluate(X, y)
     fit_final(X, y)
