@@ -4,7 +4,7 @@ import time
 from functools import lru_cache
 ROUTING_URL = "http://router.project-osrm.org/route/v1/driving/"
 GEOCODING_URL = "https://geocoding-api.open-meteo.com/v1/search"
-DB_CONFIG = "DRIVER={ODBC Driver 17 for SQL Server};SERVER=MilesZhang;DATABASE=AB_CarSale_DB;Trusted_Connection=yes;"
+DB_CONFIG = "DRIVER={ODBC Driver 17 for SQL Server};SERVER=.;DATABASE=AB_CarSale_DB;Trusted_Connection=yes;"
 @lru_cache(maxsize=None)
 def get_lat_lon(city_name):
     name = city_name.upper().strip()
