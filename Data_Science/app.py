@@ -297,7 +297,7 @@ if st.button("Predict optimal price", disabled=not ready, type="primary"):
         "City_Name":         st.session_state.confirmed_city,
     }
 
-    with st.spinner("Fetching road distances via OSRM API..."):
+    with st.spinner("Fetching road distances via ORS API..."):
         try:
             result = predict(vehicle_info)
         except Exception as e:

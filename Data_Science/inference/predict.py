@@ -5,10 +5,14 @@ Loads the trained CatBoost pipeline and predicts the optimal listing
 price for a vehicle, given its attributes and city name.
 
 Distance pipeline at inference time:
-  1. City name  →  geocoding API (open-meteo)  →  (lat, lon)
-  2. (lat, lon) →  OSRM routing API            →  road distance in KM
+  1. City name  →  geocoding API (open-meteo)      →  (lon, lat)
+  2. (lon, lat) →  OpenRouteService routing API    →  road distance in KM
   This mirrors how distances were computed before being stored in
   tbl_Locations during the ETL — the same logic, run in real time.
+
+Setup:
+  Create a .env file in the project root containing:
+      ORS_API_KEY=your_key_here
 
 Usage example:
   from inference.predict import predict
@@ -29,12 +33,13 @@ Usage example:
   print(result)
 """
 
-import time
+import os
 import joblib
 import requests
 import pandas as pd
 from pathlib import Path
 from functools import lru_cache
+from dotenv import load_dotenv
 
 from catboost import CatBoostRegressor
 from sklearn.base import BaseEstimator, RegressorMixin
@@ -91,17 +96,18 @@ class CatBoostWrapper(BaseEstimator, RegressorMixin):
     def get_feature_importance(self):
         return self.model_.get_feature_importance()
 
+
 # ─────────────────────────────────────────────────────────────────────────────
 #  CONFIGURATION
 # ─────────────────────────────────────────────────────────────────────────────
-MODEL_PATH = Path(__file__).parent.parent.parent / "models" / "catboost_price_model.pkl"
+load_dotenv(Path(__file__).parent.parent.parent / ".env")
+ORS_API_KEY   = os.getenv("ORS_API_KEY")
+ORS_URL       = "https://api.openrouteservice.org/v2/directions/driving-car"
 GEOCODING_URL = "https://geocoding-api.open-meteo.com/v1/search"
-ROUTING_URLS = [
-    "https://router.project-osrm.org/route/v1/driving/",
-    "http://router.project-osrm.org/route/v1/driving/",
-]
 
-# Features the model expects — must match train_price_catboost.py exactly
+MODEL_PATH = Path(__file__).parent.parent.parent / "models" / "catboost_price_model.pkl"
+
+# Features the model expects — must match Y1_model_catboost.py exactly
 MODEL_FEATURES = [
     "Year", "Kilometres",
     "Distance_from_Edmonton_KM", "Distance_from_Calgary_KM",
@@ -152,7 +158,6 @@ def _get_lat_lon(city_name: str):
             timeout=15,
         ).json()
         if "results" in res:
-            # Prefer Alberta results, then any Canadian result, then first result
             for place in res["results"]:
                 if place.get("admin1") == "Alberta":
                     return place["longitude"], place["latitude"]
@@ -165,16 +170,28 @@ def _get_lat_lon(city_name: str):
     return None, None
 
 
-def _road_distance_km(lon1, lat1, lon2, lat2) -> float | None:
-    for base_url in ROUTING_URLS:
-        try:
-            url = f"{base_url}{lon1},{lat1};{lon2},{lat2}?overview=false"
-            res = requests.get(url, timeout=15).json()
-            if res.get("code") == "Ok":
-                return round(res["routes"][0]["distance"] / 1000, 2)
-        except Exception as e:
-            print(f"[ROUTING ERROR] {base_url}: {e}")
-            continue
+def _road_distance_km(lon1: float, lat1: float, lon2: float, lat2: float) -> float | None:
+    """
+    Call OpenRouteService to get the driving road distance in km.
+    ORS expects coordinates as [longitude, latitude] pairs.
+    Response distance field is in metres.
+    """
+    headers = {
+        "Authorization": ORS_API_KEY,
+        "Content-Type":  "application/json",
+    }
+    body = {
+        "coordinates": [
+            [lon1, lat1],
+            [lon2, lat2],
+        ]
+    }
+    try:
+        res = requests.post(ORS_URL, json=body, headers=headers, timeout=15).json()
+        distance_m = res["routes"][0]["summary"]["distance"]
+        return round(distance_m / 1000, 2)
+    except Exception as e:
+        print(f"[ORS ROUTING ERROR] {e}")
     return None
 
 
@@ -186,6 +203,9 @@ def get_distances(city_name: str) -> tuple[float, float]:
     This is the same logic used to pre-populate tbl_Locations during
     the ETL — here it runs on demand at inference time.
     """
+    if not ORS_API_KEY:
+        raise ValueError("ORS_API_KEY not set. Add it to your .env file.")
+
     edm_lon, edm_lat = _get_lat_lon("Edmonton")
     cal_lon, cal_lat = _get_lat_lon("Calgary")
     tgt_lon, tgt_lat = _get_lat_lon(city_name)
@@ -193,9 +213,7 @@ def get_distances(city_name: str) -> tuple[float, float]:
     if None in (tgt_lon, tgt_lat):
         raise ValueError(f"Could not geocode city: '{city_name}'")
 
-    time.sleep(1)   # be polite to the free OSRM API
     dist_edm = _road_distance_km(edm_lon, edm_lat, tgt_lon, tgt_lat)
-    time.sleep(1)
     dist_cal = _road_distance_km(cal_lon, cal_lat, tgt_lon, tgt_lat)
 
     if None in (dist_edm, dist_cal):
@@ -223,8 +241,8 @@ def predict(vehicle_info: dict) -> dict:
     -------
     dict with:
       predicted_price_CAD          — recommended listing price
-      distance_from_edmonton_km    — road distance fetched via OSRM
-      distance_from_calgary_km     — road distance fetched via OSRM
+      distance_from_edmonton_km    — road distance fetched via ORS
+      distance_from_calgary_km     — road distance fetched via ORS
     """
     model = joblib.load(MODEL_PATH)
 
@@ -234,18 +252,20 @@ def predict(vehicle_info: dict) -> dict:
     print(f"[API] Edmonton: {dist_edm} km  |  Calgary: {dist_cal} km")
 
     # Step 2: assemble the feature row the model expects
-    row = {**vehicle_info,
-           "Distance_from_Edmonton_KM": dist_edm,
-           "Distance_from_Calgary_KM":  dist_cal}
-    df  = pd.DataFrame([row])[MODEL_FEATURES]
+    row = {
+        **vehicle_info,
+        "Distance_from_Edmonton_KM": dist_edm,
+        "Distance_from_Calgary_KM":  dist_cal,
+    }
+    df = pd.DataFrame([row])[MODEL_FEATURES]
 
     # Step 3: predict
     predicted_price = round(float(model.predict(df)[0]), 2)
 
     return {
-        "predicted_price_CAD":         predicted_price,
-        "distance_from_edmonton_km":   dist_edm,
-        "distance_from_calgary_km":    dist_cal,
+        "predicted_price_CAD":       predicted_price,
+        "distance_from_edmonton_km": dist_edm,
+        "distance_from_calgary_km":  dist_cal,
     }
 
 

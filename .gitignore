@@ -232,3 +232,6 @@ __pycache__/
 *.joblib
 *.pth
 *.onnx
+
+# API KEY
+*.env
