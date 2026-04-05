@@ -309,7 +309,7 @@ if st.button("Predict optimal price", disabled=not ready, type="primary"):
     dist_cal   = result["distance_from_calgary_km"]
 
     # ── Distance info ─────────────────────────────────────────────────────────
-    st.subheader("Location distances (fetched via OSRM API)")
+    st.subheader("Location distances (fetched via ORS API)")
     dc1, dc2 = st.columns(2)
     dc1.metric("Distance from Edmonton", f"{dist_edm:,.1f} km")
     dc2.metric("Distance from Calgary",  f"{dist_cal:,.1f} km")
