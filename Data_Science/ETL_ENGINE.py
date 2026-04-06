@@ -1,3 +1,4 @@
+import os
 import re
 import sys
 import hashlib
@@ -7,6 +8,13 @@ import pandas as pd
 from pathlib import Path
 from sqlalchemy import create_engine, text, Engine
 from sqlalchemy.exc import SQLAlchemyError
+import requests
+import time
+from functools import lru_cache
+from dotenv import load_dotenv
+
+# Load ORS API key from .env at project root (two levels up from this file)
+load_dotenv(Path(__file__).parent.parent / ".env")
 
 # ─────────────────────────────────────────────────────────────────────────────
 #  CONFIGURATION  ← edit before running
@@ -19,7 +27,7 @@ DB_CONFIG = {
 }
 
 BASE_DIR = Path(__file__).parent.parent
-CSV_PATH = BASE_DIR / "Data_Raw" / "Optimized_Alberta_owner_sales_car_clean.csv"
+CSV_PATH = BASE_DIR / "Data_Raw" / "Optimized_Alberta_owner_sales_car_clean.csv" # NOTICE THE FILE PATH!
 LOG_FILE   = "etl_run.log"
 CHUNK_SIZE = 1000          # rows per bulk-insert batch
 
@@ -478,7 +486,149 @@ def run_etl(csv_path: str = CSV_PATH) -> None:
             engine.dispose()
             log.info("Engine disposed.")
 
+# ─────────────────────────────────────────────────────────────────────────────
+#  LOAD DISTANCE API 
+# ─────────────────────────────────────────────────────────────────────────────
 
+ORS_API_KEY   = os.getenv("ORS_API_KEY")
+ORS_URL       = "https://api.openrouteservice.org/v2/directions/driving-car"
+GEOCODING_URL = "https://geocoding-api.open-meteo.com/v1/search"
+
+# ── City name aliases ─────────────────────────────────────────────────────────
+#  Some Kijiji location labels are not directly geocodable — map them to the
+#  nearest real city name before sending to the geocoding API.
+_CITY_ALIASES = {
+    "STRATHCONA COUNTY":      "Sherwood Park",
+    "ROCKY VIEW COUNTY":      "Airdrie",
+    "FOOTHILLS COUNTY":       "Okotoks",
+    "TSUU T'INA":             "Calgary",
+    "BANFF / CANMORE":        "Canmore",
+    "SOUTH LETHBRIDGE":       "Lethbridge",
+    "ALBERTA":                "Edmonton",
+    "OTHER":                  "Red Deer",
+    "LANGDON":                "Chestermere",
+    "ACADIA":                 "Calgary",
+    "SWEET GRASS":            "Edmonton",
+    "FOOTHILLS":              "Calgary",
+    "NORTHEAST CALGARY":      "Calgary",
+    "NORTHWEST CALGARY":      "Calgary",
+    "SOUTHEAST CALGARY":      "Calgary",
+    "SOUTHWEST CALGARY":      "Calgary",
+    "NORTH CENTRAL EDMONTON": "Edmonton",
+    "SOUTHEAST EDMONTON":     "Edmonton",
+    "NORTHWEST EDMONTON":     "Edmonton",
+    "WEST EDMONTON":          "Edmonton",
+    "NORTHEAST EDMONTON":     "Edmonton",
+    "SOUTHWEST EDMONTON":     "Edmonton",
+}
+@lru_cache(maxsize=None)
+def get_lat_lon(city_name: str):
+    """Return (longitude, latitude) for a city name, preferring Alberta results."""
+    search_query = _CITY_ALIASES.get(city_name.upper().strip(), city_name.strip())
+    try:
+        res = requests.get(
+            GEOCODING_URL,
+            params={"name": search_query, "count": 20},
+            timeout=15,
+        ).json()
+        if "results" in res:
+            for place in res["results"]:
+                if place.get("admin1") == "Alberta":
+                    return place["longitude"], place["latitude"]
+            for place in res["results"]:
+                if place.get("country") == "Canada":
+                    return place["longitude"], place["latitude"]
+            return res["results"][0]["longitude"], res["results"][0]["latitude"]
+    except Exception as e:
+        log.warning(f"[GEOCODING ERROR] {search_query}: {e}")
+    log.warning(f"[GEOCODING] Could not find: {search_query}")
+    return None, None
+
+
+def calculate_road_distance(lon1: float, lat1: float, lon2: float, lat2: float):
+    if not ORS_API_KEY:
+        log.error("[ORS] ORS_API_KEY not set — cannot calculate distance.")
+        return None
+    if (lon1, lat1) == (lon2, lat2):
+        return 0.0
+    headers = {
+        "Authorization": ORS_API_KEY,
+        "Content-Type":  "application/json",
+    }
+    body = {"coordinates": [[lon1, lat1], [lon2, lat2]]}
+    try:
+        res = requests.post(ORS_URL, json=body, headers=headers, timeout=15).json()
+        if "routes" in res:
+            return round(res["routes"][0]["summary"]["distance"] / 1000, 2)
+        log.warning(f"[ORS] Unexpected response: {res.get('error', res)}")
+    except Exception as e:
+        log.warning(f"[ORS ROUTING ERROR] {e}")
+    return None
+
+
+def road_distance_pipeline():
+    """
+    Fetches driving distances (via OpenRouteService) for every tbl_Locations row
+    that is still missing Distance_from_Edmonton_KM or Distance_from_Calgary_KM,
+    then writes the values back to the DB.
+
+    Run this once after the main ETL load — or any time new cities appear.
+    ORS free tier limit: 40 requests/min → 1.5 s sleep keeps us safely under.
+    """
+    if not ORS_API_KEY:
+        log.error("[DISTANCE] ORS_API_KEY not found in .env — skipping distance pipeline.")
+        return
+
+    edm_lon, edm_lat = get_lat_lon("Edmonton")
+    cal_lon, cal_lat = get_lat_lon("Calgary")
+    if not all([edm_lon, edm_lat, cal_lon, cal_lat]):
+        log.error("[DISTANCE] Could not geocode Edmonton or Calgary — aborting.")
+        return
+
+    engine = build_engine()
+    try:
+        with engine.begin() as conn:
+            targets = conn.execute(text("""
+                SELECT Location_ID, City_Name
+                FROM tbl_Locations
+                WHERE Distance_from_Edmonton_KM IS NULL
+                   OR Distance_from_Calgary_KM  IS NULL
+            """)).fetchall()
+
+            total = len(targets)
+            log.info(f"[DISTANCE] {total} location(s) need distance calculation.")
+
+            for count, (loc_id, city_name) in enumerate(targets, 1):
+                tgt_lon, tgt_lat = get_lat_lon(city_name)
+                if tgt_lon is None:
+                    log.warning(f"[DISTANCE] ({count}/{total}) {city_name} — could not geocode, skipped.")
+                    continue
+
+                dist_edm = calculate_road_distance(edm_lon, edm_lat, tgt_lon, tgt_lat)
+                dist_cal = calculate_road_distance(cal_lon, cal_lat, tgt_lon, tgt_lat)
+
+                if dist_edm is not None and dist_cal is not None:
+                    conn.execute(
+                        text("""
+                            UPDATE tbl_Locations
+                            SET Distance_from_Edmonton_KM = :edm,
+                                Distance_from_Calgary_KM  = :cal
+                            WHERE Location_ID = :id
+                        """),
+                        {"edm": dist_edm, "cal": dist_cal, "id": loc_id},
+                    )
+                    log.info(f"[DISTANCE] ({count}/{total}) {city_name} → YEG: {dist_edm} km | YYC: {dist_cal} km")
+                else:
+                    log.warning(f"[DISTANCE] ({count}/{total}) {city_name} — routing failed, skipped.")
+
+                time.sleep(1.5)   # ORS free tier: 40 req/min
+
+        log.info("[DISTANCE] All distances updated and committed.")
+    except Exception as e:
+        log.error(f"[DISTANCE] Database error: {e}")
+    finally:
+        engine.dispose()
 if __name__ == "__main__":
     csv_file = sys.argv[1] if len(sys.argv) > 1 else CSV_PATH
     run_etl(csv_file)
+    road_distance_pipeline()

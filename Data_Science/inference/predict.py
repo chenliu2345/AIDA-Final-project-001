@@ -27,7 +27,7 @@ Usage example:
       "Drivetrain_Type":   "AWD",
       "Body_Style":        "SUV",
       "Colour":            "WHITE",
-      "Seats_Count":       "5",
+      "Seats_Count":       "5 SEATS",
       "City_Name":         "RED DEER",
   })
   print(result)
@@ -105,7 +105,7 @@ ORS_API_KEY   = os.getenv("ORS_API_KEY")
 ORS_URL       = "https://api.openrouteservice.org/v2/directions/driving-car"
 GEOCODING_URL = "https://geocoding-api.open-meteo.com/v1/search"
 
-MODEL_PATH = Path(__file__).parent.parent.parent / "models" / "catboost_price_model.pkl"
+MODEL_PATH = Path(__file__).parent.parent / "models" / "catboost_price_model.pkl"
 
 # Features the model expects — must match Y1_model_catboost.py exactly
 MODEL_FEATURES = [
@@ -283,7 +283,7 @@ if __name__ == "__main__":
         "Drivetrain_Type":   "AWD",
         "Body_Style":        "SUV",
         "Colour":            "WHITE",
-        "Seats_Count":       "5",
+        "Seats_Count":       "5 SEATS",
         "City_Name":         "RED DEER",
     }
 

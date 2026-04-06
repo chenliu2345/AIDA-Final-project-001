@@ -12,13 +12,18 @@ Why classification instead of regression?
   problem as "will this car sell within a week?" is both statistically
   valid and practically useful for a seller.
 
-Threshold = 7 days chosen because it gives the most balanced classes:
-  Fast (<=7 days) : ~55.6%   Slow (>7 days) : ~44.4%
+Threshold = 7 days chosen to balance practicality with class distribution:
+  Fast (<=7 days) : ~70.0%   Slow (>7 days) : ~30.0%
+
+Final CV results (5-fold, StratifiedKFold):
+  AUC      : 0.6019 ± 0.0130
+  Accuracy : 0.6851 ± 0.0064
+  F1       : 0.8041 ± 0.0047   (driven by majority Fast class)
 
 Features    : vehicle attributes  +  actual Price_CAD from DB
               +  Distance_from_Edmonton_KM / Distance_from_Calgary_KM
               (distances are pre-stored in tbl_Locations by the ETL;
-               inference uses real-time OSRM values instead)
+               inference uses real-time OpenRouteService values instead)
 
 Filters applied before training
   - Days_to_Sell >= 1   : exclude same-day sales (noise)
@@ -30,7 +35,7 @@ Output
   models/catboost_days_model.pkl   (sklearn Pipeline)
 
 Run
-  python training/train_days_catboost.py
+  python training/Y2_model_catboost.py
 """
 
 import numpy as np

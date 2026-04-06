@@ -5,8 +5,8 @@ Tuning: Fixed hyperparameters with early stopping (no Optuna needed)
 
 Distance features:
   Distance_from_Edmonton_KM and Distance_from_Calgary_KM are read from
-  V_Y1 at training time (pre-stored in tbl_Locations by the ETL via OSRM).
-  At inference time, these values are fetched in real time from the OSRM
+  V_Y1 at training time (pre-stored in tbl_Locations by the ETL via ORS).
+  At inference time, these values are fetched in real time from the ORS
   API inside inference/predict.py given the seller's city name.
 """
 
@@ -36,8 +36,8 @@ MODEL_PATH = Path(__file__).parent.parent / "models" / "catboost_price_model.pkl
 CV_FOLDS    = 5
 RANDOM_SEED = 42
 
-# Distance columns are numeric — stored in DB at ETL time via OSRM API,
-# fetched in real time from OSRM at inference time.
+# Distance columns are numeric — stored in DB at ETL time via ORS API,
+# fetched in real time from ORS at inference time.
 NUM_FEATURES = [
     "Year", "Kilometres",
     "Distance_from_Edmonton_KM", "Distance_from_Calgary_KM",

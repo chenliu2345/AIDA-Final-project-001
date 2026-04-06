@@ -419,8 +419,6 @@ GO
 -- ============================================================
 --  V_Y2
 --  SOLD records with Days_to_Sell for Model 2 (days-to-sell prediction).
---  Distance columns are joined here directly from tbl_Locations
---  and are not included in V_Y1.
 --
 --  Fixes vs original:
 --  - Removed duplicate JOIN on tbl_Listing_Status and tbl_Statuses
@@ -462,3 +460,5 @@ SELECT
     ) AS Unknown_Score
 FROM V_Y1;
 GO
+
+SELECT * FROM tbl_Rejected_Rows;
