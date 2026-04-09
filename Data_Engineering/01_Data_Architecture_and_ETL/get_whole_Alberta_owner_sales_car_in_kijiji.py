@@ -6,7 +6,11 @@ import re
 import datetime
 import random
 import os
-MASTER_FILENAME = "Alberta_owner_sales_car.csv"
+from pathlib import Path
+BASE_DIR = Path(__file__).parent.parent
+RAW_DATA_DIR = BASE_DIR / "Data_Raw"
+RAW_DATA_DIR.mkdir(parents=True, exist_ok=True)
+MASTER_FILENAME = str(RAW_DATA_DIR / "Alberta_owner_sales_car.csv")
 def get_owner_car_price():
     all_car_data = []
     catch_link = set()
