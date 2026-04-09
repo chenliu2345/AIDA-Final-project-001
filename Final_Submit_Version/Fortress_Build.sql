@@ -6,6 +6,7 @@
 -- Schema Versioning: drop and recreate cleanly
 IF EXISTS (SELECT name FROM sys.databases WHERE name = 'AB_CarSale_DB')
 BEGIN
+    ALTER DATABASE AB_CarSale_DB SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
     DROP DATABASE AB_CarSale_DB;
 END
 GO
@@ -460,5 +461,3 @@ SELECT
     ) AS Unknown_Score
 FROM V_Y1;
 GO
-
-SELECT * FROM tbl_Rejected_Rows;
