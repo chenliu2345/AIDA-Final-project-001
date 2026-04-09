@@ -6,7 +6,11 @@ import random
 import glob
 import os
 import re
-FILE_PATTERN = "Alberta_owner_sales_car.csv" 
+from pathlib import Path
+BASE_DIR = Path(__file__).parent.parent
+RAW_DATA_DIR = BASE_DIR / "Data_Raw"
+RAW_DATA_DIR.mkdir(parents=True, exist_ok=True)
+FILE_PATTERN = str(RAW_DATA_DIR / "Alberta_owner_sales_car.csv")
 SLEEP_MIN = 2
 SLEEP_MAX = 5
 SAVE_INTERVAL = 5
@@ -16,8 +20,10 @@ HEADERS = {
 def get_latest_file():
     if os.path.exists(FILE_PATTERN):
         return FILE_PATTERN
-    files = glob.glob("Alberta_*_car*.csv")
-    if not files: return None
+    search_path = str(RAW_DATA_DIR / "Alberta_*_car*.csv")
+    files = glob.glob(search_path)
+    if not files: 
+        return None
     return max(files, key=os.path.getmtime)
 def extract_page_data(soup):
     data = {}
