@@ -1,6 +1,6 @@
 # Alberta Used Car Price Prediction
 
-An end-to-end data engineering and machine learning system that predicts optimal listing prices for used cars in Alberta, trained on 18,000+ real Kijiji listings.
+An end-to-end data engineering and machine learning system that predicts optimal listing prices for used cars in Alberta, trained on 18,000+ real listings.
 
 Built as a final project for AIDA 1143 (Machine Learning) + AIDA 1145 (Data Engineering).
 
@@ -8,10 +8,10 @@ Built as a final project for AIDA 1143 (Machine Learning) + AIDA 1145 (Data Engi
 
 ## What It Does
 
-Private sellers on Kijiji Alberta have no reliable way to price their used cars. Price too high — the car sits unsold for weeks. Price too low — the seller loses money.
+Private sellers in Alberta have no reliable way to price their used cars. Price too high — the car sits unsold for weeks. Price too low — the seller loses money.
 
 This system solves that problem by:
-- Scraping and cleaning 18,000+ real Alberta used car listings
+- Cleaning and processing 18,000+ real Alberta used car listings
 - Loading the data into a normalized 10-table SQL Server database
 - Training a CatBoost regression model (Test R² = 0.89, MAE = $3,039 CAD)
 - Serving live price predictions through a Streamlit web app with three pricing strategies
@@ -21,7 +21,7 @@ This system solves that problem by:
 ## System Architecture
 
 ```
-Raw CSV (Kijiji scrape)
+Raw CSV (Alberta used car listings)
         │
         ▼
 ETL_Engine.py  ──►  AB_CarSale_DB (SQL Server, 10-table 3NF)
@@ -73,7 +73,7 @@ AIDA-Final-project-001/
 ├── .gitignore
 ├── README.md
 ├── Data_Raw/
-│   └── Optimized_Alberta_owner_sales_car_clean.csv   ← not committed (18,000+ rows)
+│   └── Optimized_Alberta_owner_sales_car_clean.csv   ← not committed
 ├── Data_Engineering/
 │   └── Fortress_Build.sql        ← builds AB_CarSale_DB from scratch
 ├── Data_Science/
@@ -153,7 +153,7 @@ Opens in the browser. Enter vehicle details and a city name to receive a live pr
 
 ## Data
 
-The training data consists of used car listings scraped from Kijiji Alberta over approximately 5 weeks (~18,000 records). The raw CSV is not included in this repository. The dataset covers 53 Alberta cities and includes vehicle attributes such as year, make, model, trim, kilometres, condition, transmission, drivetrain, body style, colour, and seats.
+The training data consists of 18,000+ used car listings collected from the Alberta market over approximately 5 weeks. The raw CSV is not included in this repository. The dataset covers 53 Alberta cities and includes vehicle attributes such as year, make, model, trim, kilometres, condition, transmission, drivetrain, body style, colour, and seats.
 
 ---
 
@@ -185,7 +185,7 @@ The app delivers three strategy cards based on the model's predicted market pric
 
 ## Y2 — Days-to-Sell (Attempted)
 
-A second model was attempted to predict how many days a listing would take to sell. Both regression (R² = 0.018) and binary classification (AUC = 0.601) approaches failed. Root cause: the 5-week scraping window hard-capped `Days_to_Sell` at 36 days, producing near-zero variance in the target variable — not enough signal for any model to learn from. The full failure diagnosis is documented in `Brain_Audit.ipynb` Part 3.
+A second model was attempted to predict how many days a listing would take to sell. Both regression (R² = 0.018) and binary classification (AUC = 0.601) approaches failed. Root cause: the short data collection window hard-capped `Days_to_Sell` at 36 days, producing near-zero variance in the target variable — not enough signal for any model to learn from. The full failure diagnosis is documented in `Brain_Audit.ipynb` Part 3.
 
 ---
 
