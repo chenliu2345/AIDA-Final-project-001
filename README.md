@@ -17,7 +17,9 @@ This system solves that problem by:
 - Serving live price predictions through a Streamlit web app with three pricing strategies
 
 ---
+## Screenshot
 
+![App Screenshot](Docs/screenshot.png)
 ## System Architecture
 
 ```
