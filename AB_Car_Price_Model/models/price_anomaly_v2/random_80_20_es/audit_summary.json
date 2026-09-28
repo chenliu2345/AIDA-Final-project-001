@@ -1,0 +1,35 @@
+{
+  "scheme": "random_80_20_es",
+  "counts": {
+    "AUTO_KEEP": 34077,
+    "REVIEW": 8904,
+    "AUTO_EXCLUDE": 73
+  },
+  "sold_before": 43054,
+  "sold_v2": 42981,
+  "all_rows_v2": 62570,
+  "non_sold_preserved": 19589,
+  "excluded_fraction": 0.0016955451293724161,
+  "excluded_absolute_error": 1726882.5352108532,
+  "excluded_error_fraction": 0.00929304873761001,
+  "review_error_fraction": 0.39628058191769455,
+  "error_contribution_policy": "Existing evaluation model over all SOLD: training rows are in-sample, validation and test are held out. This is an audit diagnostic, not a test score.",
+  "baseline_model_sha256": "674a66f0525e50eddf5dc2aa297c8b2163793cfe937c03b01bd76e5b8476791e",
+  "split_counts_before": {
+    "train": 27554,
+    "validation": 6889,
+    "test": 8611
+  },
+  "split_counts_v2": {
+    "train": 27503,
+    "validation": 6881,
+    "test_retained": 8597,
+    "test_original": 8611
+  },
+  "exclusion_category_counts": {
+    "possible_extra_zero": 6,
+    "possible_missing_zero": 62,
+    "lease_payment": 3,
+    "parts_project": 3
+  }
+}

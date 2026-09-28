@@ -1,0 +1,64 @@
+{
+  "scheme": "my_scheme",
+  "early_stopping": true,
+  "early_stopping_patience": 50,
+  "clip_negative_predictions": true,
+  "features": [
+    "Year",
+    "Kilometres",
+    "Distance_from_Edmonton_KM",
+    "Distance_from_Calgary_KM",
+    "Base_Model",
+    "Trim",
+    "City_Name",
+    "Condition_Label",
+    "Transmission_Type",
+    "Drivetrain_Type",
+    "Body_Style",
+    "Colour",
+    "Seats_Count"
+  ],
+  "model_parameters": {
+    "iterations": 2000,
+    "learning_rate": 0.05,
+    "depth": 8,
+    "l2_leaf_reg": 3,
+    "loss_function": "RMSE",
+    "thread_count": 4,
+    "random_seed": 42,
+    "verbose": false,
+    "allow_writing_files": false,
+    "subsample": 0.8,
+    "cat_features": [
+      "Base_Model",
+      "Trim",
+      "City_Name",
+      "Condition_Label",
+      "Transmission_Type",
+      "Drivetrain_Type",
+      "Body_Style",
+      "Colour",
+      "Seats_Count"
+    ]
+  },
+  "evaluation_trees": 1377,
+  "split_counts": {
+    "train": 25808,
+    "validation": 8646,
+    "test": 8600
+  },
+  "test_metrics": {
+    "r2": 0.7072385108406698,
+    "mae_cad": 4289.278795435368,
+    "rmse_cad": 9037.36205630559
+  },
+  "common_test_rows": 1300,
+  "common_test_metrics": {
+    "r2": 0.6653152601867816,
+    "mae_cad": 4494.779753255511,
+    "rmse_cad": 9859.87542034494
+  },
+  "test_groups_shared_with_training": 0,
+  "common_test_groups_shared_with_training": 0,
+  "evaluation_seconds": 179.78099999995902
+}

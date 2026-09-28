@@ -1,0 +1,73 @@
+{
+  "scheme": "grouped_70_15_15_es",
+  "early_stopping": true,
+  "early_stopping_patience": 50,
+  "clip_negative_predictions": true,
+  "features": [
+    "Year",
+    "Kilometres",
+    "Distance_from_Edmonton_KM",
+    "Distance_from_Calgary_KM",
+    "Base_Model",
+    "Trim",
+    "City_Name",
+    "Condition_Label",
+    "Transmission_Type",
+    "Drivetrain_Type",
+    "Body_Style",
+    "Colour",
+    "Seats_Count"
+  ],
+  "model_parameters": {
+    "iterations": 2000,
+    "learning_rate": 0.05,
+    "depth": 8,
+    "l2_leaf_reg": 3,
+    "loss_function": "RMSE",
+    "thread_count": 4,
+    "random_seed": 42,
+    "verbose": false,
+    "allow_writing_files": false,
+    "subsample": 0.8,
+    "cat_features": [
+      "Base_Model",
+      "Trim",
+      "City_Name",
+      "Condition_Label",
+      "Transmission_Type",
+      "Drivetrain_Type",
+      "Body_Style",
+      "Colour",
+      "Seats_Count"
+    ]
+  },
+  "evaluation_trees": 692,
+  "split_counts": {
+    "train": 30113,
+    "validation": 6486,
+    "test": 6455
+  },
+  "test_metrics": {
+    "r2": 0.6926379728355354,
+    "mae_cad": 4395.24150131015,
+    "rmse_cad": 9336.81239042705
+  },
+  "common_test_rows": 1300,
+  "common_test_metrics": {
+    "r2": 0.6701397659087194,
+    "mae_cad": 4513.608536201709,
+    "rmse_cad": 9788.552031059686
+  },
+  "test_groups_shared_with_training": 0,
+  "common_test_groups_shared_with_training": 0,
+  "evaluation_seconds": 94.65600000007544,
+  "seen_subset_metrics_NOT_a_test": {
+    "r2": 0.7617141457954952,
+    "mae_cad": 3953.07942946425,
+    "rmse_cad": 8220.962309441526
+  },
+  "seen_subset_policy": "This deployment model was fitted on every SOLD row, including all rows scored here. These are training reuse metrics, not held-out test performance.",
+  "elapsed_seconds": 186.93700000003446,
+  "evaluation_model_sha256": "22694e8540e3bd2de467e746da93544b5ce25c2424cb24635287aaf9619771e1",
+  "deployment_model_sha256": "1c1e54631349f7d2bc18fee67ac4ae477e4449d144544b2c4b25a668119115d5"
+}

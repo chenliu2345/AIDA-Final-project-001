@@ -1,0 +1,109 @@
+{
+  "columns": [
+    "Actual Price",
+    "N",
+    "MAE",
+    "MedAE",
+    "R²",
+    "Relative MAE"
+  ],
+  "price_intervals": "Lower bound inclusive; upper bound exclusive; last interval >= 75000 CAD.",
+  "relative_mae": "MAE / mean(actual price), displayed as a percentage; not MAPE.",
+  "r2": "Computed within each price interval; NA for fewer than 2 rows or constant actual prices.",
+  "overall": "Calculated across all rows, not an average of per-band metrics.",
+  "currency": "CAD",
+  "files": [
+    {
+      "scheme": "my_scheme",
+      "scope": "own_holdout",
+      "file": "C:\\Users\\silvi\\AB_Car_Price_Model\\models\\comparisons\\self_project_63377\\my_scheme\\price_band_metrics.csv",
+      "rows": 8600,
+      "overall_mae": 4289.278795435374,
+      "overall_medae": 2304.035764586909,
+      "overall_r2": 0.707238510840671,
+      "overall_relative_mae": 0.29080076776572966
+    },
+    {
+      "scheme": "my_scheme",
+      "scope": "common_holdout",
+      "file": "C:\\Users\\silvi\\AB_Car_Price_Model\\models\\comparisons\\self_project_63377\\my_scheme\\price_band_metrics_common_test.csv",
+      "rows": 1300,
+      "overall_mae": 4494.779753255504,
+      "overall_medae": 2364.0207459056137,
+      "overall_r2": 0.6653152601867809,
+      "overall_relative_mae": 0.29678012597848813
+    },
+    {
+      "scheme": "grouped_70_15_15_es",
+      "scope": "own_holdout",
+      "file": "C:\\Users\\silvi\\AB_Car_Price_Model\\models\\comparisons\\self_project_63377\\grouped_70_15_15_es\\price_band_metrics.csv",
+      "rows": 6455,
+      "overall_mae": 4395.241501310151,
+      "overall_medae": 2370.2413921172756,
+      "overall_r2": 0.6926379728355323,
+      "overall_relative_mae": 0.298224227003065
+    },
+    {
+      "scheme": "grouped_70_15_15_es",
+      "scope": "common_holdout",
+      "file": "C:\\Users\\silvi\\AB_Car_Price_Model\\models\\comparisons\\self_project_63377\\grouped_70_15_15_es\\price_band_metrics_common_test.csv",
+      "rows": 1300,
+      "overall_mae": 4513.608536201714,
+      "overall_medae": 2452.4075490270507,
+      "overall_r2": 0.6701397659087189,
+      "overall_relative_mae": 0.29802334786733603
+    },
+    {
+      "scheme": "original_scheme",
+      "scope": "own_holdout",
+      "file": "C:\\Users\\silvi\\AB_Car_Price_Model\\models\\comparisons\\self_project_63377\\original_scheme\\price_band_metrics.csv",
+      "rows": 8611,
+      "overall_mae": 4345.191447397394,
+      "overall_medae": 2106.6541697904377,
+      "overall_r2": 0.5117409278865375,
+      "overall_relative_mae": 0.2880986999657079
+    },
+    {
+      "scheme": "original_scheme",
+      "scope": "common_holdout",
+      "file": "C:\\Users\\silvi\\AB_Car_Price_Model\\models\\comparisons\\self_project_63377\\original_scheme\\price_band_metrics_common_test.csv",
+      "rows": 1300,
+      "overall_mae": 4270.548240126813,
+      "overall_medae": 2096.560547200397,
+      "overall_r2": 0.6922404203631782,
+      "overall_relative_mae": 0.28197462707356835
+    },
+    {
+      "scheme": "random_80_20_es",
+      "scope": "own_holdout",
+      "file": "C:\\Users\\silvi\\AB_Car_Price_Model\\models\\comparisons\\self_project_63377\\random_80_20_es\\price_band_metrics.csv",
+      "rows": 8611,
+      "overall_mae": 4728.799789430303,
+      "overall_medae": 2421.1964683901315,
+      "overall_r2": 0.4906072409779718,
+      "overall_relative_mae": 0.31353303720345543
+    },
+    {
+      "scheme": "random_80_20_es",
+      "scope": "common_holdout",
+      "file": "C:\\Users\\silvi\\AB_Car_Price_Model\\models\\comparisons\\self_project_63377\\random_80_20_es\\price_band_metrics_common_test.csv",
+      "rows": 1300,
+      "overall_mae": 4551.766438611342,
+      "overall_medae": 2445.67505571356,
+      "overall_r2": 0.6711697205690814,
+      "overall_relative_mae": 0.30054282773195057
+    }
+  ],
+  "verification": {
+    "ok": true,
+    "files_checked": 8,
+    "checks": [
+      "exact requested headers and interval labels",
+      "all rows accounted for once",
+      "MAE and MedAE independently recomputed with sklearn",
+      "within-band R2 independently recomputed",
+      "relative MAE verified as total absolute error / total actual price",
+      "Overall recomputed directly from original predictions"
+    ]
+  }
+}

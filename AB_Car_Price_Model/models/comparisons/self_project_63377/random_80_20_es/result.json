@@ -1,0 +1,74 @@
+{
+  "scheme": "random_80_20_es",
+  "early_stopping": true,
+  "early_stopping_patience": 50,
+  "clip_negative_predictions": false,
+  "features": [
+    "Year",
+    "Kilometres",
+    "Distance_from_Edmonton_KM",
+    "Distance_from_Calgary_KM",
+    "Condition_Label",
+    "Transmission_Type",
+    "Drivetrain_Type",
+    "Body_Style",
+    "Colour",
+    "Seats_Count",
+    "City_Name",
+    "Base_Model",
+    "Trim"
+  ],
+  "model_parameters": {
+    "iterations": 2000,
+    "learning_rate": 0.05,
+    "depth": 8,
+    "l2_leaf_reg": 3,
+    "loss_function": "RMSE",
+    "thread_count": 4,
+    "random_seed": 42,
+    "verbose": false,
+    "allow_writing_files": false,
+    "subsample": 0.8,
+    "early_stopping_rounds": 50,
+    "cat_features": [
+      "Condition_Label",
+      "Transmission_Type",
+      "Drivetrain_Type",
+      "Body_Style",
+      "Colour",
+      "Seats_Count",
+      "City_Name",
+      "Base_Model",
+      "Trim"
+    ]
+  },
+  "evaluation_trees": 552,
+  "split_counts": {
+    "train": 27554,
+    "validation": 6889,
+    "test": 8611
+  },
+  "test_metrics": {
+    "r2": 0.49060724097797304,
+    "mae_cad": 4728.799789430316,
+    "rmse_cad": 14444.782942473064
+  },
+  "common_test_rows": 1300,
+  "common_test_metrics": {
+    "r2": 0.6711697205690819,
+    "mae_cad": 4551.7664386113465,
+    "rmse_cad": 9773.258209815647
+  },
+  "test_groups_shared_with_training": 1062,
+  "common_test_groups_shared_with_training": 161,
+  "evaluation_seconds": 74.53200000000652,
+  "seen_subset_metrics_NOT_a_test": {
+    "r2": 0.5618692462559773,
+    "mae_cad": 4290.210619627775,
+    "rmse_cad": 13396.350627573907
+  },
+  "seen_subset_policy": "This deployment model was fitted on every SOLD row, including all rows scored here. These are training reuse metrics, not held-out test performance.",
+  "elapsed_seconds": 150.079000000027,
+  "evaluation_model_sha256": "674a66f0525e50eddf5dc2aa297c8b2163793cfe937c03b01bd76e5b8476791e",
+  "deployment_model_sha256": "f06ca4d10a8b6e6e7159e3d310a066042836b79de8b11bccad707fe23e6f287a"
+}

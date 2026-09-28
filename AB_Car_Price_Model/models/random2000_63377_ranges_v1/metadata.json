@@ -1,0 +1,6963 @@
+{
+  "source": "C:\\Users\\silvi\\AB_Car_Price_Model\\data\\Alberta_owner_sales_car.csv",
+  "source_sha256": "7ae22fe302f286b5ae0f7064c371cee669b3f97feaf1621420e20c370d1bfc17",
+  "batch_id": "6f45e2c9-5019-4faf-8acd-9820bee7b8ef",
+  "etl_rule_version": "final-submit-aligned-v2",
+  "raw_rows": 63377,
+  "accepted_rows": 62643,
+  "rejected_rows": 734,
+  "sold_rows": 43054,
+  "status_counts": {
+    "SOLD": 43054,
+    "ACTIVE_REPOST": 7343,
+    "RESHELVED": 7311,
+    "ACTIVE": 4935
+  },
+  "reposts_changed": 0,
+  "cities": 137,
+  "city_distances": {
+    "ACHESON": [
+      27.11,
+      315.53
+    ],
+    "ACME": [
+      264.49,
+      92.3
+    ],
+    "AIRDRIE": [
+      268.37,
+      38.09
+    ],
+    "ALBERTA": [
+      0.0,
+      300.78
+    ],
+    "ARBOUR LAKE": [
+      297.47,
+      15.49
+    ],
+    "ARDROSSAN": [
+      28.84,
+      323.49
+    ],
+    "ASPEN WOODS": [
+      310.59,
+      9.42
+    ],
+    "ATHABASCA": [
+      152.47,
+      454.19
+    ],
+    "BANFF": [
+      415.91,
+      127.04
+    ],
+    "BANFF / CANMORE": [
+      393.91,
+      105.04
+    ],
+    "BARRHEAD": [
+      123.77,
+      418.39
+    ],
+    "BATURYN": [
+      12.29,
+      326.0
+    ],
+    "BEAUMONT": [
+      26.71,
+      285.14
+    ],
+    "BELLEVUE": [
+      507.83,
+      217.05
+    ],
+    "BLACKFALDS": [
+      137.19,
+      165.4
+    ],
+    "BONNYVILLE": [
+      238.76,
+      544.23
+    ],
+    "BROOKS": [
+      428.29,
+      187.73
+    ],
+    "CALGARY": [
+      300.53,
+      0.0
+    ],
+    "CAMROSE": [
+      92.97,
+      287.85
+    ],
+    "CANMORE": [
+      393.91,
+      105.04
+    ],
+    "CANORA": [
+      8.48,
+      304.41
+    ],
+    "CAROLINE": [
+      243.92,
+      173.5
+    ],
+    "CARSTAIRS": [
+      241.53,
+      67.2
+    ],
+    "CHAPARRAL": [
+      322.09,
+      31.31
+    ],
+    "CHESTERMERE": [
+      309.49,
+      21.02
+    ],
+    "COALDALE": [
+      520.02,
+      229.23
+    ],
+    "COCHRANE": [
+      317.6,
+      36.02
+    ],
+    "COLD LAKE": [
+      292.39,
+      597.86
+    ],
+    "COLEMAN": [
+      519.1,
+      228.32
+    ],
+    "CROSSFIELD": [
+      252.51,
+      53.31
+    ],
+    "DALHOUSIE": [
+      297.53,
+      11.65
+    ],
+    "DE WINTON": [
+      329.21,
+      38.43
+    ],
+    "DEVON": [
+      41.96,
+      287.13
+    ],
+    "DIDSBURY": [
+      233.11,
+      83.91
+    ],
+    "DOWNTOWN": [
+      2.83,
+      299.12
+    ],
+    "DRAYTON VALLEY": [
+      147.87,
+      314.73
+    ],
+    "DRUMHELLER": [
+      278.71,
+      138.5
+    ],
+    "EDGEMONT": [
+      295.74,
+      12.18
+    ],
+    "EDMONTON": [
+      0.0,
+      300.78
+    ],
+    "EDMONTON INTERNATIONAL AIRPORT": [
+      31.74,
+      274.56
+    ],
+    "EDSON": [
+      204.07,
+      453.29
+    ],
+    "ELK POINT": [
+      220.73,
+      517.28
+    ],
+    "EVANSTON": [
+      290.04,
+      20.23
+    ],
+    "FAIRVIEW": [
+      550.87,
+      845.49
+    ],
+    "FOOTHILLS": [
+      300.53,
+      0.0
+    ],
+    "FOOTHILLS COUNTY": [
+      337.5,
+      46.72
+    ],
+    "FORT MCMURRAY": [
+      433.25,
+      738.71
+    ],
+    "FORT SASKATCHEWAN": [
+      36.42,
+      332.97
+    ],
+    "GIBBONS": [
+      40.66,
+      344.57
+    ],
+    "GRANDE PRAIRIE": [
+      462.02,
+      756.64
+    ],
+    "HERITAGE POINTE": [
+      327.33,
+      36.55
+    ],
+    "HERITAGE VALLEY AREA": [
+      19.7,
+      286.92
+    ],
+    "HIDDEN VALLEY": [
+      290.98,
+      16.67
+    ],
+    "HIGH RIVER": [
+      356.3,
+      65.52
+    ],
+    "HINTON": [
+      289.37,
+      538.59
+    ],
+    "HUNTINGTON HILLS": [
+      290.18,
+      9.72
+    ],
+    "INDIAN BATTLE HEIGHTS": [
+      504.74,
+      213.95
+    ],
+    "INNISFAIL": [
+      184.35,
+      120.55
+    ],
+    "LA CRÊTE": [
+      673.97,
+      968.59
+    ],
+    "LAC LA BICHE": [
+      211.48,
+      516.95
+    ],
+    "LACOMBE": [
+      127.13,
+      175.83
+    ],
+    "LAKE BONAVISTA": [
+      312.26,
+      21.48
+    ],
+    "LANGDON": [
+      309.49,
+      21.02
+    ],
+    "LEDUC": [
+      34.6,
+      267.54
+    ],
+    "LETHBRIDGE": [
+      504.74,
+      213.95
+    ],
+    "LINCOLN PARK": [
+      311.42,
+      7.85
+    ],
+    "LINDEN": [
+      255.02,
+      102.69
+    ],
+    "LLOYDMINSTER": [
+      248.32,
+      544.87
+    ],
+    "MARWAYNE": [
+      248.71,
+      545.25
+    ],
+    "MAYERTHORPE": [
+      138.52,
+      433.14
+    ],
+    "MEDICINE HAT": [
+      535.16,
+      294.6
+    ],
+    "MILLARVILLE": [
+      355.78,
+      52.05
+    ],
+    "MORINVILLE": [
+      41.09,
+      342.43
+    ],
+    "NISKU": [
+      28.03,
+      276.18
+    ],
+    "NORTH CENTRAL EDMONTON": [
+      0.0,
+      300.78
+    ],
+    "NORTH LETHBRIDGE": [
+      504.74,
+      213.95
+    ],
+    "NORTHEAST CALGARY": [
+      300.53,
+      0.0
+    ],
+    "NORTHEAST EDMONTON": [
+      0.0,
+      300.78
+    ],
+    "NORTHWEST CALGARY": [
+      300.53,
+      0.0
+    ],
+    "NORTHWEST EDMONTON": [
+      0.0,
+      300.78
+    ],
+    "OKOTOKS": [
+      337.5,
+      46.72
+    ],
+    "OLDS": [
+      213.86,
+      95.01
+    ],
+    "ONOWAY": [
+      70.6,
+      365.22
+    ],
+    "OTHER": [
+      159.72,
+      151.15
+    ],
+    "PARKLAND COUNTY": [
+      43.55,
+      322.39
+    ],
+    "PEACE RIVER": [
+      489.8,
+      784.41
+    ],
+    "PENHOLD": [
+      172.02,
+      132.68
+    ],
+    "PICTURE BUTTE": [
+      495.19,
+      204.41
+    ],
+    "PINCHER CREEK": [
+      509.22,
+      218.44
+    ],
+    "PONOKA": [
+      107.66,
+      202.04
+    ],
+    "RAYMOND": [
+      538.73,
+      247.95
+    ],
+    "RED DEER": [
+      159.72,
+      151.15
+    ],
+    "RED DEER COUNTY": [
+      159.72,
+      151.15
+    ],
+    "REDCLIFF": [
+      524.97,
+      284.41
+    ],
+    "REDWOOD MEADOWS": [
+      331.63,
+      36.45
+    ],
+    "RIMBEY": [
+      145.83,
+      209.52
+    ],
+    "ROCKY MOUNTAIN HOUSE": [
+      218.6,
+      214.47
+    ],
+    "ROCKY VIEW COUNTY": [
+      268.37,
+      38.09
+    ],
+    "SAINT PAUL": [
+      196.37,
+      492.91
+    ],
+    "SCENIC ACRES": [
+      301.55,
+      15.36
+    ],
+    "SEXSMITH": [
+      468.58,
+      763.2
+    ],
+    "SHERWOOD PARK": [
+      14.75,
+      305.78
+    ],
+    "SIGNAL HILL": [
+      316.68,
+      10.27
+    ],
+    "SLAVE LAKE": [
+      258.73,
+      553.35
+    ],
+    "SOUTH LETHBRIDGE": [
+      504.74,
+      213.95
+    ],
+    "SOUTHEAST CALGARY": [
+      300.53,
+      0.0
+    ],
+    "SOUTHEAST EDMONTON": [
+      0.0,
+      300.78
+    ],
+    "SOUTHWEST CALGARY": [
+      300.53,
+      0.0
+    ],
+    "SOUTHWEST EDMONTON": [
+      0.0,
+      300.78
+    ],
+    "SPRUCE GROVE": [
+      37.75,
+      317.05
+    ],
+    "ST. ALBERT": [
+      18.43,
+      321.17
+    ],
+    "STETTLER": [
+      183.05,
+      228.27
+    ],
+    "STONY PLAIN": [
+      43.55,
+      322.39
+    ],
+    "STRATHCONA COUNTY": [
+      14.75,
+      305.78
+    ],
+    "STRATHMORE": [
+      339.12,
+      54.57
+    ],
+    "STURGEON COUNTY": [
+      41.09,
+      342.43
+    ],
+    "SUNDRE": [
+      250.86,
+      114.94
+    ],
+    "SYLVAN LAKE": [
+      162.89,
+      158.7
+    ],
+    "TABER": [
+      521.05,
+      264.52
+    ],
+    "TIMBERLEA": [
+      433.25,
+      738.71
+    ],
+    "TOFIELD": [
+      66.7,
+      344.57
+    ],
+    "TSUU T'INA": [
+      300.53,
+      0.0
+    ],
+    "TWO HILLS": [
+      138.63,
+      435.17
+    ],
+    "UNIVERSITY AREA": [
+      0.0,
+      300.78
+    ],
+    "VALLEYVIEW": [
+      350.77,
+      645.39
+    ],
+    "VEGREVILLE": [
+      102.17,
+      398.71
+    ],
+    "VERMILION": [
+      191.82,
+      488.37
+    ],
+    "VULCAN": [
+      420.02,
+      129.24
+    ],
+    "WAINWRIGHT": [
+      206.01,
+      434.26
+    ],
+    "WARBURG": [
+      92.55,
+      283.98
+    ],
+    "WEMBLEY": [
+      482.34,
+      776.96
+    ],
+    "WEST EDMONTON": [
+      0.0,
+      300.78
+    ],
+    "WEST LETHBRIDGE": [
+      504.74,
+      213.95
+    ],
+    "WESTLOCK": [
+      93.94,
+      388.55
+    ],
+    "WETASKIWIN": [
+      72.21,
+      247.65
+    ],
+    "WHITECOURT": [
+      183.12,
+      477.74
+    ],
+    "WOODBINE": [
+      317.19,
+      19.63
+    ]
+  },
+  "supplemental_location_aliases": {
+    "INDIAN BATTLE HEIGHTS": "Lethbridge",
+    "NORTH LETHBRIDGE": "Lethbridge",
+    "WEST LETHBRIDGE": "Lethbridge",
+    "RED DEER COUNTY": "Red Deer",
+    "PARKLAND COUNTY": "Stony Plain",
+    "STURGEON COUNTY": "Morinville",
+    "SAINT PAUL": "St. Paul",
+    "TIMBERLEA": "Fort McMurray",
+    "UNIVERSITY AREA": "Edmonton"
+  },
+  "schema_version": 4,
+  "created_utc": "2026-09-27T21:54:32.231200+00:00",
+  "training_rows": 43054,
+  "target": "Observed listing price in CAD; not verified transaction price",
+  "training_filter": "Status = SOLD",
+  "features": [
+    "Year",
+    "Kilometres",
+    "Distance_from_Edmonton_KM",
+    "Distance_from_Calgary_KM",
+    "Condition_Label",
+    "Transmission_Type",
+    "Drivetrain_Type",
+    "Body_Style",
+    "Colour",
+    "Seats_Count",
+    "City_Name",
+    "Base_Model",
+    "Trim"
+  ],
+  "categorical_features": [
+    "Condition_Label",
+    "Transmission_Type",
+    "Drivetrain_Type",
+    "Body_Style",
+    "Colour",
+    "Seats_Count",
+    "City_Name",
+    "Base_Model",
+    "Trim"
+  ],
+  "best_iterations": 2000,
+  "model_parameters": {
+    "iterations": 2000,
+    "learning_rate": 0.05,
+    "depth": 8,
+    "l2_leaf_reg": 3,
+    "loss_function": "RMSE",
+    "thread_count": 4,
+    "random_seed": 42,
+    "verbose": false,
+    "allow_writing_files": false,
+    "subsample": 0.8,
+    "early_stopping_rounds": 50,
+    "cat_features": [
+      "Condition_Label",
+      "Transmission_Type",
+      "Drivetrain_Type",
+      "Body_Style",
+      "Colour",
+      "Seats_Count",
+      "City_Name",
+      "Base_Model",
+      "Trim"
+    ]
+  },
+  "training_rule_version": "random80-fixed2000-ranges-v1",
+  "split_counts": {
+    "train": 34443,
+    "validation": 0,
+    "test": 8611
+  },
+  "split_seed": 42,
+  "split_method": "random_rows_80_20",
+  "test_metrics": {
+    "r2": 0.5117409278865401,
+    "mae_cad": 4345.1914473974,
+    "rmse_cad": 14141.96627858175
+  },
+  "groups_shared_across_row_split": 1228,
+  "evaluation_policy": "Random 80/20 seed42; evaluation model fits train only for 2000 trees without eval_set. Deployment refits all SOLD. No anomaly-V2 exclusions.",
+  "model_sha256": "5713202db5733c2a77778f6f1a73ccc0ec7c3bc34e98062e4a1e35ad89a12ae4",
+  "evaluation_model_sha256": "35c41592d899ef2ec547220662970676c01bf0cda225db42c1d32d18b2b9cf8f",
+  "catalog": {
+    "Condition_Label": [
+      "DAMAGED",
+      "LEASE TAKEOVER",
+      "SALVAGE",
+      "USED"
+    ],
+    "Transmission_Type": [
+      "AUTOMATIC",
+      "MANUAL",
+      "OTHER",
+      "SEMI-AUTOMATIC",
+      "UNKNOWN"
+    ],
+    "Drivetrain_Type": [
+      "4 X 4",
+      "ALL-WHEEL DRIVE (AWD)",
+      "FRONT-WHEEL DRIVE (FWD)",
+      "OTHER",
+      "REAR-WHEEL DRIVE (RWD)",
+      "UNKNOWN"
+    ],
+    "Body_Style": [
+      "CONVERTIBLE",
+      "COUPE (2 DOOR)",
+      "HATCHBACK",
+      "MINIVAN, VAN",
+      "OTHER",
+      "PICKUP TRUCK",
+      "SEDAN",
+      "SUV, CROSSOVER",
+      "WAGON"
+    ],
+    "Colour": [
+      "BEIGE EXTERIOR",
+      "BLACK EXTERIOR",
+      "BLUE EXTERIOR",
+      "BROWN EXTERIOR",
+      "BURGUNDY EXTERIOR",
+      "GOLD EXTERIOR",
+      "GREEN EXTERIOR",
+      "GREY EXTERIOR",
+      "OFF-WHITE EXTERIOR",
+      "ORANGE EXTERIOR",
+      "OTHER EXTERIOR",
+      "PINK EXTERIOR",
+      "PURPLE EXTERIOR",
+      "RED EXTERIOR",
+      "SILVER EXTERIOR",
+      "TAN EXTERIOR",
+      "TEAL EXTERIOR",
+      "UNKNOWN",
+      "WHITE EXTERIOR",
+      "YELLOW EXTERIOR"
+    ],
+    "Seats_Count": [
+      "2 SEATS",
+      "3 SEATS",
+      "4 SEATS",
+      "5 SEATS",
+      "6 SEATS",
+      "7 SEATS",
+      "OTHER SEATS",
+      "UNKNOWN"
+    ],
+    "City_Name": [
+      "ACHESON",
+      "ACME",
+      "AIRDRIE",
+      "ALBERTA",
+      "ARBOUR LAKE",
+      "ARDROSSAN",
+      "ASPEN WOODS",
+      "ATHABASCA",
+      "BANFF",
+      "BANFF / CANMORE",
+      "BARRHEAD",
+      "BATURYN",
+      "BEAUMONT",
+      "BELLEVUE",
+      "BLACKFALDS",
+      "BONNYVILLE",
+      "BROOKS",
+      "CALGARY",
+      "CAMROSE",
+      "CANMORE",
+      "CANORA",
+      "CAROLINE",
+      "CARSTAIRS",
+      "CHAPARRAL",
+      "CHESTERMERE",
+      "COALDALE",
+      "COCHRANE",
+      "COLD LAKE",
+      "COLEMAN",
+      "CROSSFIELD",
+      "DALHOUSIE",
+      "DE WINTON",
+      "DEVON",
+      "DIDSBURY",
+      "DOWNTOWN",
+      "DRAYTON VALLEY",
+      "DRUMHELLER",
+      "EDGEMONT",
+      "EDMONTON",
+      "EDMONTON INTERNATIONAL AIRPORT",
+      "EDSON",
+      "ELK POINT",
+      "EVANSTON",
+      "FAIRVIEW",
+      "FOOTHILLS",
+      "FOOTHILLS COUNTY",
+      "FORT MCMURRAY",
+      "FORT SASKATCHEWAN",
+      "GIBBONS",
+      "GRANDE PRAIRIE",
+      "HERITAGE POINTE",
+      "HERITAGE VALLEY AREA",
+      "HIDDEN VALLEY",
+      "HIGH RIVER",
+      "HINTON",
+      "HUNTINGTON HILLS",
+      "INDIAN BATTLE HEIGHTS",
+      "INNISFAIL",
+      "LA CRÊTE",
+      "LAC LA BICHE",
+      "LACOMBE",
+      "LAKE BONAVISTA",
+      "LANGDON",
+      "LEDUC",
+      "LETHBRIDGE",
+      "LINCOLN PARK",
+      "LINDEN",
+      "LLOYDMINSTER",
+      "MARWAYNE",
+      "MAYERTHORPE",
+      "MEDICINE HAT",
+      "MILLARVILLE",
+      "MORINVILLE",
+      "NISKU",
+      "NORTH CENTRAL EDMONTON",
+      "NORTH LETHBRIDGE",
+      "NORTHEAST CALGARY",
+      "NORTHEAST EDMONTON",
+      "NORTHWEST CALGARY",
+      "NORTHWEST EDMONTON",
+      "OKOTOKS",
+      "OLDS",
+      "ONOWAY",
+      "OTHER",
+      "PARKLAND COUNTY",
+      "PEACE RIVER",
+      "PENHOLD",
+      "PICTURE BUTTE",
+      "PINCHER CREEK",
+      "PONOKA",
+      "RAYMOND",
+      "RED DEER",
+      "RED DEER COUNTY",
+      "REDCLIFF",
+      "REDWOOD MEADOWS",
+      "RIMBEY",
+      "ROCKY MOUNTAIN HOUSE",
+      "ROCKY VIEW COUNTY",
+      "SAINT PAUL",
+      "SCENIC ACRES",
+      "SEXSMITH",
+      "SHERWOOD PARK",
+      "SIGNAL HILL",
+      "SLAVE LAKE",
+      "SOUTH LETHBRIDGE",
+      "SOUTHEAST CALGARY",
+      "SOUTHEAST EDMONTON",
+      "SOUTHWEST CALGARY",
+      "SOUTHWEST EDMONTON",
+      "SPRUCE GROVE",
+      "ST. ALBERT",
+      "STETTLER",
+      "STONY PLAIN",
+      "STRATHCONA COUNTY",
+      "STRATHMORE",
+      "STURGEON COUNTY",
+      "SUNDRE",
+      "SYLVAN LAKE",
+      "TABER",
+      "TIMBERLEA",
+      "TOFIELD",
+      "TSUU T'INA",
+      "TWO HILLS",
+      "UNIVERSITY AREA",
+      "VALLEYVIEW",
+      "VEGREVILLE",
+      "VERMILION",
+      "VULCAN",
+      "WAINWRIGHT",
+      "WARBURG",
+      "WEMBLEY",
+      "WEST EDMONTON",
+      "WEST LETHBRIDGE",
+      "WESTLOCK",
+      "WETASKIWIN",
+      "WHITECOURT",
+      "WOODBINE"
+    ],
+    "Base_Model": [
+      "ACURA CSX",
+      "ACURA EL",
+      "ACURA ILX",
+      "ACURA MDX",
+      "ACURA RDX",
+      "ACURA RL",
+      "ACURA RSX",
+      "ACURA TL",
+      "ACURA TLX",
+      "ACURA TSX",
+      "ALFA ROMEO STELVIO",
+      "AUDI A3",
+      "AUDI A4",
+      "AUDI A4 ALLROAD",
+      "AUDI A5",
+      "AUDI A6",
+      "AUDI A7",
+      "AUDI A8",
+      "AUDI OTHER",
+      "AUDI Q3",
+      "AUDI Q5",
+      "AUDI Q7",
+      "AUDI R8",
+      "AUDI S3",
+      "AUDI S4",
+      "AUDI S5",
+      "AUDI S6",
+      "AUDI SQ5",
+      "AUDI TT",
+      "AUDI TT RS",
+      "BMW 1-SERIES",
+      "BMW 2-SERIES",
+      "BMW 3-SERIES",
+      "BMW 4-SERIES",
+      "BMW 5-SERIES",
+      "BMW 6-SERIES",
+      "BMW 7-SERIES",
+      "BMW M3",
+      "BMW M4",
+      "BMW M5",
+      "BMW OTHER",
+      "BMW X1",
+      "BMW X3",
+      "BMW X3 M",
+      "BMW X4",
+      "BMW X5",
+      "BMW X5 M",
+      "BMW X6",
+      "BMW X6 M",
+      "BMW Z3",
+      "BMW Z4",
+      "BUICK ALLURE",
+      "BUICK CENTURY",
+      "BUICK ENCLAVE",
+      "BUICK ENCORE",
+      "BUICK ENVISION",
+      "BUICK LACROSSE",
+      "BUICK LESABRE",
+      "BUICK LUCERNE",
+      "BUICK REGAL",
+      "BUICK RENDEZVOUS",
+      "BUICK VERANO",
+      "CADILLAC ATS",
+      "CADILLAC CTS",
+      "CADILLAC CTS-V",
+      "CADILLAC DEVILLE",
+      "CADILLAC DTS",
+      "CADILLAC ESCALADE",
+      "CADILLAC ESCALADE ESV",
+      "CADILLAC OTHER",
+      "CADILLAC SRX",
+      "CADILLAC XT4",
+      "CADILLAC XT5",
+      "CHEVROLET ASTRO",
+      "CHEVROLET AVALANCHE",
+      "CHEVROLET AVEO",
+      "CHEVROLET BLAZER",
+      "CHEVROLET C/K PICKUP 1500",
+      "CHEVROLET C/K PICKUP 2500",
+      "CHEVROLET C/K PICKUP 3500",
+      "CHEVROLET C10",
+      "CHEVROLET CAMARO",
+      "CHEVROLET CAVALIER",
+      "CHEVROLET CHEVY VAN",
+      "CHEVROLET COBALT",
+      "CHEVROLET COLORADO",
+      "CHEVROLET CORVETTE",
+      "CHEVROLET CRUZE",
+      "CHEVROLET EQUINOX",
+      "CHEVROLET EXPRESS",
+      "CHEVROLET G20 VAN",
+      "CHEVROLET HHR",
+      "CHEVROLET IMPALA",
+      "CHEVROLET MALIBU",
+      "CHEVROLET MONTE CARLO",
+      "CHEVROLET ORLANDO",
+      "CHEVROLET OTHER",
+      "CHEVROLET S-10",
+      "CHEVROLET SILVERADO 1500",
+      "CHEVROLET SILVERADO 2500",
+      "CHEVROLET SILVERADO 3500",
+      "CHEVROLET SILVERADO 3500HD",
+      "CHEVROLET SONIC",
+      "CHEVROLET SPARK",
+      "CHEVROLET SUBURBAN",
+      "CHEVROLET TAHOE",
+      "CHEVROLET TRACKER",
+      "CHEVROLET TRAILBLAZER",
+      "CHEVROLET TRAVERSE",
+      "CHEVROLET TRAX",
+      "CHEVROLET UPLANDER",
+      "CHEVROLET VENTURE",
+      "CHRYSLER 200-SERIES",
+      "CHRYSLER 300-SERIES",
+      "CHRYSLER ASPEN",
+      "CHRYSLER CONCORDE",
+      "CHRYSLER GRAND CARAVAN",
+      "CHRYSLER INTREPID",
+      "CHRYSLER NEON",
+      "CHRYSLER OTHER",
+      "CHRYSLER PACIFICA",
+      "CHRYSLER PT CRUISER",
+      "CHRYSLER SEBRING",
+      "CHRYSLER TOWN & COUNTRY",
+      "DODGE AVENGER",
+      "DODGE CALIBER",
+      "DODGE CARAVAN",
+      "DODGE CHALLENGER",
+      "DODGE CHARGER",
+      "DODGE DAKOTA",
+      "DODGE DART",
+      "DODGE DURANGO",
+      "DODGE GRAND CARAVAN",
+      "DODGE JOURNEY",
+      "DODGE MAGNUM",
+      "DODGE NEON",
+      "DODGE NITRO",
+      "DODGE OTHER",
+      "DODGE OTHER PICKUPS",
+      "DODGE POWER RAM 1500",
+      "DODGE POWER RAM 2500",
+      "DODGE POWER RAM 3500",
+      "DODGE POWER WAGON",
+      "DODGE RAM VAN",
+      "DODGE SPRINTER",
+      "DODGE VIPER",
+      "FIAT 500",
+      "FORD BRONCO",
+      "FORD BRONCO SPORT",
+      "FORD C-MAX",
+      "FORD CROWN VICTORIA",
+      "FORD E-150",
+      "FORD E-250",
+      "FORD E-350",
+      "FORD E-450",
+      "FORD E-SERIES VAN",
+      "FORD ECOSPORT",
+      "FORD EDGE",
+      "FORD ESCAPE",
+      "FORD ESCORT",
+      "FORD EXCURSION",
+      "FORD EXPEDITION",
+      "FORD EXPLORER",
+      "FORD EXPLORER SPORT",
+      "FORD EXPLORER SPORT TRAC",
+      "FORD F-100",
+      "FORD F-150",
+      "FORD F-150 RAPTOR",
+      "FORD F-250",
+      "FORD F-350",
+      "FORD F-450",
+      "FORD F-550",
+      "FORD FIESTA",
+      "FORD FIVE HUNDRED",
+      "FORD FLEX",
+      "FORD FOCUS",
+      "FORD FREESTAR",
+      "FORD FREESTYLE/TAURUS X",
+      "FORD FUSION",
+      "FORD MAVERICK",
+      "FORD MUSTANG",
+      "FORD MUSTANG MACH-E",
+      "FORD OTHER",
+      "FORD RANGER",
+      "FORD TAURUS",
+      "FORD THUNDERBIRD",
+      "FORD TRANSIT",
+      "FORD TRANSIT CARGO",
+      "FORD TRANSIT CONNECT",
+      "FORD TRANSIT PASSENGER",
+      "FORD WINDSTAR",
+      "GENESIS G70",
+      "GENESIS G80",
+      "GMC ACADIA",
+      "GMC C/K 1500",
+      "GMC C/K 2500",
+      "GMC C/K 3500",
+      "GMC CANYON",
+      "GMC ENVOY",
+      "GMC JIMMY",
+      "GMC OTHER",
+      "GMC SAFARI",
+      "GMC SAVANA",
+      "GMC SIERRA",
+      "GMC SIERRA 1500",
+      "GMC SIERRA 2500",
+      "GMC SIERRA 2500HD",
+      "GMC SIERRA 3500",
+      "GMC SIERRA 3500HD",
+      "GMC SONOMA",
+      "GMC SUBURBAN",
+      "GMC TERRAIN",
+      "GMC VANDURA",
+      "GMC YUKON",
+      "GMC YUKON XL",
+      "HONDA ACCORD",
+      "HONDA CIVIC",
+      "HONDA CR-V",
+      "HONDA ELEMENT",
+      "HONDA FIT",
+      "HONDA HR-V",
+      "HONDA ODYSSEY",
+      "HONDA OTHER",
+      "HONDA PILOT",
+      "HONDA PRELUDE",
+      "HONDA RIDGELINE",
+      "HONDA S2000",
+      "HUMMER H2",
+      "HUMMER H3",
+      "HYUNDAI ACCENT",
+      "HYUNDAI ELANTRA",
+      "HYUNDAI GENESIS",
+      "HYUNDAI GENESIS COUPE",
+      "HYUNDAI KONA",
+      "HYUNDAI OTHER",
+      "HYUNDAI PALISADE",
+      "HYUNDAI SANTA FE",
+      "HYUNDAI SONATA",
+      "HYUNDAI SONATA HYBRID",
+      "HYUNDAI TIBURON",
+      "HYUNDAI TUCSON",
+      "HYUNDAI VELOSTER",
+      "HYUNDAI VENUE",
+      "HYUNDAI VERACRUZ",
+      "INFINITI EX35",
+      "INFINITI FX",
+      "INFINITI G35",
+      "INFINITI G35X",
+      "INFINITI G37",
+      "INFINITI G37X",
+      "INFINITI JX",
+      "INFINITI M35",
+      "INFINITI OTHER",
+      "INFINITI Q50",
+      "INFINITI Q60",
+      "INFINITI QX50",
+      "INFINITI QX56",
+      "INFINITI QX60",
+      "INFINITI QX70",
+      "INFINITI QX80",
+      "INTERNATIONAL HARVESTER OTHER",
+      "JAGUAR F-PACE",
+      "JAGUAR S-TYPE",
+      "JAGUAR XE",
+      "JAGUAR XF",
+      "JAGUAR XJ",
+      "JEEP CHEROKEE",
+      "JEEP CJ",
+      "JEEP COMMANDER",
+      "JEEP COMPASS",
+      "JEEP GLADIATOR",
+      "JEEP GRAND CHEROKEE",
+      "JEEP GRAND CHEROKEE 4XE",
+      "JEEP GRAND CHEROKEE L",
+      "JEEP LIBERTY",
+      "JEEP OTHER",
+      "JEEP PATRIOT",
+      "JEEP RENEGADE",
+      "JEEP TJ",
+      "JEEP WRANGLER",
+      "JEEP WRANGLER UNLIMITED",
+      "KIA AMANTI",
+      "KIA FORTE",
+      "KIA FORTE5",
+      "KIA NIRO",
+      "KIA OPTIMA",
+      "KIA OTHER",
+      "KIA RIO",
+      "KIA RIO 5-DOOR",
+      "KIA RONDO",
+      "KIA SEDONA",
+      "KIA SELTOS",
+      "KIA SORENTO",
+      "KIA SOUL",
+      "KIA SPECTRA",
+      "KIA SPORTAGE",
+      "KIA STINGER",
+      "LAND ROVER DEFENDER",
+      "LAND ROVER DISCOVERY",
+      "LAND ROVER DISCOVERY SPORT",
+      "LAND ROVER LR2",
+      "LAND ROVER LR3",
+      "LAND ROVER LR4",
+      "LAND ROVER RANGE ROVER",
+      "LAND ROVER RANGE ROVER EVOQUE",
+      "LAND ROVER RANGE ROVER SPORT",
+      "LAND ROVER RANGE ROVER VELAR",
+      "LEXUS CT 200H",
+      "LEXUS ES",
+      "LEXUS GS",
+      "LEXUS GX",
+      "LEXUS IS",
+      "LEXUS IS 250",
+      "LEXUS IS 300",
+      "LEXUS IS 350",
+      "LEXUS LS",
+      "LEXUS LX",
+      "LEXUS NX 200T",
+      "LEXUS NX 300",
+      "LEXUS OTHER",
+      "LEXUS RX",
+      "LEXUS SC",
+      "LINCOLN AVIATOR",
+      "LINCOLN CONTINENTAL",
+      "LINCOLN CORSAIR",
+      "LINCOLN MARK LT",
+      "LINCOLN MKC",
+      "LINCOLN MKS",
+      "LINCOLN MKX",
+      "LINCOLN MKZ",
+      "LINCOLN NAVIGATOR",
+      "LINCOLN TOWN CAR",
+      "MASERATI GHIBLI",
+      "MAZDA 2",
+      "MAZDA 3",
+      "MAZDA 5",
+      "MAZDA 6",
+      "MAZDA B-SERIES PICKUPS",
+      "MAZDA CX-3",
+      "MAZDA CX-5",
+      "MAZDA CX-7",
+      "MAZDA CX-9",
+      "MAZDA MAZDA3 SPORT",
+      "MAZDA MAZDASPEED3",
+      "MAZDA MX-5 MIATA",
+      "MAZDA OTHER",
+      "MAZDA PROTEGE",
+      "MAZDA RX-8",
+      "MAZDA TRIBUTE",
+      "MERCEDES-AMG C-CLASS",
+      "MERCEDES-AMG CL-CLASS",
+      "MERCEDES-AMG CLA",
+      "MERCEDES-AMG E-CLASS",
+      "MERCEDES-AMG GLE",
+      "MERCEDES-BENZ 200-SERIES",
+      "MERCEDES-BENZ 300-SERIES",
+      "MERCEDES-BENZ 500-SERIES",
+      "MERCEDES-BENZ A-CLASS",
+      "MERCEDES-BENZ B-CLASS",
+      "MERCEDES-BENZ C-CLASS",
+      "MERCEDES-BENZ CL-CLASS",
+      "MERCEDES-BENZ CLA",
+      "MERCEDES-BENZ CLK-CLASS",
+      "MERCEDES-BENZ CLS-CLASS",
+      "MERCEDES-BENZ E-CLASS",
+      "MERCEDES-BENZ G-CLASS",
+      "MERCEDES-BENZ GL-CLASS",
+      "MERCEDES-BENZ GLA",
+      "MERCEDES-BENZ GLC",
+      "MERCEDES-BENZ GLE",
+      "MERCEDES-BENZ GLK-CLASS",
+      "MERCEDES-BENZ M-CLASS",
+      "MERCEDES-BENZ OTHER",
+      "MERCEDES-BENZ R-CLASS",
+      "MERCEDES-BENZ S-CLASS",
+      "MERCEDES-BENZ SL-CLASS",
+      "MERCEDES-BENZ SLK-CLASS",
+      "MERCEDES-BENZ SPRINTER VAN",
+      "MERCURY GRAND MARQUIS",
+      "MINI CLUBMAN",
+      "MINI COOPER COUNTRYMAN",
+      "MINI COOPER S COUNTRYMAN",
+      "MINI MINI COOPER",
+      "MINI MINI COOPER S",
+      "MINI OTHER",
+      "MITSUBISHI ECLIPSE",
+      "MITSUBISHI ECLIPSE CROSS",
+      "MITSUBISHI ENDEAVOR",
+      "MITSUBISHI EVOLUTION",
+      "MITSUBISHI LANCER",
+      "MITSUBISHI MIRAGE",
+      "MITSUBISHI OTHER",
+      "MITSUBISHI OUTLANDER",
+      "MITSUBISHI RVR",
+      "NISSAN 300ZX",
+      "NISSAN 350Z",
+      "NISSAN 370Z",
+      "NISSAN ALTIMA",
+      "NISSAN ARMADA",
+      "NISSAN CUBE",
+      "NISSAN FRONTIER",
+      "NISSAN HARDBODY",
+      "NISSAN JUKE",
+      "NISSAN KICKS",
+      "NISSAN LEAF",
+      "NISSAN MAXIMA",
+      "NISSAN MICRA",
+      "NISSAN MURANO",
+      "NISSAN NV200",
+      "NISSAN OTHER",
+      "NISSAN PATHFINDER",
+      "NISSAN QASHQAI",
+      "NISSAN QUEST",
+      "NISSAN ROGUE",
+      "NISSAN SENTRA",
+      "NISSAN SKYLINE",
+      "NISSAN TITAN",
+      "NISSAN VERSA",
+      "NISSAN X-TRAIL",
+      "NISSAN XTERRA",
+      "OLDSMOBILE ALERO",
+      "OLDSMOBILE CUTLASS",
+      "OLDSMOBILE INTRIGUE",
+      "OTHER",
+      "OTHER OTHER",
+      "PONTIAC BONNEVILLE",
+      "PONTIAC FIREBIRD",
+      "PONTIAC G5",
+      "PONTIAC G6",
+      "PONTIAC G8",
+      "PONTIAC GRAND AM",
+      "PONTIAC GRAND PRIX",
+      "PONTIAC MONTANA",
+      "PONTIAC SOLSTICE",
+      "PONTIAC SUNFIRE",
+      "PONTIAC TORRENT",
+      "PONTIAC VIBE",
+      "PONTIAC WAVE",
+      "PORSCHE 911",
+      "PORSCHE BOXSTER",
+      "PORSCHE CAYENNE",
+      "PORSCHE MACAN",
+      "PORSCHE PANAMERA",
+      "RAM 1500",
+      "RAM 1500 CLASSIC",
+      "RAM 2500",
+      "RAM 3500",
+      "RAM 5500",
+      "RAM CARGO",
+      "RAM PROMASTER",
+      "SAAB 9-3",
+      "SATURN ASTRA",
+      "SATURN AURA",
+      "SATURN ION",
+      "SATURN S-SERIES",
+      "SATURN VUE",
+      "SCION FR-S",
+      "SCION TC",
+      "SCION XB",
+      "SMART FORTWO",
+      "SUBARU ASCENT",
+      "SUBARU BRZ",
+      "SUBARU FORESTER",
+      "SUBARU IMPREZA",
+      "SUBARU IMPREZA WRX STI",
+      "SUBARU LEGACY",
+      "SUBARU OTHER",
+      "SUBARU OUTBACK",
+      "SUBARU TRIBECA",
+      "SUBARU WRX",
+      "SUBARU XV CROSSTREK",
+      "SUZUKI AERIO",
+      "SUZUKI GRAND VITARA",
+      "SUZUKI OTHER",
+      "SUZUKI SWIFT",
+      "SUZUKI SX4",
+      "SUZUKI XL7",
+      "TESLA MODEL 3",
+      "TESLA MODEL Y",
+      "TOYOTA 4RUNNER",
+      "TOYOTA AVALON",
+      "TOYOTA C-HR",
+      "TOYOTA CAMRY",
+      "TOYOTA CELICA",
+      "TOYOTA COROLLA",
+      "TOYOTA CROWN",
+      "TOYOTA ECHO",
+      "TOYOTA FJ CRUISER",
+      "TOYOTA HIGHLANDER",
+      "TOYOTA LAND CRUISER",
+      "TOYOTA MATRIX",
+      "TOYOTA MR2",
+      "TOYOTA OTHER",
+      "TOYOTA OTHER PICKUPS",
+      "TOYOTA PREVIA",
+      "TOYOTA PRIUS",
+      "TOYOTA PRIUS C",
+      "TOYOTA RAV4",
+      "TOYOTA SEQUOIA",
+      "TOYOTA SIENNA",
+      "TOYOTA SOLARA",
+      "TOYOTA TACOMA",
+      "TOYOTA TERCEL",
+      "TOYOTA TUNDRA",
+      "TOYOTA VENZA",
+      "TOYOTA YARIS",
+      "VOLKSWAGEN ATLAS",
+      "VOLKSWAGEN BEETLE",
+      "VOLKSWAGEN BUS/VANAGON",
+      "VOLKSWAGEN CC",
+      "VOLKSWAGEN EOS",
+      "VOLKSWAGEN EUROVAN",
+      "VOLKSWAGEN GLI",
+      "VOLKSWAGEN GOLF",
+      "VOLKSWAGEN GOLF R",
+      "VOLKSWAGEN GTI",
+      "VOLKSWAGEN JETTA",
+      "VOLKSWAGEN NEW BEETLE",
+      "VOLKSWAGEN OTHER",
+      "VOLKSWAGEN PASSAT",
+      "VOLKSWAGEN RABBIT",
+      "VOLKSWAGEN ROUTAN",
+      "VOLKSWAGEN TAOS",
+      "VOLKSWAGEN TIGUAN",
+      "VOLKSWAGEN TOUAREG",
+      "VOLVO 850",
+      "VOLVO C30",
+      "VOLVO C70",
+      "VOLVO OTHER",
+      "VOLVO S40",
+      "VOLVO S60",
+      "VOLVO S80",
+      "VOLVO V60",
+      "VOLVO V70",
+      "VOLVO XC60",
+      "VOLVO XC70",
+      "VOLVO XC90"
+    ],
+    "Trim": [
+      "1.8 SL",
+      "1500",
+      "1LT",
+      "2.0",
+      "2.0T",
+      "2.0T PROGRESSIV",
+      "2.0T TECHNIK",
+      "2.5",
+      "2.5 S",
+      "2.5 SL",
+      "2.5I",
+      "2.5S",
+      "250",
+      "2500",
+      "28I",
+      "2LT",
+      "2RS",
+      "2SS",
+      "3.0SI",
+      "3.2",
+      "3.5L",
+      "300",
+      "300C",
+      "320I XDRIVE",
+      "325I",
+      "328I",
+      "328I XDRIVE",
+      "328XI",
+      "330CI",
+      "330I XDRIVE",
+      "335I",
+      "335I XDRIVE",
+      "335XI",
+      "350",
+      "3500",
+      "35D",
+      "35I",
+      "3LT",
+      "3LZ",
+      "4",
+      "430",
+      "4MATIC",
+      "4WD",
+      "4X4",
+      "4XE",
+      "5.0L",
+      "550",
+      "A-SPEC",
+      "ABARTH",
+      "ADRENALIN",
+      "ALL TERRAIN",
+      "ALTITUDE",
+      "AMG",
+      "AMG C 43",
+      "AT4",
+      "AUTOBAHN",
+      "AUTOGRAPH",
+      "AWD",
+      "AWD EX",
+      "BADLANDS",
+      "BASE",
+      "BIG BEND",
+      "BIG HORN",
+      "BIGHORN",
+      "BLACK",
+      "BLACK EDITION",
+      "BLUETEC",
+      "C",
+      "C 250",
+      "C 300",
+      "CABRIOLET",
+      "CANADA VALUE PACKAGE",
+      "CANADA VALUE PKG",
+      "CARGO",
+      "CARGO VAN",
+      "CE",
+      "CHROME",
+      "CITADEL",
+      "CITY",
+      "CLA 250",
+      "CLASSIC",
+      "COMFORTLINE",
+      "COMMERCIAL",
+      "CONVENIENCE",
+      "CONVENIENCE 1",
+      "CONVERTIBLE",
+      "COUPE",
+      "CREW",
+      "CREW CAB",
+      "CREW PLUS",
+      "CROSSROAD",
+      "CUMMINS",
+      "CUSTOM",
+      "CX",
+      "CXL",
+      "CXS FULLY LOADED",
+      "DENALI",
+      "DENALI ULTIMATE",
+      "DIESEL",
+      "DX",
+      "DX-G",
+      "ECOBOOST",
+      "ECOBOOST PREMIUM",
+      "EDDIE BAUER",
+      "ELEVATION",
+      "ELITE",
+      "ELITE PKG",
+      "ES",
+      "ESSENCE",
+      "ESSENTIAL",
+      "EX",
+      "EX PREMIUM",
+      "EX+",
+      "EX-L",
+      "EXECLINE",
+      "EXL",
+      "EXPRESS",
+      "EXTENDED CAB",
+      "F SPORT",
+      "F-SPORT",
+      "F-SPORT 3",
+      "FLAT DECK",
+      "FULLY LOADED",
+      "FWD",
+      "FX4",
+      "GFX",
+      "GL",
+      "GL 550",
+      "GLA 250",
+      "GLC 300",
+      "GLI",
+      "GLK 350",
+      "GLS",
+      "GREY",
+      "GS",
+      "GS-SKY",
+      "GT",
+      "GT AWD",
+      "GT PREMIUM",
+      "GTS",
+      "GX",
+      "GXP",
+      "HARLEY DAVIDSON",
+      "HELLCAT",
+      "HEMI",
+      "HIGH ALTITUDE",
+      "HIGH COUNTRY",
+      "HIGHLINE",
+      "HIGHLINE R-LINE",
+      "HSE",
+      "HYBRID",
+      "HYBRID XLE",
+      "I",
+      "I TOURING",
+      "INSCRIPTION",
+      "KING RANCH",
+      "KOMFORT",
+      "L",
+      "LARAMIE",
+      "LARAMIE 6.4L HEMI 6.4FT STANDARD BOX",
+      "LARAMIE CREW CAB 5.7L HEMI",
+      "LARAMIE LIMITED",
+      "LARAMIE LONGHORN",
+      "LARAMIE SLT",
+      "LAREDO",
+      "LAREDO 3.6L V6 4X4",
+      "LARIAT",
+      "LARIET",
+      "LE",
+      "LE AWD",
+      "LEATHER",
+      "LIMITED",
+      "LIMITED AWD",
+      "LIMITED EDITION",
+      "LIMITED GT",
+      "LIMITED HYBRID",
+      "LIMITED LONGHORN",
+      "LIMITED X",
+      "LOADED",
+      "LONG RANGE",
+      "LONGHORN",
+      "LS",
+      "LT",
+      "LT TURBO",
+      "LT1",
+      "LTD",
+      "LTZ",
+      "LTZ Z71",
+      "LUXURY",
+      "LUXURY AWD",
+      "LX",
+      "LX AWD",
+      "LX AWD T-GDI 2.0L TURBO",
+      "LX+",
+      "M",
+      "M SPORT",
+      "MACH 1",
+      "NAV PKG",
+      "NISMO",
+      "NORTH",
+      "NORTH EDITION",
+      "ONYX",
+      "OTHER",
+      "OUTDOORSMAN",
+      "OUTER BANKS",
+      "OVERLAND",
+      "PASSENGER",
+      "PASSION",
+      "PERFORMANCE",
+      "PLATINUM",
+      "PLATINUM PLUS",
+      "POWER WAGON",
+      "PREFERRED",
+      "PREMIER",
+      "PREMIER PLUS",
+      "PREMIUM",
+      "PREMIUM LUXURY",
+      "PREMIUM PLUS",
+      "PRESTIGE",
+      "PRO-4X",
+      "PRO4X",
+      "PROGRESSIV",
+      "PROGRESSIVE",
+      "PURE",
+      "QUAD CAB",
+      "QUATTRO",
+      "R",
+      "R/T",
+      "RALLIART",
+      "RALLYE",
+      "RAPTOR",
+      "REBEL",
+      "RESERVE",
+      "RS",
+      "RST",
+      "RT",
+      "RUBICON",
+      "RX 350",
+      "S",
+      "S LINE",
+      "S-LINE",
+      "S-LINE TECHNIK",
+      "S500 4MATIC",
+      "SAHARA",
+      "SC",
+      "SE",
+      "SE 20TH ANNIVERSARY",
+      "SE 4WD ECOBOOST HEATED SEATS BACKUP CAM",
+      "SE AWD",
+      "SEDAN",
+      "SEL",
+      "SEL AWD",
+      "SES",
+      "SH AWD",
+      "SH-AWD",
+      "SHELBY GT500",
+      "SHO",
+      "SI",
+      "SIERRA",
+      "SIGNATURE",
+      "SILVERADO",
+      "SL",
+      "SL AWD",
+      "SLE",
+      "SLE-2",
+      "SLT",
+      "SLT-1",
+      "SLT-2",
+      "SPECIAL EDITION",
+      "SPORT",
+      "SPORT 4X4",
+      "SPORT S",
+      "SPORT TECH",
+      "SPORT TOURING",
+      "SPORT-TECH",
+      "SPORTS",
+      "SPYDER",
+      "SR",
+      "SR5",
+      "SRT",
+      "SRT HELLCAT",
+      "SRT8",
+      "SS",
+      "ST",
+      "STANDARD",
+      "STI",
+      "STX",
+      "SUMMIT",
+      "SUPER DUTY",
+      "SUPERCHARGED",
+      "SUPERDUTY",
+      "SUV",
+      "SV",
+      "SV AWD",
+      "SV MIDNIGHT EDITION",
+      "SV6",
+      "SX",
+      "SX TURBO",
+      "SXT",
+      "SXT PREMIUM PLUS",
+      "SXT STOW &AMP; GO \"DVD\" 3.6L V6",
+      "T250",
+      "T5",
+      "T6",
+      "TDI",
+      "TECH",
+      "TECH PACKAGE",
+      "TECH PKG",
+      "TECHNIK",
+      "TECHNOLOGY",
+      "TITANIUM",
+      "TOURING",
+      "TRADESMAN",
+      "TRAILHAWK",
+      "TRAILHAWK 3.2L V6 4X4",
+      "TRD",
+      "TRD OFF ROAD",
+      "TRD OFF-ROAD",
+      "TRD PRO",
+      "TRD SPORT",
+      "TREMOR",
+      "TRENDLINE",
+      "TRUE",
+      "TSI",
+      "TURBO",
+      "TYPE S",
+      "ULTIMATE",
+      "ULTIMATE CALLIGRAPHY",
+      "UNKNOWN",
+      "V6",
+      "V8",
+      "VIP",
+      "W/TECH PKG",
+      "WARLOCK",
+      "WHITE",
+      "WOLFSBURG",
+      "WOLFSBURG EDITION",
+      "WORK TRUCK",
+      "WRX",
+      "WT",
+      "X",
+      "X1 XDRIVE28I 2.0L TWIN TURBO",
+      "XDRIVE28I",
+      "XDRIVE30I",
+      "XDRIVE35I",
+      "XDRIVE40I",
+      "XE",
+      "XL",
+      "XLE",
+      "XLE PREMIUM",
+      "XLS",
+      "XLT",
+      "XLT SPORT",
+      "XLT XTR 4X4 2.7L ECOBOOST 5.5FT BOX",
+      "XR",
+      "XRS",
+      "XSE",
+      "XT",
+      "XT LIMITED",
+      "XTR",
+      "YJ",
+      "Z06",
+      "Z28",
+      "Z71",
+      "ZL1",
+      "ZR2"
+    ]
+  },
+  "trims_by_model": {
+    "ACURA CSX": [
+      "OTHER",
+      "PREMIUM",
+      "TECHNOLOGY",
+      "TYPE S",
+      "UNKNOWN"
+    ],
+    "ACURA EL": [
+      "OTHER",
+      "PREMIUM",
+      "SE",
+      "TOURING",
+      "UNKNOWN"
+    ],
+    "ACURA ILX": [
+      "A-SPEC",
+      "HYBRID",
+      "OTHER",
+      "PREMIUM",
+      "TECH PKG",
+      "UNKNOWN"
+    ],
+    "ACURA MDX": [
+      "A-SPEC",
+      "AWD",
+      "BASE",
+      "ELITE",
+      "ELITE PKG",
+      "FULLY LOADED",
+      "LEATHER",
+      "NAV PKG",
+      "OTHER",
+      "SH AWD",
+      "SH-AWD",
+      "SPORT",
+      "TECH",
+      "TECH PACKAGE",
+      "TECH PKG",
+      "TECHNOLOGY",
+      "TOURING",
+      "UNKNOWN",
+      "W/TECH PKG"
+    ],
+    "ACURA RDX": [
+      "A-SPEC",
+      "BASE",
+      "ELITE",
+      "ELITE PKG",
+      "OTHER",
+      "SH-AWD",
+      "SPORT",
+      "SUV",
+      "TECH",
+      "TECH PACKAGE",
+      "TECH PKG",
+      "TECHNOLOGY",
+      "TURBO",
+      "UNKNOWN"
+    ],
+    "ACURA RL": [
+      "ELITE",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "ACURA RSX": [
+      "FULLY LOADED",
+      "PREMIUM",
+      "TYPE S",
+      "UNKNOWN"
+    ],
+    "ACURA TL": [
+      "AWD",
+      "BASE",
+      "ELITE",
+      "OTHER",
+      "SH AWD",
+      "SH-AWD",
+      "TECH",
+      "TECH PACKAGE",
+      "TYPE S",
+      "UNKNOWN",
+      "W/TECH PKG"
+    ],
+    "ACURA TLX": [
+      "A-SPEC",
+      "AWD",
+      "BASE",
+      "ELITE",
+      "OTHER",
+      "TECH",
+      "TECHNOLOGY",
+      "UNKNOWN",
+      "V6"
+    ],
+    "ACURA TSX": [
+      "LEATHER",
+      "OTHER",
+      "PREMIUM",
+      "TECH",
+      "TECH PACKAGE",
+      "UNKNOWN",
+      "W/TECH PKG"
+    ],
+    "ALFA ROMEO STELVIO": [
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "AUDI A3": [
+      "2.0T PROGRESSIV",
+      "2.0T TECHNIK",
+      "BASE",
+      "OTHER",
+      "PREMIUM",
+      "PROGRESSIV",
+      "QUATTRO",
+      "S",
+      "S LINE",
+      "S-LINE",
+      "SPORT",
+      "TDI",
+      "TECHNIK",
+      "UNKNOWN"
+    ],
+    "AUDI A4": [
+      "2.0T",
+      "BASE",
+      "CABRIOLET",
+      "CONVERTIBLE",
+      "FULLY LOADED",
+      "OTHER",
+      "PREMIUM",
+      "PREMIUM PLUS",
+      "PRESTIGE",
+      "PROGRESSIV",
+      "PROGRESSIVE",
+      "QUATTRO",
+      "S LINE",
+      "S-LINE",
+      "SEDAN",
+      "TECHNIK",
+      "UNKNOWN"
+    ],
+    "AUDI A4 ALLROAD": [
+      "KOMFORT",
+      "OTHER",
+      "PREMIUM",
+      "PREMIUM PLUS",
+      "PROGRESSIV",
+      "TECHNIK",
+      "UNKNOWN"
+    ],
+    "AUDI A5": [
+      "2.0T",
+      "CABRIOLET",
+      "OTHER",
+      "PREMIUM",
+      "PREMIUM PLUS",
+      "PROGRESSIV",
+      "PROGRESSIVE",
+      "QUATTRO",
+      "S LINE",
+      "S-LINE",
+      "TECHNIK",
+      "UNKNOWN"
+    ],
+    "AUDI A6": [
+      "AWD",
+      "OTHER",
+      "QUATTRO",
+      "S",
+      "S-LINE",
+      "S-LINE TECHNIK",
+      "SEDAN",
+      "TECHNIK",
+      "UNKNOWN"
+    ],
+    "AUDI A7": [
+      "OTHER",
+      "PREMIUM PLUS",
+      "PRESTIGE",
+      "S LINE",
+      "S-LINE",
+      "TECHNIK",
+      "UNKNOWN"
+    ],
+    "AUDI A8": [
+      "L",
+      "SPORT",
+      "UNKNOWN"
+    ],
+    "AUDI OTHER": [
+      "KOMFORT",
+      "OTHER",
+      "TECHNIK"
+    ],
+    "AUDI Q3": [
+      "KOMFORT",
+      "OTHER",
+      "PREMIUM",
+      "PRESTIGE",
+      "PROGRESSIV",
+      "TECHNIK",
+      "UNKNOWN"
+    ],
+    "AUDI Q5": [
+      "2.0T PROGRESSIV",
+      "2.0T TECHNIK",
+      "AWD",
+      "KOMFORT",
+      "OTHER",
+      "PREMIUM",
+      "PREMIUM PLUS",
+      "PRESTIGE",
+      "PROGRESSIV",
+      "PROGRESSIVE",
+      "S LINE",
+      "S-LINE",
+      "S-LINE TECHNIK",
+      "TDI",
+      "TECHNIK",
+      "UNKNOWN",
+      "V6"
+    ],
+    "AUDI Q7": [
+      "2.0T PROGRESSIV",
+      "KOMFORT",
+      "OTHER",
+      "PREMIUM",
+      "PRESTIGE",
+      "PROGRESSIVE",
+      "QUATTRO",
+      "S LINE",
+      "S-LINE",
+      "TDI",
+      "TECHNIK",
+      "UNKNOWN"
+    ],
+    "AUDI R8": [
+      "COUPE",
+      "OTHER",
+      "UNKNOWN",
+      "V8"
+    ],
+    "AUDI S3": [
+      "2.0T TECHNIK",
+      "OTHER",
+      "PROGRESSIV",
+      "QUATTRO",
+      "TECHNIK",
+      "UNKNOWN"
+    ],
+    "AUDI S4": [
+      "CABRIOLET",
+      "CONVERTIBLE",
+      "OTHER",
+      "PREMIUM",
+      "PREMIUM PLUS",
+      "PRESTIGE",
+      "S-LINE",
+      "TECHNIK",
+      "UNKNOWN"
+    ],
+    "AUDI S5": [
+      "CABRIOLET",
+      "COUPE",
+      "LEATHER",
+      "OTHER",
+      "PREMIUM",
+      "PRESTIGE",
+      "TECHNIK",
+      "UNKNOWN"
+    ],
+    "AUDI S6": [
+      "PRESTIGE",
+      "UNKNOWN"
+    ],
+    "AUDI SQ5": [
+      "OTHER",
+      "PROGRESSIV",
+      "TECHNIK",
+      "UNKNOWN"
+    ],
+    "AUDI TT": [
+      "2.0T",
+      "3.2",
+      "OTHER",
+      "QUATTRO",
+      "S-LINE",
+      "UNKNOWN"
+    ],
+    "AUDI TT RS": [
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "BMW 1-SERIES": [
+      "M",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "BMW 2-SERIES": [
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "BMW 3-SERIES": [
+      "320I XDRIVE",
+      "325I",
+      "328I",
+      "328I XDRIVE",
+      "328XI",
+      "330CI",
+      "330I XDRIVE",
+      "335I",
+      "335I XDRIVE",
+      "335XI",
+      "AWD",
+      "CABRIOLET",
+      "CONVERTIBLE",
+      "FULLY LOADED",
+      "LUXURY",
+      "M",
+      "M SPORT",
+      "OTHER",
+      "SPORT",
+      "TOURING",
+      "UNKNOWN",
+      "X"
+    ],
+    "BMW 4-SERIES": [
+      "M SPORT",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "BMW 5-SERIES": [
+      "M SPORT",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "BMW 6-SERIES": [
+      "M SPORT",
+      "OTHER",
+      "SPORT",
+      "UNKNOWN"
+    ],
+    "BMW 7-SERIES": [
+      "M SPORT",
+      "OTHER",
+      "PREMIUM PLUS",
+      "UNKNOWN"
+    ],
+    "BMW M3": [
+      "BASE",
+      "CONVERTIBLE",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "BMW M4": [
+      "UNKNOWN"
+    ],
+    "BMW M5": [
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "BMW OTHER": [
+      "2.5I",
+      "328I XDRIVE",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "BMW X1": [
+      "28I",
+      "OTHER",
+      "PREMIUM",
+      "SPORT",
+      "UNKNOWN",
+      "X1 XDRIVE28I 2.0L TWIN TURBO",
+      "XDRIVE28I"
+    ],
+    "BMW X3": [
+      "2.5",
+      "2.5I",
+      "28I",
+      "3.0SI",
+      "35I",
+      "AWD",
+      "LIMITED",
+      "OTHER",
+      "PREMIUM",
+      "SI",
+      "SPORT",
+      "UNKNOWN",
+      "XDRIVE28I",
+      "XDRIVE30I",
+      "XDRIVE35I"
+    ],
+    "BMW X3 M": [
+      "M",
+      "M SPORT",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "BMW X4": [
+      "OTHER",
+      "UNKNOWN",
+      "XDRIVE28I",
+      "XDRIVE30I",
+      "XDRIVE35I"
+    ],
+    "BMW X5": [
+      "3.0SI",
+      "35D",
+      "35I",
+      "DIESEL",
+      "LOADED",
+      "M SPORT",
+      "OTHER",
+      "PREMIUM",
+      "SUV",
+      "UNKNOWN",
+      "XDRIVE35I",
+      "XDRIVE40I"
+    ],
+    "BMW X5 M": [
+      "BASE",
+      "M",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "BMW X6": [
+      "35I",
+      "BLACK EDITION",
+      "LEATHER",
+      "OTHER",
+      "SUV",
+      "UNKNOWN",
+      "XDRIVE35I"
+    ],
+    "BMW X6 M": [
+      "AWD",
+      "M",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "BMW Z3": [
+      "COUPE",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "BMW Z4": [
+      "2.5I",
+      "3.0SI",
+      "M",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "BUICK ALLURE": [
+      "CX",
+      "CXL",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "BUICK CENTURY": [
+      "GS",
+      "LIMITED",
+      "UNKNOWN"
+    ],
+    "BUICK ENCLAVE": [
+      "CX",
+      "CXL",
+      "ESSENCE",
+      "EXL",
+      "LEATHER",
+      "OTHER",
+      "PREMIUM",
+      "UNKNOWN"
+    ],
+    "BUICK ENCORE": [
+      "AWD",
+      "CONVENIENCE",
+      "ESSENCE",
+      "GS",
+      "GX",
+      "LEATHER",
+      "OTHER",
+      "PREFERRED",
+      "PREMIUM",
+      "SPORT TOURING",
+      "UNKNOWN"
+    ],
+    "BUICK ENVISION": [
+      "ESSENCE",
+      "OTHER",
+      "PREFERRED",
+      "PREMIUM",
+      "ST",
+      "UNKNOWN"
+    ],
+    "BUICK LACROSSE": [
+      "CX",
+      "CXS FULLY LOADED",
+      "LEATHER",
+      "LUXURY",
+      "OTHER",
+      "PREMIUM",
+      "UNKNOWN"
+    ],
+    "BUICK LESABRE": [
+      "CUSTOM",
+      "LIMITED",
+      "UNKNOWN"
+    ],
+    "BUICK LUCERNE": [
+      "CX",
+      "CXL",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "BUICK REGAL": [
+      "CHROME",
+      "CXL",
+      "ESSENCE",
+      "GS",
+      "LS",
+      "OTHER",
+      "SPORT TOURING",
+      "TOURING",
+      "TURBO",
+      "UNKNOWN"
+    ],
+    "BUICK RENDEZVOUS": [
+      "BLACK",
+      "CX",
+      "UNKNOWN"
+    ],
+    "BUICK VERANO": [
+      "BASE",
+      "CONVENIENCE",
+      "CONVENIENCE 1",
+      "FULLY LOADED",
+      "LEATHER",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "CADILLAC ATS": [
+      "4",
+      "AWD",
+      "BASE",
+      "LUXURY",
+      "LUXURY AWD",
+      "OTHER",
+      "PERFORMANCE",
+      "PREMIUM",
+      "UNKNOWN"
+    ],
+    "CADILLAC CTS": [
+      "4",
+      "AWD",
+      "OTHER",
+      "PREMIUM",
+      "UNKNOWN",
+      "V6"
+    ],
+    "CADILLAC CTS-V": [
+      "LOADED",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "CADILLAC DEVILLE": [
+      "UNKNOWN"
+    ],
+    "CADILLAC DTS": [
+      "FULLY LOADED",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "CADILLAC ESCALADE": [
+      "BASE",
+      "HYBRID",
+      "LUXURY",
+      "OTHER",
+      "PLATINUM",
+      "PREMIUM",
+      "PREMIUM LUXURY",
+      "SPORT",
+      "UNKNOWN"
+    ],
+    "CADILLAC ESCALADE ESV": [
+      "OTHER",
+      "PLATINUM",
+      "PREMIUM",
+      "UNKNOWN"
+    ],
+    "CADILLAC OTHER": [
+      "LUXURY",
+      "LUXURY AWD",
+      "OTHER",
+      "PREMIUM",
+      "SPORT",
+      "UNKNOWN"
+    ],
+    "CADILLAC SRX": [
+      "4",
+      "LUXURY",
+      "OTHER",
+      "PERFORMANCE",
+      "PREMIUM",
+      "PREMIUM LUXURY",
+      "UNKNOWN"
+    ],
+    "CADILLAC XT4": [
+      "LUXURY",
+      "OTHER",
+      "PREMIUM LUXURY",
+      "SPORT",
+      "UNKNOWN"
+    ],
+    "CADILLAC XT5": [
+      "FULLY LOADED",
+      "LUXURY",
+      "LUXURY AWD",
+      "OTHER",
+      "PLATINUM",
+      "PREMIUM",
+      "PREMIUM LUXURY",
+      "SPORT",
+      "UNKNOWN"
+    ],
+    "CHEVROLET ASTRO": [
+      "AWD",
+      "OTHER",
+      "SLE",
+      "UNKNOWN",
+      "XR"
+    ],
+    "CHEVROLET AVALANCHE": [
+      "4X4",
+      "BASE",
+      "BLACK",
+      "LS",
+      "LT",
+      "LT1",
+      "LTZ",
+      "OTHER",
+      "UNKNOWN",
+      "XLT",
+      "Z71"
+    ],
+    "CHEVROLET AVEO": [
+      "LS",
+      "LT",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "CHEVROLET BLAZER": [
+      "2LT",
+      "LS",
+      "LT",
+      "OTHER",
+      "PREMIER",
+      "RS",
+      "SPORT",
+      "UNKNOWN",
+      "ZR2"
+    ],
+    "CHEVROLET C/K PICKUP 1500": [
+      "HIGH COUNTRY",
+      "LOADED",
+      "LS",
+      "LT",
+      "LTZ",
+      "OTHER",
+      "RST",
+      "SILVERADO",
+      "SL",
+      "SLE",
+      "UNKNOWN",
+      "WHITE",
+      "WT"
+    ],
+    "CHEVROLET C/K PICKUP 2500": [
+      "4X4",
+      "GFX",
+      "LOADED",
+      "LS",
+      "LT",
+      "LTZ",
+      "OTHER",
+      "SILVERADO",
+      "SLE",
+      "UNKNOWN",
+      "Z71"
+    ],
+    "CHEVROLET C/K PICKUP 3500": [
+      "3500",
+      "HIGH COUNTRY",
+      "LT",
+      "LTZ",
+      "OTHER",
+      "SL",
+      "UNKNOWN"
+    ],
+    "CHEVROLET C10": [
+      "350",
+      "CHROME",
+      "OTHER",
+      "SILVERADO",
+      "UNKNOWN"
+    ],
+    "CHEVROLET CAMARO": [
+      "1LT",
+      "2LT",
+      "2SS",
+      "CONVERTIBLE",
+      "LS",
+      "LT",
+      "LT1",
+      "OTHER",
+      "RS",
+      "SS",
+      "UNKNOWN",
+      "Z28",
+      "Z71",
+      "ZL1"
+    ],
+    "CHEVROLET CAVALIER": [
+      "OTHER",
+      "RS",
+      "UNKNOWN"
+    ],
+    "CHEVROLET CHEVY VAN": [
+      "UNKNOWN"
+    ],
+    "CHEVROLET COBALT": [
+      "LS",
+      "LT",
+      "LTZ",
+      "LX",
+      "OTHER",
+      "SS",
+      "UNKNOWN"
+    ],
+    "CHEVROLET COLORADO": [
+      "EXTENDED CAB",
+      "LS",
+      "LT",
+      "OTHER",
+      "UNKNOWN",
+      "WT",
+      "Z71",
+      "ZR2"
+    ],
+    "CHEVROLET CORVETTE": [
+      "1LT",
+      "2LT",
+      "3LT",
+      "3LZ",
+      "BLACK",
+      "CONVERTIBLE",
+      "COUPE",
+      "LT1",
+      "OTHER",
+      "SUPERCHARGED",
+      "UNKNOWN",
+      "Z06"
+    ],
+    "CHEVROLET CRUZE": [
+      "1LT",
+      "2LT",
+      "BLACK",
+      "DIESEL",
+      "FULLY LOADED",
+      "LIMITED",
+      "LS",
+      "LT",
+      "LT TURBO",
+      "LTZ",
+      "OTHER",
+      "PREMIER",
+      "RS",
+      "SEDAN",
+      "TURBO",
+      "UNKNOWN"
+    ],
+    "CHEVROLET EQUINOX": [
+      "1LT",
+      "AWD",
+      "GFX",
+      "LIMITED",
+      "LS",
+      "LT",
+      "LTZ",
+      "LX",
+      "OTHER",
+      "PREMIER",
+      "RS",
+      "S",
+      "SL",
+      "SLT",
+      "SPORT",
+      "UNKNOWN",
+      "XL"
+    ],
+    "CHEVROLET EXPRESS": [
+      "2500",
+      "3500",
+      "AWD",
+      "CARGO",
+      "LS",
+      "LT",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "CHEVROLET G20 VAN": [
+      "OTHER",
+      "SPORT",
+      "UNKNOWN"
+    ],
+    "CHEVROLET HHR": [
+      "LS",
+      "LT",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "CHEVROLET IMPALA": [
+      "BASE",
+      "LS",
+      "LT",
+      "LTZ",
+      "PREMIER",
+      "SS",
+      "UNKNOWN"
+    ],
+    "CHEVROLET MALIBU": [
+      "1LT",
+      "2LT",
+      "LIMITED",
+      "LS",
+      "LT",
+      "LTZ",
+      "OTHER",
+      "PREMIER",
+      "RS",
+      "UNKNOWN"
+    ],
+    "CHEVROLET MONTE CARLO": [
+      "LTZ",
+      "OTHER",
+      "SS",
+      "UNKNOWN"
+    ],
+    "CHEVROLET ORLANDO": [
+      "1LT",
+      "LT",
+      "UNKNOWN"
+    ],
+    "CHEVROLET OTHER": [
+      "2500",
+      "CUSTOM",
+      "HIGH COUNTRY",
+      "LS",
+      "LT",
+      "LTZ",
+      "OTHER",
+      "UNKNOWN",
+      "WORK TRUCK",
+      "WT"
+    ],
+    "CHEVROLET S-10": [
+      "LS",
+      "OTHER",
+      "SS",
+      "UNKNOWN"
+    ],
+    "CHEVROLET SILVERADO 1500": [
+      "1500",
+      "4X4",
+      "BASE",
+      "BLACK EDITION",
+      "CHROME",
+      "CLASSIC",
+      "CUSTOM",
+      "EXTENDED CAB",
+      "GFX",
+      "HIGH COUNTRY",
+      "LS",
+      "LT",
+      "LTZ",
+      "LTZ Z71",
+      "OTHER",
+      "QUAD CAB",
+      "RST",
+      "SILVERADO",
+      "SLE",
+      "SPORT",
+      "SS",
+      "UNKNOWN",
+      "WORK TRUCK",
+      "WT",
+      "Z71",
+      "ZR2"
+    ],
+    "CHEVROLET SILVERADO 2500": [
+      "BASE",
+      "CREW CAB",
+      "EXTENDED CAB",
+      "GFX",
+      "HIGH COUNTRY",
+      "LEATHER",
+      "LS",
+      "LT",
+      "LTZ",
+      "LTZ Z71",
+      "OTHER",
+      "SLE",
+      "UNKNOWN",
+      "Z71"
+    ],
+    "CHEVROLET SILVERADO 3500": [
+      "BLACK",
+      "CREW CAB",
+      "HIGH COUNTRY",
+      "LS",
+      "LT",
+      "LTZ",
+      "LTZ Z71",
+      "OTHER",
+      "UNKNOWN",
+      "WT",
+      "Z71"
+    ],
+    "CHEVROLET SILVERADO 3500HD": [
+      "BLACK",
+      "FLAT DECK",
+      "GFX",
+      "GREY",
+      "HIGH COUNTRY",
+      "LT",
+      "LTZ",
+      "LTZ Z71",
+      "SILVERADO",
+      "SLT",
+      "UNKNOWN"
+    ],
+    "CHEVROLET SONIC": [
+      "LS",
+      "LT",
+      "LTZ",
+      "RS",
+      "UNKNOWN"
+    ],
+    "CHEVROLET SPARK": [
+      "1LT",
+      "2LT",
+      "LS",
+      "LT",
+      "LT1",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "CHEVROLET SUBURBAN": [
+      "LS",
+      "LT",
+      "LTZ",
+      "OTHER",
+      "PREMIER",
+      "RST",
+      "SILVERADO",
+      "SLE",
+      "UNKNOWN"
+    ],
+    "CHEVROLET TAHOE": [
+      "1500",
+      "BLACK",
+      "COMMERCIAL",
+      "GFX",
+      "HIGH COUNTRY",
+      "HYBRID",
+      "LE",
+      "LS",
+      "LT",
+      "LTZ",
+      "OTHER",
+      "PREMIER",
+      "RST",
+      "UNKNOWN",
+      "Z71"
+    ],
+    "CHEVROLET TRACKER": [
+      "LX",
+      "OTHER",
+      "SLE",
+      "UNKNOWN",
+      "ZR2"
+    ],
+    "CHEVROLET TRAILBLAZER": [
+      "LEATHER",
+      "LS",
+      "LT",
+      "LTZ",
+      "OTHER",
+      "RS",
+      "SS",
+      "UNKNOWN"
+    ],
+    "CHEVROLET TRAVERSE": [
+      "1LT",
+      "HIGH COUNTRY",
+      "LS",
+      "LT",
+      "LTZ",
+      "OTHER",
+      "PREMIER",
+      "RS",
+      "SUV",
+      "UNKNOWN",
+      "WHITE",
+      "Z71"
+    ],
+    "CHEVROLET TRAX": [
+      "1LT",
+      "2RS",
+      "AWD",
+      "LS",
+      "LT",
+      "LT1",
+      "LTZ",
+      "LX",
+      "OTHER",
+      "PREMIER",
+      "UNKNOWN"
+    ],
+    "CHEVROLET UPLANDER": [
+      "BASE",
+      "LS",
+      "LT",
+      "LT1",
+      "LX",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "CHEVROLET VENTURE": [
+      "UNKNOWN"
+    ],
+    "CHRYSLER 200-SERIES": [
+      "C",
+      "CHROME",
+      "LIMITED",
+      "LX",
+      "OTHER",
+      "S",
+      "TOURING",
+      "UNKNOWN"
+    ],
+    "CHRYSLER 300-SERIES": [
+      "300",
+      "300C",
+      "AWD",
+      "BASE",
+      "C",
+      "LIMITED",
+      "LOADED",
+      "LUXURY",
+      "OTHER",
+      "PLATINUM",
+      "S",
+      "SPORT",
+      "SRT",
+      "SRT8",
+      "TOURING",
+      "UNKNOWN",
+      "V6"
+    ],
+    "CHRYSLER ASPEN": [
+      "HYBRID",
+      "LIMITED",
+      "UNKNOWN"
+    ],
+    "CHRYSLER CONCORDE": [
+      "LIMITED",
+      "LX",
+      "PREMIUM",
+      "UNKNOWN"
+    ],
+    "CHRYSLER GRAND CARAVAN": [
+      "4X4",
+      "SXT",
+      "UNKNOWN"
+    ],
+    "CHRYSLER INTREPID": [
+      "BASE",
+      "ES",
+      "R/T",
+      "SE",
+      "UNKNOWN"
+    ],
+    "CHRYSLER NEON": [
+      "UNKNOWN"
+    ],
+    "CHRYSLER OTHER": [
+      "300",
+      "300C",
+      "C",
+      "LIMITED",
+      "LX",
+      "OTHER",
+      "S",
+      "TOURING",
+      "UNKNOWN"
+    ],
+    "CHRYSLER PACIFICA": [
+      "LIMITED",
+      "OTHER",
+      "TOURING",
+      "UNKNOWN"
+    ],
+    "CHRYSLER PT CRUISER": [
+      "GT",
+      "OTHER",
+      "TOURING",
+      "TURBO",
+      "UNKNOWN"
+    ],
+    "CHRYSLER SEBRING": [
+      "CONVERTIBLE",
+      "LIMITED",
+      "LX",
+      "OTHER",
+      "TOURING",
+      "UNKNOWN"
+    ],
+    "CHRYSLER TOWN & COUNTRY": [
+      "CHROME",
+      "FWD",
+      "LIMITED",
+      "LUXURY",
+      "OTHER",
+      "TOURING",
+      "UNKNOWN"
+    ],
+    "DODGE AVENGER": [
+      "OTHER",
+      "PREFERRED",
+      "SE",
+      "SXT",
+      "UNKNOWN"
+    ],
+    "DODGE CALIBER": [
+      "BLACK",
+      "OTHER",
+      "R/T",
+      "RT",
+      "SXT",
+      "UNKNOWN"
+    ],
+    "DODGE CARAVAN": [
+      "BASE",
+      "CANADA VALUE PACKAGE",
+      "CREW",
+      "CREW PLUS",
+      "EX",
+      "GT",
+      "LX",
+      "OTHER",
+      "RT",
+      "SE",
+      "SEL",
+      "SLT",
+      "SX",
+      "SXT",
+      "TRUE",
+      "UNKNOWN"
+    ],
+    "DODGE CHALLENGER": [
+      "HELLCAT",
+      "LEATHER",
+      "OTHER",
+      "R/T",
+      "RT",
+      "SRT",
+      "SRT HELLCAT",
+      "SRT8",
+      "SXT",
+      "UNKNOWN"
+    ],
+    "DODGE CHARGER": [
+      "3.5L",
+      "BASE",
+      "GT",
+      "HELLCAT",
+      "OTHER",
+      "R/T",
+      "RT",
+      "SE",
+      "SRT",
+      "SRT8",
+      "SX",
+      "SXT",
+      "UNKNOWN"
+    ],
+    "DODGE DAKOTA": [
+      "BASE",
+      "CREW CAB",
+      "LARAMIE",
+      "LE",
+      "OTHER",
+      "QUAD CAB",
+      "R/T",
+      "RT",
+      "SLT",
+      "SPORT",
+      "SPORT 4X4",
+      "ST",
+      "SXT",
+      "UNKNOWN"
+    ],
+    "DODGE DART": [
+      "GT",
+      "LIMITED",
+      "OTHER",
+      "RALLYE",
+      "SE",
+      "SXT",
+      "UNKNOWN"
+    ],
+    "DODGE DURANGO": [
+      "4X4",
+      "AWD",
+      "CITADEL",
+      "CREW",
+      "CREW PLUS",
+      "GT",
+      "GT PREMIUM",
+      "HELLCAT",
+      "LARAMIE",
+      "LIMITED",
+      "OTHER",
+      "R/T",
+      "RT",
+      "SLT",
+      "SPORT",
+      "SRT",
+      "SRT HELLCAT",
+      "SXT",
+      "UNKNOWN",
+      "V6",
+      "XL"
+    ],
+    "DODGE GRAND CARAVAN": [
+      "BASE",
+      "CANADA VALUE PACKAGE",
+      "CREW",
+      "CREW PLUS",
+      "ES",
+      "GT",
+      "OTHER",
+      "PASSENGER",
+      "PREMIUM",
+      "PREMIUM PLUS",
+      "R/T",
+      "RT",
+      "SE",
+      "SLT",
+      "SPECIAL EDITION",
+      "SXT",
+      "SXT PREMIUM PLUS",
+      "SXT STOW &AMP; GO \"DVD\" 3.6L V6",
+      "UNKNOWN"
+    ],
+    "DODGE JOURNEY": [
+      "BLACK",
+      "CANADA VALUE PKG",
+      "CROSSROAD",
+      "FWD",
+      "GT",
+      "LIMITED",
+      "OTHER",
+      "R/T",
+      "RT",
+      "SE",
+      "SPORT",
+      "SXT",
+      "UNKNOWN"
+    ],
+    "DODGE MAGNUM": [
+      "BASE",
+      "OTHER",
+      "RT",
+      "SXT",
+      "UNKNOWN"
+    ],
+    "DODGE NEON": [
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "DODGE NITRO": [
+      "R/T",
+      "SE",
+      "SLT",
+      "SXT",
+      "UNKNOWN"
+    ],
+    "DODGE OTHER": [
+      "BIG HORN",
+      "BIGHORN",
+      "CUSTOM",
+      "LARAMIE",
+      "LAREDO",
+      "LE",
+      "OTHER",
+      "SLT",
+      "SPORT",
+      "ST",
+      "UNKNOWN"
+    ],
+    "DODGE OTHER PICKUPS": [
+      "2500",
+      "BIG HORN",
+      "CLASSIC",
+      "LARAMIE",
+      "LIMITED",
+      "LONGHORN",
+      "OTHER",
+      "SL",
+      "SLT",
+      "SPORT",
+      "SRT",
+      "SXT",
+      "TRADESMAN",
+      "UNKNOWN"
+    ],
+    "DODGE POWER RAM 1500": [
+      "4X4",
+      "BASE",
+      "BLACK",
+      "CLASSIC",
+      "CREW CAB",
+      "EXTENDED CAB",
+      "HEMI",
+      "LARAMIE",
+      "LARAMIE CREW CAB 5.7L HEMI",
+      "LARAMIE LIMITED",
+      "LARAMIE SLT",
+      "LIMITED",
+      "LONGHORN",
+      "LT",
+      "OTHER",
+      "OUTDOORSMAN",
+      "QUAD CAB",
+      "REBEL",
+      "SLT",
+      "SPORT",
+      "ST",
+      "SXT",
+      "TRADESMAN",
+      "UNKNOWN",
+      "V8"
+    ],
+    "DODGE POWER RAM 2500": [
+      "4X4",
+      "BIG HORN",
+      "BIGHORN",
+      "CUMMINS",
+      "LARAMIE",
+      "LARAMIE 6.4L HEMI 6.4FT STANDARD BOX",
+      "LARAMIE LONGHORN",
+      "LARAMIE SLT",
+      "LE",
+      "LEATHER",
+      "LIMITED",
+      "LS",
+      "OTHER",
+      "OUTDOORSMAN",
+      "SLT",
+      "SPORT",
+      "SRT",
+      "ST",
+      "SXT",
+      "UNKNOWN"
+    ],
+    "DODGE POWER RAM 3500": [
+      "4X4",
+      "BIG HORN",
+      "CUMMINS",
+      "LARAMIE",
+      "LARAMIE SLT",
+      "LIMITED",
+      "LOADED",
+      "LONGHORN",
+      "OTHER",
+      "SL",
+      "SLT",
+      "SPORT",
+      "ST",
+      "TRADESMAN",
+      "UNKNOWN"
+    ],
+    "DODGE POWER WAGON": [
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "DODGE RAM VAN": [
+      "1500",
+      "2500",
+      "OTHER",
+      "SPORT",
+      "TRADESMAN",
+      "UNKNOWN"
+    ],
+    "DODGE SPRINTER": [
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "DODGE VIPER": [
+      "GTS",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "FIAT 500": [
+      "ABARTH",
+      "OTHER",
+      "SPORT",
+      "UNKNOWN"
+    ],
+    "FORD BRONCO": [
+      "BADLANDS",
+      "BIG BEND",
+      "OTHER",
+      "OUTER BANKS",
+      "UNKNOWN",
+      "XLT"
+    ],
+    "FORD BRONCO SPORT": [
+      "BADLANDS",
+      "BASE",
+      "BIG BEND",
+      "OTHER",
+      "OUTER BANKS",
+      "UNKNOWN"
+    ],
+    "FORD C-MAX": [
+      "OTHER",
+      "SE",
+      "SEL"
+    ],
+    "FORD CROWN VICTORIA": [
+      "LX",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "FORD E-150": [
+      "CARGO",
+      "CARGO VAN",
+      "LARIAT",
+      "LARIET",
+      "OTHER",
+      "PASSENGER",
+      "PLATINUM",
+      "UNKNOWN",
+      "XLT",
+      "XTR"
+    ],
+    "FORD E-250": [
+      "CARGO VAN",
+      "COMMERCIAL",
+      "FX4",
+      "OTHER",
+      "SUPERDUTY",
+      "UNKNOWN",
+      "XLT"
+    ],
+    "FORD E-350": [
+      "CARGO VAN",
+      "FX4",
+      "KING RANCH",
+      "LARIAT",
+      "OTHER",
+      "PASSENGER",
+      "SUPER DUTY",
+      "SUPERDUTY",
+      "UNKNOWN",
+      "XL",
+      "XLT"
+    ],
+    "FORD E-450": [
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "FORD E-SERIES VAN": [
+      "OTHER",
+      "UNKNOWN",
+      "XLT"
+    ],
+    "FORD ECOSPORT": [
+      "S",
+      "SE",
+      "SES",
+      "TITANIUM",
+      "TRUE",
+      "UNKNOWN"
+    ],
+    "FORD EDGE": [
+      "LEATHER",
+      "LIMITED",
+      "LIMITED AWD",
+      "LIMITED EDITION",
+      "LTD",
+      "OTHER",
+      "SE",
+      "SEL",
+      "SEL AWD",
+      "SLE",
+      "SPORT",
+      "SPORTS",
+      "ST",
+      "TITANIUM",
+      "UNKNOWN"
+    ],
+    "FORD ESCAPE": [
+      "AWD",
+      "BLACK",
+      "BLACK EDITION",
+      "ECOBOOST",
+      "FULLY LOADED",
+      "HYBRID",
+      "LE AWD",
+      "LIMITED",
+      "LTD",
+      "OTHER",
+      "PLATINUM",
+      "S",
+      "SE",
+      "SE 4WD ECOBOOST HEATED SEATS BACKUP CAM",
+      "SE AWD",
+      "SEL",
+      "SEL AWD",
+      "SES",
+      "SPORT",
+      "SUV",
+      "TITANIUM",
+      "TRUE",
+      "UNKNOWN",
+      "V6",
+      "XLS",
+      "XLT"
+    ],
+    "FORD ESCORT": [
+      "LIMITED",
+      "OTHER",
+      "SE",
+      "UNKNOWN"
+    ],
+    "FORD EXCURSION": [
+      "EDDIE BAUER",
+      "LIMITED",
+      "OTHER",
+      "WHITE"
+    ],
+    "FORD EXPEDITION": [
+      "4X4",
+      "EDDIE BAUER",
+      "KING RANCH",
+      "LIMITED",
+      "OTHER",
+      "PASSENGER",
+      "PLATINUM",
+      "TREMOR",
+      "UNKNOWN",
+      "XL",
+      "XLT"
+    ],
+    "FORD EXPLORER": [
+      "AWD",
+      "BASE",
+      "EDDIE BAUER",
+      "LIMITED",
+      "LTD",
+      "OTHER",
+      "PASSENGER",
+      "PLATINUM",
+      "SPORT",
+      "ST",
+      "SUV",
+      "SXT",
+      "UNKNOWN",
+      "V6",
+      "XL",
+      "XLT"
+    ],
+    "FORD EXPLORER SPORT": [
+      "ADRENALIN",
+      "LIMITED",
+      "OTHER",
+      "PASSENGER",
+      "SPORT",
+      "UNKNOWN",
+      "XL",
+      "XLT"
+    ],
+    "FORD EXPLORER SPORT TRAC": [
+      "ADRENALIN",
+      "LIMITED",
+      "OTHER",
+      "SXT",
+      "UNKNOWN",
+      "XLT"
+    ],
+    "FORD F-100": [
+      "LARIAT",
+      "OTHER",
+      "UNKNOWN",
+      "XLT"
+    ],
+    "FORD F-150": [
+      "3.5L",
+      "4X4",
+      "BLACK EDITION",
+      "CHROME",
+      "CLASSIC",
+      "CREW",
+      "CUSTOM",
+      "ECOBOOST",
+      "FX4",
+      "GREY",
+      "HARLEY DAVIDSON",
+      "KING RANCH",
+      "LARIAT",
+      "LEATHER",
+      "LIMITED",
+      "OTHER",
+      "PLATINUM",
+      "PLATINUM PLUS",
+      "RAPTOR",
+      "SE",
+      "SLT",
+      "SPORT",
+      "STX",
+      "SXT",
+      "TREMOR",
+      "UNKNOWN",
+      "XL",
+      "XLE",
+      "XLT",
+      "XLT SPORT",
+      "XLT XTR 4X4 2.7L ECOBOOST 5.5FT BOX",
+      "XTR"
+    ],
+    "FORD F-150 RAPTOR": [
+      "OTHER",
+      "R",
+      "RAPTOR",
+      "UNKNOWN"
+    ],
+    "FORD F-250": [
+      "BASE",
+      "CREW CAB",
+      "FLAT DECK",
+      "KING RANCH",
+      "LARIAT",
+      "LARIET",
+      "OTHER",
+      "PLATINUM",
+      "SUPER DUTY",
+      "SUPERDUTY",
+      "UNKNOWN",
+      "WHITE",
+      "XL",
+      "XLT"
+    ],
+    "FORD F-350": [
+      "BASE",
+      "BLACK",
+      "CREW CAB",
+      "FLAT DECK",
+      "FX4",
+      "HARLEY DAVIDSON",
+      "KING RANCH",
+      "LARIAT",
+      "LARIET",
+      "LIMITED",
+      "LT",
+      "OTHER",
+      "PLATINUM",
+      "SUPER DUTY",
+      "SUPERDUTY",
+      "TREMOR",
+      "UNKNOWN",
+      "XL",
+      "XLT"
+    ],
+    "FORD F-450": [
+      "KING RANCH",
+      "LARIAT",
+      "LIMITED",
+      "OTHER",
+      "PLATINUM",
+      "UNKNOWN",
+      "XL",
+      "XLT"
+    ],
+    "FORD F-550": [
+      "LARIAT",
+      "OTHER",
+      "UNKNOWN",
+      "XL",
+      "XLT"
+    ],
+    "FORD FIESTA": [
+      "OTHER",
+      "SE",
+      "SES",
+      "ST",
+      "TITANIUM",
+      "UNKNOWN"
+    ],
+    "FORD FIVE HUNDRED": [
+      "LIMITED",
+      "UNKNOWN"
+    ],
+    "FORD FLEX": [
+      "AWD",
+      "ECOBOOST",
+      "LIMITED",
+      "LIMITED EDITION",
+      "OTHER",
+      "SEL",
+      "SEL AWD",
+      "SLE",
+      "TITANIUM",
+      "UNKNOWN"
+    ],
+    "FORD FOCUS": [
+      "OTHER",
+      "PLATINUM",
+      "RS",
+      "S",
+      "SE",
+      "SEL",
+      "SES",
+      "SL",
+      "SPORT",
+      "ST",
+      "TITANIUM",
+      "UNKNOWN"
+    ],
+    "FORD FREESTAR": [
+      "LIMITED",
+      "OTHER",
+      "SE",
+      "SEL",
+      "SPORT",
+      "UNKNOWN"
+    ],
+    "FORD FREESTYLE/TAURUS X": [
+      "LIMITED",
+      "SEL",
+      "UNKNOWN"
+    ],
+    "FORD FUSION": [
+      "AWD",
+      "HYBRID",
+      "LEATHER",
+      "OTHER",
+      "PLATINUM",
+      "S",
+      "SE",
+      "SEL",
+      "SEL AWD",
+      "SLE",
+      "SPORT",
+      "TITANIUM",
+      "UNKNOWN"
+    ],
+    "FORD MAVERICK": [
+      "LARIAT",
+      "TREMOR",
+      "UNKNOWN",
+      "XLT"
+    ],
+    "FORD MUSTANG": [
+      "BASE",
+      "BLACK",
+      "CONVERTIBLE",
+      "COUPE",
+      "ECOBOOST",
+      "ECOBOOST PREMIUM",
+      "GT",
+      "GT PREMIUM",
+      "LEATHER",
+      "LX",
+      "MACH 1",
+      "OTHER",
+      "PREMIUM",
+      "SHELBY GT500",
+      "UNKNOWN",
+      "V6"
+    ],
+    "FORD MUSTANG MACH-E": [
+      "OTHER",
+      "PREMIUM",
+      "UNKNOWN"
+    ],
+    "FORD OTHER": [
+      "COMMERCIAL",
+      "KING RANCH",
+      "LARIAT",
+      "LIMITED",
+      "OTHER",
+      "PLATINUM",
+      "UNKNOWN",
+      "XL",
+      "XLT"
+    ],
+    "FORD RANGER": [
+      "4X4",
+      "BLACK",
+      "CUSTOM",
+      "EXTENDED CAB",
+      "FX4",
+      "LARIAT",
+      "OTHER",
+      "RAPTOR",
+      "SPORT",
+      "SPORT 4X4",
+      "UNKNOWN",
+      "XL",
+      "XLT",
+      "XLT SPORT",
+      "XTR"
+    ],
+    "FORD TAURUS": [
+      "LIMITED",
+      "LIMITED AWD",
+      "LX",
+      "OTHER",
+      "SE",
+      "SEL",
+      "SEL AWD",
+      "SES",
+      "SHO",
+      "SLE",
+      "UNKNOWN"
+    ],
+    "FORD THUNDERBIRD": [
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "FORD TRANSIT": [
+      "250",
+      "CARGO",
+      "OTHER",
+      "T250",
+      "UNKNOWN",
+      "XL"
+    ],
+    "FORD TRANSIT CARGO": [
+      "250",
+      "AWD",
+      "EXPRESS",
+      "OTHER",
+      "T250",
+      "UNKNOWN",
+      "WHITE",
+      "XLT"
+    ],
+    "FORD TRANSIT CONNECT": [
+      "4X4",
+      "CARGO",
+      "OTHER",
+      "UNKNOWN",
+      "WHITE",
+      "XL",
+      "XLT"
+    ],
+    "FORD TRANSIT PASSENGER": [
+      "OTHER",
+      "UNKNOWN",
+      "XLT"
+    ],
+    "FORD WINDSTAR": [
+      "LTD",
+      "LX",
+      "OTHER",
+      "SEL",
+      "SPORT",
+      "UNKNOWN"
+    ],
+    "GENESIS G70": [
+      "OTHER",
+      "SPORT",
+      "UNKNOWN"
+    ],
+    "GENESIS G80": [
+      "LUXURY",
+      "OTHER",
+      "PRESTIGE",
+      "SPORT",
+      "UNKNOWN"
+    ],
+    "GMC ACADIA": [
+      "AT4",
+      "AWD",
+      "DENALI",
+      "LT",
+      "OTHER",
+      "SE",
+      "SLE",
+      "SLT",
+      "SLT-1",
+      "SLT-2",
+      "SUV",
+      "UNKNOWN"
+    ],
+    "GMC C/K 1500": [
+      "DENALI",
+      "DENALI ULTIMATE",
+      "LEATHER",
+      "OTHER",
+      "SIERRA",
+      "SLE",
+      "SLT",
+      "UNKNOWN",
+      "XLT",
+      "Z71"
+    ],
+    "GMC C/K 2500": [
+      "DENALI",
+      "DIESEL",
+      "OTHER",
+      "SIERRA",
+      "SLE",
+      "SLT",
+      "UNKNOWN"
+    ],
+    "GMC C/K 3500": [
+      "3500",
+      "DENALI",
+      "LEATHER",
+      "LS",
+      "LT",
+      "SLE",
+      "UNKNOWN"
+    ],
+    "GMC CANYON": [
+      "4X4",
+      "ALL TERRAIN",
+      "AT4",
+      "DENALI",
+      "FULLY LOADED",
+      "OTHER",
+      "SLE",
+      "SLT",
+      "UNKNOWN",
+      "XL"
+    ],
+    "GMC ENVOY": [
+      "DENALI",
+      "OTHER",
+      "SE",
+      "SLE",
+      "SLT",
+      "UNKNOWN",
+      "XL"
+    ],
+    "GMC JIMMY": [
+      "BASE",
+      "OTHER",
+      "SLE",
+      "SLT",
+      "UNKNOWN",
+      "ZR2"
+    ],
+    "GMC OTHER": [
+      "2500",
+      "3500",
+      "CARGO VAN",
+      "FLAT DECK",
+      "FULLY LOADED",
+      "LOADED",
+      "OTHER",
+      "SIERRA",
+      "SLE",
+      "SLT",
+      "UNKNOWN"
+    ],
+    "GMC SAFARI": [
+      "SL",
+      "SLE",
+      "UNKNOWN"
+    ],
+    "GMC SAVANA": [
+      "1500",
+      "2500",
+      "3500",
+      "CARGO",
+      "OTHER",
+      "STANDARD",
+      "UNKNOWN",
+      "WHITE"
+    ],
+    "GMC SIERRA": [
+      "1500",
+      "2500",
+      "ALL TERRAIN",
+      "AT4",
+      "CLASSIC",
+      "DENALI",
+      "ELEVATION",
+      "OTHER",
+      "SLE",
+      "SLT",
+      "UNKNOWN"
+    ],
+    "GMC SIERRA 1500": [
+      "4X4",
+      "ALL TERRAIN",
+      "AT4",
+      "DENALI",
+      "DENALI ULTIMATE",
+      "ELEVATION",
+      "EXTENDED CAB",
+      "GFX",
+      "GT",
+      "LIMITED",
+      "LOADED",
+      "LTZ",
+      "OTHER",
+      "SIERRA",
+      "SL",
+      "SLE",
+      "SLT",
+      "UNKNOWN",
+      "WORK TRUCK",
+      "WT",
+      "XLE",
+      "Z71"
+    ],
+    "GMC SIERRA 2500": [
+      "AT4",
+      "DENALI",
+      "FULLY LOADED",
+      "LOADED",
+      "OTHER",
+      "SL",
+      "SLE",
+      "SLT",
+      "UNKNOWN",
+      "WT"
+    ],
+    "GMC SIERRA 2500HD": [
+      "AT4",
+      "BASE",
+      "CLASSIC",
+      "CREW",
+      "CREW CAB",
+      "DENALI",
+      "DENALI ULTIMATE",
+      "FULLY LOADED",
+      "LEATHER",
+      "LOADED",
+      "LT",
+      "OTHER",
+      "SIERRA",
+      "SL",
+      "SLE",
+      "SLT",
+      "UNKNOWN",
+      "WT"
+    ],
+    "GMC SIERRA 3500": [
+      "3500",
+      "ALL TERRAIN",
+      "DENALI",
+      "OTHER",
+      "SL",
+      "SLE",
+      "SLT",
+      "ULTIMATE",
+      "UNKNOWN"
+    ],
+    "GMC SIERRA 3500HD": [
+      "ALL TERRAIN",
+      "AT4",
+      "DENALI",
+      "DENALI ULTIMATE",
+      "FLAT DECK",
+      "LT",
+      "OTHER",
+      "SLE",
+      "SLT",
+      "UNKNOWN",
+      "WHITE"
+    ],
+    "GMC SONOMA": [
+      "BASE",
+      "LS",
+      "OTHER",
+      "SL",
+      "UNKNOWN"
+    ],
+    "GMC SUBURBAN": [
+      "4X4",
+      "OTHER",
+      "SLT",
+      "UNKNOWN"
+    ],
+    "GMC TERRAIN": [
+      "AT4",
+      "DENALI",
+      "OTHER",
+      "SE",
+      "SEL",
+      "SLE",
+      "SLE-2",
+      "SLT",
+      "SLT-1",
+      "SLT-2",
+      "UNKNOWN"
+    ],
+    "GMC VANDURA": [
+      "CARGO",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "GMC YUKON": [
+      "DENALI",
+      "OTHER",
+      "SLE",
+      "SLT",
+      "ULTIMATE",
+      "UNKNOWN",
+      "XLT"
+    ],
+    "GMC YUKON XL": [
+      "2500",
+      "DENALI",
+      "DENALI ULTIMATE",
+      "ELEVATION",
+      "OTHER",
+      "SLE",
+      "SLT",
+      "UNKNOWN"
+    ],
+    "HONDA ACCORD": [
+      "4X4",
+      "DX",
+      "EX",
+      "EX-L",
+      "EXL",
+      "LE",
+      "LX",
+      "OTHER",
+      "SE",
+      "SPORT",
+      "TOURING",
+      "UNKNOWN",
+      "XL",
+      "XR"
+    ],
+    "HONDA CIVIC": [
+      "BASE",
+      "CX",
+      "DX",
+      "DX-G",
+      "EX",
+      "EX-L",
+      "EXL",
+      "LX",
+      "OTHER",
+      "SE",
+      "SI",
+      "SPECIAL EDITION",
+      "SPORT",
+      "SPORT TOURING",
+      "TOURING",
+      "UNKNOWN"
+    ],
+    "HONDA CR-V": [
+      "4WD",
+      "AWD",
+      "EX",
+      "EX-L",
+      "EXL",
+      "LX",
+      "LX AWD",
+      "OTHER",
+      "SE",
+      "SPORT",
+      "TOURING",
+      "TRUE",
+      "UNKNOWN",
+      "XL"
+    ],
+    "HONDA ELEMENT": [
+      "DX",
+      "EX",
+      "OTHER",
+      "SC",
+      "UNKNOWN"
+    ],
+    "HONDA FIT": [
+      "AWD",
+      "BASE",
+      "EX",
+      "EX-L",
+      "EXL",
+      "LX",
+      "OTHER",
+      "SE",
+      "SPORT",
+      "UNKNOWN"
+    ],
+    "HONDA HR-V": [
+      "EX",
+      "EX-L",
+      "LX",
+      "LX AWD",
+      "OTHER",
+      "SPORT",
+      "UNKNOWN"
+    ],
+    "HONDA ODYSSEY": [
+      "EX",
+      "EX-L",
+      "EXL",
+      "GREY",
+      "LIMITED",
+      "LX",
+      "OTHER",
+      "SE",
+      "TOURING",
+      "UNKNOWN"
+    ],
+    "HONDA OTHER": [
+      "DX",
+      "DX-G",
+      "EX",
+      "EX-L",
+      "LX",
+      "OTHER",
+      "SE",
+      "SI",
+      "SPORT",
+      "SPORT TOURING",
+      "TOURING",
+      "UNKNOWN"
+    ],
+    "HONDA PILOT": [
+      "BLACK EDITION",
+      "ELITE",
+      "EX",
+      "EX-L",
+      "EXL",
+      "LX",
+      "OTHER",
+      "TOURING",
+      "UNKNOWN"
+    ],
+    "HONDA PRELUDE": [
+      "OTHER",
+      "SE",
+      "SI",
+      "UNKNOWN"
+    ],
+    "HONDA RIDGELINE": [
+      "BLACK",
+      "BLACK EDITION",
+      "EX-L",
+      "EXL",
+      "LX",
+      "OTHER",
+      "RT",
+      "SPECIAL EDITION",
+      "SPORT",
+      "SPORTS",
+      "TOURING",
+      "UNKNOWN"
+    ],
+    "HONDA S2000": [
+      "BASE",
+      "UNKNOWN"
+    ],
+    "HUMMER H2": [
+      "FULLY LOADED",
+      "OTHER",
+      "PREMIUM",
+      "UNKNOWN"
+    ],
+    "HUMMER H3": [
+      "LOADED",
+      "LUXURY",
+      "OTHER",
+      "SUV",
+      "UNKNOWN"
+    ],
+    "HYUNDAI ACCENT": [
+      "GL",
+      "GLS",
+      "GS",
+      "L",
+      "LE",
+      "OTHER",
+      "PREFERRED",
+      "SE",
+      "UNKNOWN"
+    ],
+    "HYUNDAI ELANTRA": [
+      "BASE",
+      "ESSENTIAL",
+      "GL",
+      "GLS",
+      "GS",
+      "GT",
+      "L",
+      "LE",
+      "LIMITED",
+      "LUXURY",
+      "OTHER",
+      "PREFERRED",
+      "SE",
+      "SEDAN",
+      "SEL",
+      "SLE",
+      "SPORT",
+      "TOURING",
+      "ULTIMATE",
+      "UNKNOWN"
+    ],
+    "HYUNDAI GENESIS": [
+      "ELITE",
+      "OTHER",
+      "TECH",
+      "TECHNOLOGY",
+      "UNKNOWN"
+    ],
+    "HYUNDAI GENESIS COUPE": [
+      "2.0T",
+      "COUPE",
+      "GT",
+      "LOADED",
+      "OTHER",
+      "PREMIUM",
+      "UNKNOWN"
+    ],
+    "HYUNDAI KONA": [
+      "2.0",
+      "ESSENTIAL",
+      "LIMITED",
+      "LUXURY",
+      "OTHER",
+      "PREFERRED",
+      "SE",
+      "SLE",
+      "ULTIMATE",
+      "UNKNOWN"
+    ],
+    "HYUNDAI OTHER": [
+      "GL",
+      "GLS",
+      "L",
+      "LIMITED",
+      "LUXURY",
+      "OTHER",
+      "PREMIUM",
+      "SE",
+      "SPORT",
+      "TECHNOLOGY",
+      "ULTIMATE",
+      "UNKNOWN",
+      "XL"
+    ],
+    "HYUNDAI PALISADE": [
+      "LUXURY",
+      "OTHER",
+      "PREFERRED",
+      "SEL",
+      "ULTIMATE",
+      "ULTIMATE CALLIGRAPHY",
+      "UNKNOWN"
+    ],
+    "HYUNDAI SANTA FE": [
+      "ESSENTIAL",
+      "GL",
+      "GLS",
+      "GREY",
+      "LIMITED",
+      "LIMITED AWD",
+      "LUXURY",
+      "OTHER",
+      "PREFERRED",
+      "PREMIUM",
+      "SE",
+      "SPORT",
+      "ULTIMATE",
+      "ULTIMATE CALLIGRAPHY",
+      "UNKNOWN",
+      "V6",
+      "XL"
+    ],
+    "HYUNDAI SONATA": [
+      "2.0T",
+      "FULLY LOADED",
+      "GL",
+      "GLS",
+      "LIMITED",
+      "LIMITED EDITION",
+      "OTHER",
+      "PREFERRED",
+      "SE",
+      "SLE",
+      "SPORT",
+      "SPORT TECH",
+      "ULTIMATE",
+      "UNKNOWN"
+    ],
+    "HYUNDAI SONATA HYBRID": [
+      "HYBRID",
+      "LIMITED",
+      "OTHER",
+      "PREMIUM",
+      "UNKNOWN"
+    ],
+    "HYUNDAI TIBURON": [
+      "GS",
+      "GT",
+      "LOADED",
+      "SE",
+      "UNKNOWN"
+    ],
+    "HYUNDAI TUCSON": [
+      "2.0",
+      "AWD",
+      "BLACK",
+      "ESSENTIAL",
+      "GL",
+      "GLS",
+      "GS",
+      "L",
+      "LIMITED",
+      "LIMITED AWD",
+      "LIMITED EDITION",
+      "LUXURY",
+      "OTHER",
+      "PREFERRED",
+      "PREMIUM",
+      "SE",
+      "SEL",
+      "ULTIMATE",
+      "UNKNOWN"
+    ],
+    "HYUNDAI VELOSTER": [
+      "BASE",
+      "OTHER",
+      "PREMIUM",
+      "SE",
+      "TECH",
+      "TECH PACKAGE",
+      "TURBO",
+      "UNKNOWN"
+    ],
+    "HYUNDAI VENUE": [
+      "ESSENTIAL",
+      "OTHER",
+      "PREFERRED",
+      "ULTIMATE",
+      "UNKNOWN"
+    ],
+    "HYUNDAI VERACRUZ": [
+      "GL",
+      "GLS",
+      "LIMITED",
+      "LIMITED EDITION",
+      "UNKNOWN"
+    ],
+    "INFINITI EX35": [
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "INFINITI FX": [
+      "AWD",
+      "BASE",
+      "OTHER",
+      "PREMIUM",
+      "SPORT",
+      "TECHNOLOGY",
+      "UNKNOWN"
+    ],
+    "INFINITI G35": [
+      "OTHER",
+      "SEDAN",
+      "SPORT",
+      "UNKNOWN"
+    ],
+    "INFINITI G35X": [
+      "AWD",
+      "LUXURY",
+      "OTHER",
+      "UNKNOWN",
+      "VIP",
+      "X"
+    ],
+    "INFINITI G37": [
+      "COUPE",
+      "OTHER",
+      "S",
+      "SPORT",
+      "UNKNOWN"
+    ],
+    "INFINITI G37X": [
+      "LUXURY",
+      "LUXURY AWD",
+      "OTHER",
+      "PREMIUM",
+      "S",
+      "SEDAN",
+      "SPORT",
+      "SPORTS",
+      "UNKNOWN",
+      "X"
+    ],
+    "INFINITI JX": [
+      "OTHER",
+      "PREMIUM",
+      "UNKNOWN"
+    ],
+    "INFINITI M35": [
+      "UNKNOWN",
+      "X"
+    ],
+    "INFINITI OTHER": [
+      "OTHER",
+      "SPORT",
+      "UNKNOWN",
+      "X"
+    ],
+    "INFINITI Q50": [
+      "LOADED",
+      "OTHER",
+      "PREMIUM",
+      "S",
+      "SPORT",
+      "SPORTS",
+      "UNKNOWN"
+    ],
+    "INFINITI Q60": [
+      "CHROME",
+      "OTHER",
+      "PREMIUM",
+      "UNKNOWN"
+    ],
+    "INFINITI QX50": [
+      "AUTOGRAPH",
+      "AWD",
+      "ESSENTIAL",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "INFINITI QX56": [
+      "LUXURY",
+      "OTHER",
+      "TECH",
+      "UNKNOWN"
+    ],
+    "INFINITI QX60": [
+      "AUTOGRAPH",
+      "LIMITED EDITION",
+      "OTHER",
+      "PLATINUM PLUS",
+      "PREMIUM",
+      "PREMIUM PLUS",
+      "PURE",
+      "SIGNATURE",
+      "UNKNOWN"
+    ],
+    "INFINITI QX70": [
+      "SPORT",
+      "SPORTS",
+      "UNKNOWN"
+    ],
+    "INFINITI QX80": [
+      "LIMITED",
+      "LIMITED EDITION",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "INTERNATIONAL HARVESTER OTHER": [
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "JAGUAR F-PACE": [
+      "OTHER",
+      "PREMIUM",
+      "PRESTIGE",
+      "S",
+      "SUPERCHARGED",
+      "UNKNOWN"
+    ],
+    "JAGUAR S-TYPE": [
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "JAGUAR XE": [
+      "OTHER",
+      "PREMIUM",
+      "PRESTIGE",
+      "UNKNOWN"
+    ],
+    "JAGUAR XF": [
+      "OTHER",
+      "S",
+      "UNKNOWN",
+      "V6"
+    ],
+    "JAGUAR XJ": [
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "JEEP CHEROKEE": [
+      "ALTITUDE",
+      "ELITE",
+      "LAREDO",
+      "LIMITED",
+      "LTD",
+      "NORTH",
+      "NORTH EDITION",
+      "OTHER",
+      "OVERLAND",
+      "SPORT",
+      "SUMMIT",
+      "TRAILHAWK",
+      "TRAILHAWK 3.2L V6 4X4",
+      "UNKNOWN"
+    ],
+    "JEEP CJ": [
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "JEEP COMMANDER": [
+      "LIMITED",
+      "OTHER",
+      "SPORT",
+      "UNKNOWN"
+    ],
+    "JEEP COMPASS": [
+      "ALTITUDE",
+      "HIGH ALTITUDE",
+      "LIMITED",
+      "LTD",
+      "NORTH",
+      "NORTH EDITION",
+      "OTHER",
+      "SPORT",
+      "SPORT 4X4",
+      "TRAILHAWK",
+      "UNKNOWN"
+    ],
+    "JEEP GLADIATOR": [
+      "4X4",
+      "OTHER",
+      "OVERLAND",
+      "RUBICON",
+      "SPORT S",
+      "UNKNOWN"
+    ],
+    "JEEP GRAND CHEROKEE": [
+      "4XE",
+      "ALTITUDE",
+      "BLACK",
+      "LAREDO",
+      "LAREDO 3.6L V6 4X4",
+      "LIMITED",
+      "LIMITED X",
+      "LTD",
+      "NORTH",
+      "OTHER",
+      "OVERLAND",
+      "SE",
+      "SRT",
+      "SRT8",
+      "SUMMIT",
+      "TRAILHAWK",
+      "UNKNOWN"
+    ],
+    "JEEP GRAND CHEROKEE 4XE": [
+      "4XE",
+      "LIMITED",
+      "OTHER",
+      "OVERLAND",
+      "UNKNOWN"
+    ],
+    "JEEP GRAND CHEROKEE L": [
+      "GREY",
+      "LAREDO",
+      "LIMITED",
+      "LIMITED X",
+      "LOADED",
+      "OTHER",
+      "OVERLAND",
+      "UNKNOWN"
+    ],
+    "JEEP LIBERTY": [
+      "4X4",
+      "LE",
+      "LIMITED",
+      "LIMITED EDITION",
+      "LS",
+      "NORTH EDITION",
+      "OTHER",
+      "SPORT",
+      "SPORT 4X4",
+      "STANDARD",
+      "SUV",
+      "UNKNOWN"
+    ],
+    "JEEP OTHER": [
+      "ALTITUDE",
+      "OTHER",
+      "RUBICON",
+      "SAHARA",
+      "SPORT",
+      "UNKNOWN",
+      "YJ"
+    ],
+    "JEEP PATRIOT": [
+      "4X4",
+      "AWD",
+      "HIGH ALTITUDE",
+      "LIMITED",
+      "NORTH",
+      "NORTH EDITION",
+      "OTHER",
+      "SPORT",
+      "SPORT 4X4",
+      "UNKNOWN"
+    ],
+    "JEEP RENEGADE": [
+      "4X4",
+      "LIMITED",
+      "NORTH",
+      "OTHER",
+      "SPORT",
+      "TRAILHAWK",
+      "UNKNOWN"
+    ],
+    "JEEP TJ": [
+      "OTHER",
+      "RUBICON",
+      "SAHARA",
+      "SE",
+      "SPORT",
+      "UNKNOWN"
+    ],
+    "JEEP WRANGLER": [
+      "ALTITUDE",
+      "HIGH ALTITUDE",
+      "LOADED",
+      "OTHER",
+      "RUBICON",
+      "SAHARA",
+      "SPORT",
+      "SPORT S",
+      "UNKNOWN",
+      "X",
+      "YJ"
+    ],
+    "JEEP WRANGLER UNLIMITED": [
+      "GREY",
+      "LOADED",
+      "OTHER",
+      "RUBICON",
+      "SAHARA",
+      "SPORT",
+      "UNKNOWN"
+    ],
+    "KIA AMANTI": [
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "KIA FORTE": [
+      "BASE",
+      "EX",
+      "EX PREMIUM",
+      "EX+",
+      "FWD",
+      "GT",
+      "LUXURY",
+      "LX",
+      "LX+",
+      "OTHER",
+      "SX",
+      "UNKNOWN"
+    ],
+    "KIA FORTE5": [
+      "EX",
+      "OTHER",
+      "SX",
+      "UNKNOWN"
+    ],
+    "KIA NIRO": [
+      "EX",
+      "L",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "KIA OPTIMA": [
+      "EX",
+      "HYBRID",
+      "LX",
+      "LX+",
+      "OTHER",
+      "SX",
+      "SX TURBO",
+      "UNKNOWN"
+    ],
+    "KIA OTHER": [
+      "EX",
+      "HYBRID",
+      "LX",
+      "UNKNOWN"
+    ],
+    "KIA RIO": [
+      "EX",
+      "EX+",
+      "LX",
+      "LX+",
+      "OTHER",
+      "S",
+      "UNKNOWN",
+      "XL"
+    ],
+    "KIA RIO 5-DOOR": [
+      "EX",
+      "EX+",
+      "LX",
+      "LX+",
+      "OTHER",
+      "S",
+      "UNKNOWN"
+    ],
+    "KIA RONDO": [
+      "EX",
+      "GL",
+      "LIMITED",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "KIA SEDONA": [
+      "EX",
+      "L",
+      "LX",
+      "LX+",
+      "OTHER",
+      "SX",
+      "UNKNOWN"
+    ],
+    "KIA SELTOS": [
+      "EX",
+      "EX PREMIUM",
+      "LX",
+      "LX AWD",
+      "OTHER",
+      "SX",
+      "SX TURBO",
+      "UNKNOWN"
+    ],
+    "KIA SORENTO": [
+      "AWD",
+      "AWD EX",
+      "BASE",
+      "EX",
+      "EX PREMIUM",
+      "LX",
+      "LX AWD",
+      "LX AWD T-GDI 2.0L TURBO",
+      "LX+",
+      "OTHER",
+      "SE",
+      "SL",
+      "SUV",
+      "SX",
+      "SX TURBO",
+      "UNKNOWN"
+    ],
+    "KIA SOUL": [
+      "EX",
+      "EX PREMIUM",
+      "EX+",
+      "LX",
+      "OTHER",
+      "SX",
+      "SX TURBO",
+      "UNKNOWN"
+    ],
+    "KIA SPECTRA": [
+      "LX",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "KIA SPORTAGE": [
+      "EX",
+      "EX PREMIUM",
+      "LX",
+      "OTHER",
+      "SX",
+      "UNKNOWN",
+      "XL"
+    ],
+    "KIA STINGER": [
+      "GT",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "LAND ROVER DEFENDER": [
+      "OTHER",
+      "SE",
+      "UNKNOWN",
+      "X"
+    ],
+    "LAND ROVER DISCOVERY": [
+      "HSE",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "LAND ROVER DISCOVERY SPORT": [
+      "HSE",
+      "OTHER",
+      "S",
+      "SE",
+      "UNKNOWN"
+    ],
+    "LAND ROVER LR2": [
+      "HSE",
+      "OTHER",
+      "SE",
+      "UNKNOWN"
+    ],
+    "LAND ROVER LR3": [
+      "HSE",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "LAND ROVER LR4": [
+      "HSE",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "LAND ROVER RANGE ROVER": [
+      "HSE",
+      "OTHER",
+      "SC",
+      "SUPERCHARGED",
+      "UNKNOWN"
+    ],
+    "LAND ROVER RANGE ROVER EVOQUE": [
+      "HSE",
+      "OTHER",
+      "PRESTIGE",
+      "PURE",
+      "SE",
+      "SPORT",
+      "UNKNOWN"
+    ],
+    "LAND ROVER RANGE ROVER SPORT": [
+      "BLACK",
+      "FULLY LOADED",
+      "HSE",
+      "LUXURY",
+      "OTHER",
+      "SC",
+      "SUPERCHARGED",
+      "UNKNOWN"
+    ],
+    "LAND ROVER RANGE ROVER VELAR": [
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "LEXUS CT 200H": [
+      "F SPORT",
+      "UNKNOWN"
+    ],
+    "LEXUS ES": [
+      "300",
+      "350",
+      "LUXURY",
+      "OTHER",
+      "STANDARD",
+      "UNKNOWN"
+    ],
+    "LEXUS GS": [
+      "350",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "LEXUS GX": [
+      "LUXURY",
+      "OTHER",
+      "PREMIUM",
+      "UNKNOWN"
+    ],
+    "LEXUS IS": [
+      "F SPORT",
+      "LS",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "LEXUS IS 250": [
+      "AWD",
+      "F SPORT",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "LEXUS IS 300": [
+      "F SPORT",
+      "LUXURY",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "LEXUS IS 350": [
+      "F SPORT",
+      "F-SPORT",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "LEXUS LS": [
+      "430",
+      "BASE",
+      "OTHER",
+      "PREMIUM PLUS",
+      "UNKNOWN"
+    ],
+    "LEXUS LX": [
+      "F SPORT",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "LEXUS NX 200T": [
+      "F SPORT",
+      "F-SPORT",
+      "LUXURY",
+      "OTHER",
+      "PREMIUM",
+      "UNKNOWN"
+    ],
+    "LEXUS NX 300": [
+      "F SPORT",
+      "OTHER",
+      "PREMIUM",
+      "SPORT",
+      "UNKNOWN"
+    ],
+    "LEXUS OTHER": [
+      "F-SPORT",
+      "OTHER",
+      "PREMIUM",
+      "SEDAN",
+      "UNKNOWN"
+    ],
+    "LEXUS RX": [
+      "300",
+      "350",
+      "AWD",
+      "F SPORT",
+      "F-SPORT",
+      "F-SPORT 3",
+      "FULLY LOADED",
+      "LEATHER",
+      "LOADED",
+      "LUXURY",
+      "OTHER",
+      "PREMIUM",
+      "RX 350",
+      "SC",
+      "SPORT",
+      "TOURING",
+      "UNKNOWN"
+    ],
+    "LEXUS SC": [
+      "430",
+      "CONVERTIBLE",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "LINCOLN AVIATOR": [
+      "RESERVE",
+      "UNKNOWN"
+    ],
+    "LINCOLN CONTINENTAL": [
+      "OTHER",
+      "RESERVE",
+      "UNKNOWN"
+    ],
+    "LINCOLN CORSAIR": [
+      "RESERVE",
+      "UNKNOWN"
+    ],
+    "LINCOLN MARK LT": [
+      "UNKNOWN",
+      "WHITE"
+    ],
+    "LINCOLN MKC": [
+      "OTHER",
+      "RESERVE",
+      "UNKNOWN"
+    ],
+    "LINCOLN MKS": [
+      "AWD",
+      "ECOBOOST",
+      "UNKNOWN"
+    ],
+    "LINCOLN MKX": [
+      "AWD",
+      "BASE",
+      "LIMITED",
+      "LOADED",
+      "LUXURY",
+      "OTHER",
+      "PREMIUM LUXURY",
+      "RESERVE",
+      "SUV",
+      "UNKNOWN"
+    ],
+    "LINCOLN MKZ": [
+      "BASE",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "LINCOLN NAVIGATOR": [
+      "L",
+      "LIMITED",
+      "OTHER",
+      "PREMIUM",
+      "RESERVE",
+      "ULTIMATE",
+      "UNKNOWN"
+    ],
+    "LINCOLN TOWN CAR": [
+      "LIMITED",
+      "OTHER",
+      "SIGNATURE",
+      "UNKNOWN"
+    ],
+    "MASERATI GHIBLI": [
+      "AWD",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "MAZDA 2": [
+      "GT",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "MAZDA 3": [
+      "GS",
+      "GS-SKY",
+      "GT",
+      "GX",
+      "I",
+      "I TOURING",
+      "LE",
+      "OTHER",
+      "S",
+      "SEDAN",
+      "SPORT",
+      "TOURING",
+      "UNKNOWN"
+    ],
+    "MAZDA 5": [
+      "GS",
+      "GT",
+      "GX",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "MAZDA 6": [
+      "GS",
+      "GT",
+      "OTHER",
+      "SEDAN",
+      "SPORT",
+      "UNKNOWN"
+    ],
+    "MAZDA B-SERIES PICKUPS": [
+      "4WD",
+      "OTHER",
+      "SE",
+      "SPECIAL EDITION",
+      "UNKNOWN"
+    ],
+    "MAZDA CX-3": [
+      "GREY",
+      "GS",
+      "GT",
+      "GX",
+      "OTHER",
+      "TOURING",
+      "UNKNOWN"
+    ],
+    "MAZDA CX-5": [
+      "GS",
+      "GT",
+      "GT AWD",
+      "GT PREMIUM",
+      "GX",
+      "OTHER",
+      "PREFERRED",
+      "SIGNATURE",
+      "SPORT",
+      "TOURING",
+      "UNKNOWN"
+    ],
+    "MAZDA CX-7": [
+      "GS",
+      "GT",
+      "OTHER",
+      "SPORT",
+      "TURBO",
+      "UNKNOWN"
+    ],
+    "MAZDA CX-9": [
+      "GS",
+      "GT",
+      "OTHER",
+      "SIGNATURE",
+      "SPORT",
+      "TOURING",
+      "UNKNOWN"
+    ],
+    "MAZDA MAZDA3 SPORT": [
+      "GS",
+      "GS-SKY",
+      "GT",
+      "GX",
+      "OTHER",
+      "TOURING",
+      "UNKNOWN"
+    ],
+    "MAZDA MAZDASPEED3": [
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "MAZDA MX-5 MIATA": [
+      "BASE",
+      "CONVERTIBLE",
+      "GREY",
+      "GS",
+      "GT",
+      "GX",
+      "OTHER",
+      "TOURING",
+      "UNKNOWN"
+    ],
+    "MAZDA OTHER": [
+      "GS",
+      "GS-SKY",
+      "GT",
+      "GX",
+      "I",
+      "LX",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "MAZDA PROTEGE": [
+      "ES",
+      "LX",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "MAZDA RX-8": [
+      "GT",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "MAZDA TRIBUTE": [
+      "DX",
+      "GT",
+      "GX",
+      "LX",
+      "OTHER",
+      "SPORT",
+      "UNKNOWN",
+      "VIP"
+    ],
+    "MERCEDES-AMG C-CLASS": [
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "MERCEDES-AMG CL-CLASS": [
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "MERCEDES-AMG CLA": [
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "MERCEDES-AMG E-CLASS": [
+      "AMG",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "MERCEDES-AMG GLE": [
+      "COUPE",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "MERCEDES-BENZ 200-SERIES": [
+      "CLASSIC",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "MERCEDES-BENZ 300-SERIES": [
+      "CABRIOLET",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "MERCEDES-BENZ 500-SERIES": [
+      "4MATIC",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "MERCEDES-BENZ A-CLASS": [
+      "350",
+      "AMG",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "MERCEDES-BENZ B-CLASS": [
+      "OTHER",
+      "PREMIUM",
+      "TURBO",
+      "UNKNOWN"
+    ],
+    "MERCEDES-BENZ C-CLASS": [
+      "250",
+      "3.5L",
+      "300",
+      "350",
+      "4MATIC",
+      "AMG",
+      "AMG C 43",
+      "BLACK",
+      "C 250",
+      "C 300",
+      "OTHER",
+      "S",
+      "SPORT",
+      "UNKNOWN"
+    ],
+    "MERCEDES-BENZ CL-CLASS": [
+      "AMG",
+      "OTHER",
+      "SPORT",
+      "UNKNOWN"
+    ],
+    "MERCEDES-BENZ CLA": [
+      "250",
+      "CLA 250",
+      "OTHER",
+      "SPORT",
+      "UNKNOWN"
+    ],
+    "MERCEDES-BENZ CLK-CLASS": [
+      "3.5L",
+      "430",
+      "AMG",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "MERCEDES-BENZ CLS-CLASS": [
+      "5.0L",
+      "550",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "MERCEDES-BENZ E-CLASS": [
+      "3.5L",
+      "300",
+      "350",
+      "4MATIC",
+      "5.0L",
+      "550",
+      "AMG",
+      "LEATHER",
+      "OTHER",
+      "SEDAN",
+      "UNKNOWN"
+    ],
+    "MERCEDES-BENZ G-CLASS": [
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "MERCEDES-BENZ GL-CLASS": [
+      "350",
+      "550",
+      "BLUETEC",
+      "GL 550",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "MERCEDES-BENZ GLA": [
+      "250",
+      "AMG",
+      "GLA 250",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "MERCEDES-BENZ GLC": [
+      "300",
+      "BLACK EDITION",
+      "GLC 300",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "MERCEDES-BENZ GLE": [
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "MERCEDES-BENZ GLK-CLASS": [
+      "250",
+      "350",
+      "4MATIC",
+      "550",
+      "BLUETEC",
+      "GLK 350",
+      "OTHER",
+      "SUV",
+      "UNKNOWN"
+    ],
+    "MERCEDES-BENZ M-CLASS": [
+      "3.5L",
+      "AMG",
+      "BLUETEC",
+      "CLASSIC",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "MERCEDES-BENZ OTHER": [
+      "CLA 250",
+      "GLA 250",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "MERCEDES-BENZ R-CLASS": [
+      "4MATIC",
+      "550",
+      "BLUETEC",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "MERCEDES-BENZ S-CLASS": [
+      "4MATIC",
+      "5.0L",
+      "AMG",
+      "OTHER",
+      "S500 4MATIC",
+      "UNKNOWN",
+      "V8",
+      "VIP"
+    ],
+    "MERCEDES-BENZ SL-CLASS": [
+      "5.0L",
+      "550",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "MERCEDES-BENZ SLK-CLASS": [
+      "300",
+      "350",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "MERCEDES-BENZ SPRINTER VAN": [
+      "2500",
+      "BASE",
+      "CARGO",
+      "CARGO VAN",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "MERCURY GRAND MARQUIS": [
+      "LS",
+      "OTHER",
+      "SEDAN",
+      "UNKNOWN"
+    ],
+    "MINI CLUBMAN": [
+      "OTHER",
+      "S",
+      "UNKNOWN"
+    ],
+    "MINI COOPER COUNTRYMAN": [
+      "OTHER",
+      "S",
+      "UNKNOWN"
+    ],
+    "MINI COOPER S COUNTRYMAN": [
+      "OTHER",
+      "S",
+      "UNKNOWN"
+    ],
+    "MINI MINI COOPER": [
+      "BASE",
+      "BLACK",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "MINI MINI COOPER S": [
+      "CUSTOM",
+      "OTHER",
+      "S",
+      "UNKNOWN"
+    ],
+    "MINI OTHER": [
+      "OTHER",
+      "S"
+    ],
+    "MITSUBISHI ECLIPSE": [
+      "CONVERTIBLE",
+      "GS",
+      "GT",
+      "OTHER",
+      "SPYDER",
+      "UNKNOWN"
+    ],
+    "MITSUBISHI ECLIPSE CROSS": [
+      "ES",
+      "GT",
+      "LIMITED",
+      "SE",
+      "UNKNOWN"
+    ],
+    "MITSUBISHI ENDEAVOR": [
+      "4X4",
+      "SE AWD",
+      "UNKNOWN",
+      "XLS"
+    ],
+    "MITSUBISHI EVOLUTION": [
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "MITSUBISHI LANCER": [
+      "ES",
+      "FWD",
+      "GT",
+      "GTS",
+      "LIMITED EDITION",
+      "OTHER",
+      "RALLIART",
+      "SE",
+      "SE AWD",
+      "SPORT",
+      "UNKNOWN"
+    ],
+    "MITSUBISHI MIRAGE": [
+      "ES",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "MITSUBISHI OTHER": [
+      "OTHER",
+      "SEL",
+      "UNKNOWN"
+    ],
+    "MITSUBISHI OUTLANDER": [
+      "ES",
+      "GT",
+      "GT PREMIUM",
+      "LE",
+      "LS",
+      "OTHER",
+      "SE",
+      "SEL",
+      "UNKNOWN",
+      "XLS"
+    ],
+    "MITSUBISHI RVR": [
+      "AWD",
+      "BLACK EDITION",
+      "ES",
+      "GT",
+      "GT AWD",
+      "LIMITED",
+      "OTHER",
+      "SE",
+      "SE AWD",
+      "UNKNOWN"
+    ],
+    "NISSAN 300ZX": [
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "NISSAN 350Z": [
+      "BLACK",
+      "CONVERTIBLE",
+      "COUPE",
+      "OTHER",
+      "TOURING",
+      "UNKNOWN"
+    ],
+    "NISSAN 370Z": [
+      "NISMO",
+      "OTHER",
+      "SPORT",
+      "SPORT TOURING",
+      "TOURING",
+      "UNKNOWN"
+    ],
+    "NISSAN ALTIMA": [
+      "2.5",
+      "2.5 S",
+      "2.5 SL",
+      "2.5S",
+      "HYBRID",
+      "LS",
+      "OTHER",
+      "PLATINUM",
+      "S",
+      "SE",
+      "SL",
+      "SPORT",
+      "SR",
+      "SV",
+      "UNKNOWN"
+    ],
+    "NISSAN ARMADA": [
+      "LE",
+      "OTHER",
+      "PLATINUM",
+      "SE",
+      "SL",
+      "UNKNOWN"
+    ],
+    "NISSAN CUBE": [
+      "UNKNOWN"
+    ],
+    "NISSAN FRONTIER": [
+      "GREY",
+      "LE",
+      "NISMO",
+      "OTHER",
+      "PRO-4X",
+      "PRO4X",
+      "SE",
+      "SL",
+      "SV",
+      "UNKNOWN",
+      "XE"
+    ],
+    "NISSAN HARDBODY": [
+      "LS",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "NISSAN JUKE": [
+      "LE",
+      "NISMO",
+      "OTHER",
+      "S",
+      "SE",
+      "SL",
+      "SL AWD",
+      "SV",
+      "SV AWD",
+      "UNKNOWN"
+    ],
+    "NISSAN KICKS": [
+      "OTHER",
+      "S",
+      "SR",
+      "SV",
+      "UNKNOWN"
+    ],
+    "NISSAN LEAF": [
+      "OTHER",
+      "S",
+      "SE",
+      "SL",
+      "SV",
+      "UNKNOWN"
+    ],
+    "NISSAN MAXIMA": [
+      "FULLY LOADED",
+      "GLS",
+      "GREY",
+      "OTHER",
+      "S",
+      "SE",
+      "SE 20TH ANNIVERSARY",
+      "SL",
+      "SR",
+      "SV",
+      "UNKNOWN"
+    ],
+    "NISSAN MICRA": [
+      "S",
+      "SL",
+      "SR",
+      "SV",
+      "UNKNOWN"
+    ],
+    "NISSAN MURANO": [
+      "LE",
+      "LE AWD",
+      "LIMITED",
+      "OTHER",
+      "PLATINUM",
+      "S",
+      "SE",
+      "SL",
+      "SL AWD",
+      "SLE",
+      "SV",
+      "UNKNOWN"
+    ],
+    "NISSAN NV200": [
+      "CARGO",
+      "CARGO VAN",
+      "CITY",
+      "LX",
+      "OTHER",
+      "SV",
+      "UNKNOWN"
+    ],
+    "NISSAN OTHER": [
+      "OTHER",
+      "SE",
+      "SL",
+      "SPORT",
+      "SV",
+      "UNKNOWN"
+    ],
+    "NISSAN PATHFINDER": [
+      "LE",
+      "LIMITED",
+      "OTHER",
+      "PLATINUM",
+      "S",
+      "SE",
+      "SL",
+      "SL AWD",
+      "SV",
+      "UNKNOWN"
+    ],
+    "NISSAN QASHQAI": [
+      "LIMITED",
+      "S",
+      "SL",
+      "SL AWD",
+      "SV",
+      "SV AWD",
+      "UNKNOWN"
+    ],
+    "NISSAN QUEST": [
+      "OTHER",
+      "SE",
+      "SL",
+      "SV",
+      "UNKNOWN"
+    ],
+    "NISSAN ROGUE": [
+      "AWD",
+      "LE",
+      "LIMITED",
+      "OTHER",
+      "PLATINUM",
+      "PREMIUM",
+      "S",
+      "SL",
+      "SL AWD",
+      "SPECIAL EDITION",
+      "SPORT",
+      "SPORTS",
+      "SUV",
+      "SV",
+      "SV AWD",
+      "SV MIDNIGHT EDITION",
+      "UNKNOWN"
+    ],
+    "NISSAN SENTRA": [
+      "2.0",
+      "GX",
+      "OTHER",
+      "S",
+      "SE",
+      "SL",
+      "SR",
+      "SV",
+      "SV MIDNIGHT EDITION",
+      "UNKNOWN",
+      "XE"
+    ],
+    "NISSAN SKYLINE": [
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "NISSAN TITAN": [
+      "CREW CAB",
+      "LE",
+      "OTHER",
+      "PLATINUM",
+      "PRO-4X",
+      "PRO4X",
+      "SE",
+      "SL",
+      "SV",
+      "SV MIDNIGHT EDITION",
+      "UNKNOWN",
+      "XE"
+    ],
+    "NISSAN VERSA": [
+      "1.8 SL",
+      "BASE",
+      "OTHER",
+      "S",
+      "SE",
+      "SL",
+      "SR",
+      "SV",
+      "UNKNOWN"
+    ],
+    "NISSAN X-TRAIL": [
+      "LE",
+      "OTHER",
+      "SE",
+      "UNKNOWN",
+      "XE"
+    ],
+    "NISSAN XTERRA": [
+      "4X4",
+      "OTHER",
+      "PRO-4X",
+      "PRO4X",
+      "S",
+      "SE",
+      "SV",
+      "UNKNOWN",
+      "XE"
+    ],
+    "OLDSMOBILE ALERO": [
+      "GL",
+      "GLS",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "OLDSMOBILE CUTLASS": [
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "OLDSMOBILE INTRIGUE": [
+      "UNKNOWN"
+    ],
+    "OTHER": [
+      "250",
+      "3500",
+      "4X4",
+      "AWD",
+      "BASE",
+      "CARGO",
+      "CONVERTIBLE",
+      "COUPE",
+      "CUSTOM",
+      "CXL",
+      "EDDIE BAUER",
+      "ES",
+      "EX",
+      "EX-L",
+      "EXL",
+      "F SPORT",
+      "FULLY LOADED",
+      "FWD",
+      "GL",
+      "GLS",
+      "GS",
+      "GT",
+      "GX",
+      "HIGHLINE",
+      "HSE",
+      "LE",
+      "LEATHER",
+      "LIMITED",
+      "LOADED",
+      "LONG RANGE",
+      "LS",
+      "LT",
+      "LUXURY",
+      "LX",
+      "OTHER",
+      "PERFORMANCE",
+      "PLATINUM",
+      "PREFERRED",
+      "PREMIER",
+      "PREMIUM",
+      "R",
+      "R/T",
+      "RESERVE",
+      "RS",
+      "RT",
+      "S",
+      "SE",
+      "SEL",
+      "SI",
+      "SIERRA",
+      "SL",
+      "SLE",
+      "SLT",
+      "SPORT",
+      "SPORT TOURING",
+      "SPYDER",
+      "SR5",
+      "SX",
+      "T250",
+      "T5",
+      "TECH PACKAGE",
+      "TECHNIK",
+      "TOURING",
+      "TRADESMAN",
+      "TSI",
+      "TYPE S",
+      "ULTIMATE",
+      "UNKNOWN",
+      "V8",
+      "WHITE",
+      "XE",
+      "XL",
+      "XLT",
+      "XR",
+      "XSE"
+    ],
+    "OTHER OTHER": [
+      "2500",
+      "LX",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "PONTIAC BONNEVILLE": [
+      "GXP",
+      "OTHER"
+    ],
+    "PONTIAC FIREBIRD": [
+      "FULLY LOADED",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "PONTIAC G5": [
+      "BASE",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "PONTIAC G6": [
+      "GT",
+      "GXP",
+      "LS",
+      "LX",
+      "OTHER",
+      "SE",
+      "SEDAN",
+      "SPORT",
+      "UNKNOWN"
+    ],
+    "PONTIAC G8": [
+      "GT",
+      "UNKNOWN"
+    ],
+    "PONTIAC GRAND AM": [
+      "GT",
+      "OTHER",
+      "SE",
+      "UNKNOWN"
+    ],
+    "PONTIAC GRAND PRIX": [
+      "BASE",
+      "GT",
+      "GXP",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "PONTIAC MONTANA": [
+      "OTHER",
+      "SV6",
+      "UNKNOWN"
+    ],
+    "PONTIAC SOLSTICE": [
+      "BASE",
+      "GXP",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "PONTIAC SUNFIRE": [
+      "BASE",
+      "CONVERTIBLE",
+      "COUPE",
+      "OTHER",
+      "SL",
+      "UNKNOWN"
+    ],
+    "PONTIAC TORRENT": [
+      "AWD",
+      "GT",
+      "GXP",
+      "OTHER",
+      "SPORTS",
+      "UNKNOWN"
+    ],
+    "PONTIAC VIBE": [
+      "AWD",
+      "GT",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "PONTIAC WAVE": [
+      "OTHER",
+      "SE",
+      "UNKNOWN"
+    ],
+    "PORSCHE 911": [
+      "CABRIOLET",
+      "OTHER",
+      "S",
+      "TURBO",
+      "UNKNOWN"
+    ],
+    "PORSCHE BOXSTER": [
+      "BASE",
+      "OTHER",
+      "S",
+      "UNKNOWN"
+    ],
+    "PORSCHE CAYENNE": [
+      "BASE",
+      "COUPE",
+      "DIESEL",
+      "GTS",
+      "OTHER",
+      "S",
+      "S LINE",
+      "SPORT",
+      "TURBO",
+      "UNKNOWN"
+    ],
+    "PORSCHE MACAN": [
+      "BASE",
+      "GTS",
+      "OTHER",
+      "PREMIUM",
+      "PREMIUM PLUS",
+      "S",
+      "SPORT",
+      "SPORTS",
+      "TURBO",
+      "UNKNOWN"
+    ],
+    "PORSCHE PANAMERA": [
+      "4",
+      "GTS",
+      "OTHER",
+      "S",
+      "TURBO",
+      "UNKNOWN"
+    ],
+    "RAM 1500": [
+      "4X4",
+      "BIG HORN",
+      "BIGHORN",
+      "CHROME",
+      "CLASSIC",
+      "CREW",
+      "CREW CAB",
+      "EXPRESS",
+      "HEMI",
+      "LARAMIE",
+      "LARAMIE LIMITED",
+      "LARAMIE LONGHORN",
+      "LARAMIE SLT",
+      "LARIET",
+      "LIMITED",
+      "LIMITED LONGHORN",
+      "LONGHORN",
+      "OTHER",
+      "OUTDOORSMAN",
+      "QUAD CAB",
+      "REBEL",
+      "SLT",
+      "SPORT",
+      "SPORTS",
+      "ST",
+      "SXT",
+      "TRADESMAN",
+      "UNKNOWN",
+      "WARLOCK",
+      "WORK TRUCK"
+    ],
+    "RAM 1500 CLASSIC": [
+      "1500",
+      "BLACK",
+      "CLASSIC",
+      "CREW CAB",
+      "EXPRESS",
+      "HEMI",
+      "LARAMIE",
+      "LONGHORN",
+      "LT",
+      "OTHER",
+      "OUTDOORSMAN",
+      "QUAD CAB",
+      "SLT",
+      "SPORT",
+      "ST",
+      "TRADESMAN",
+      "UNKNOWN",
+      "WARLOCK"
+    ],
+    "RAM 2500": [
+      "BIG HORN",
+      "BIGHORN",
+      "CUMMINS",
+      "DIESEL",
+      "LARAMIE",
+      "LARAMIE LIMITED",
+      "LARAMIE LONGHORN",
+      "LIMITED",
+      "LIMITED LONGHORN",
+      "LONGHORN",
+      "OTHER",
+      "OUTDOORSMAN",
+      "POWER WAGON",
+      "REBEL",
+      "SLE",
+      "SLT",
+      "ST",
+      "TRADESMAN",
+      "UNKNOWN"
+    ],
+    "RAM 3500": [
+      "BIG HORN",
+      "BIGHORN",
+      "LARAMIE",
+      "LARAMIE LIMITED",
+      "LARAMIE LONGHORN",
+      "LARIAT",
+      "LIMITED",
+      "LIMITED LONGHORN",
+      "LONGHORN",
+      "OTHER",
+      "SLT",
+      "ST",
+      "TRADESMAN",
+      "UNKNOWN",
+      "XLT"
+    ],
+    "RAM 5500": [
+      "LARAMIE",
+      "LIMITED",
+      "OTHER",
+      "SLT",
+      "ST",
+      "TRADESMAN",
+      "UNKNOWN"
+    ],
+    "RAM CARGO": [
+      "OTHER",
+      "TRADESMAN",
+      "UNKNOWN"
+    ],
+    "RAM PROMASTER": [
+      "2500",
+      "3500",
+      "CARGO",
+      "CARGO VAN",
+      "OTHER",
+      "TRADESMAN",
+      "UNKNOWN"
+    ],
+    "SAAB 9-3": [
+      "CONVERTIBLE",
+      "OTHER",
+      "TURBO",
+      "UNKNOWN"
+    ],
+    "SATURN ASTRA": [
+      "EX",
+      "UNKNOWN",
+      "XE",
+      "XR"
+    ],
+    "SATURN AURA": [
+      "UNKNOWN",
+      "XR"
+    ],
+    "SATURN ION": [
+      "BLACK",
+      "COUPE",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "SATURN S-SERIES": [
+      "OTHER",
+      "SL",
+      "UNKNOWN"
+    ],
+    "SATURN VUE": [
+      "LOADED",
+      "OTHER",
+      "PREFERRED",
+      "ST",
+      "SUV",
+      "UNKNOWN",
+      "XR"
+    ],
+    "SCION FR-S": [
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "SCION TC": [
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "SCION XB": [
+      "TRD",
+      "UNKNOWN"
+    ],
+    "SMART FORTWO": [
+      "CONVERTIBLE",
+      "OTHER",
+      "PASSION",
+      "PURE",
+      "UNKNOWN"
+    ],
+    "SUBARU ASCENT": [
+      "LIMITED",
+      "ONYX",
+      "PREMIER",
+      "TOURING",
+      "UNKNOWN"
+    ],
+    "SUBARU BRZ": [
+      "LIMITED",
+      "OTHER",
+      "PREMIUM",
+      "SPORT TECH",
+      "SPORT-TECH",
+      "UNKNOWN"
+    ],
+    "SUBARU FORESTER": [
+      "2.5I",
+      "CHROME",
+      "CONVENIENCE",
+      "I",
+      "I TOURING",
+      "LIMITED",
+      "LTD",
+      "OTHER",
+      "PREMIER",
+      "PREMIUM",
+      "S",
+      "SPORT",
+      "SPORT TECH",
+      "STI",
+      "TOURING",
+      "UNKNOWN",
+      "X",
+      "XT",
+      "XT LIMITED"
+    ],
+    "SUBARU IMPREZA": [
+      "2.5I",
+      "BASE",
+      "CONVENIENCE",
+      "LIMITED",
+      "OTHER",
+      "PREMIUM",
+      "PREMIUM PLUS",
+      "RS",
+      "SPECIAL EDITION",
+      "SPORT",
+      "SPORT-TECH",
+      "STI",
+      "TOURING",
+      "UNKNOWN",
+      "WRX"
+    ],
+    "SUBARU IMPREZA WRX STI": [
+      "BASE",
+      "LIMITED",
+      "OTHER",
+      "SPORT TECH",
+      "SPORT-TECH",
+      "STI",
+      "UNKNOWN"
+    ],
+    "SUBARU LEGACY": [
+      "2.5I",
+      "AWD",
+      "BASE",
+      "GT",
+      "L",
+      "LIMITED",
+      "LIMITED GT",
+      "OTHER",
+      "SPECIAL EDITION",
+      "UNKNOWN"
+    ],
+    "SUBARU OTHER": [
+      "CONVENIENCE",
+      "ONYX",
+      "OTHER",
+      "PREMIER",
+      "SPORT",
+      "STI",
+      "TOURING",
+      "UNKNOWN"
+    ],
+    "SUBARU OUTBACK": [
+      "2.5",
+      "2.5I",
+      "AWD",
+      "CONVENIENCE",
+      "FULLY LOADED",
+      "LIMITED",
+      "ONYX",
+      "OTHER",
+      "PREMIER",
+      "TOURING",
+      "UNKNOWN",
+      "XT",
+      "XT LIMITED"
+    ],
+    "SUBARU TRIBECA": [
+      "LIMITED",
+      "UNKNOWN"
+    ],
+    "SUBARU WRX": [
+      "BASE",
+      "LIMITED",
+      "OTHER",
+      "PREMIUM",
+      "RS",
+      "SPORT",
+      "SPORT TECH",
+      "SPORT-TECH",
+      "STI",
+      "UNKNOWN"
+    ],
+    "SUBARU XV CROSSTREK": [
+      "LIMITED",
+      "ONYX",
+      "OTHER",
+      "PREMIUM",
+      "SPORT",
+      "TOURING",
+      "UNKNOWN"
+    ],
+    "SUZUKI AERIO": [
+      "OTHER",
+      "SE",
+      "TOURING",
+      "UNKNOWN"
+    ],
+    "SUZUKI GRAND VITARA": [
+      "FULLY LOADED",
+      "LUXURY",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "SUZUKI OTHER": [
+      "4X4",
+      "OTHER",
+      "SIERRA",
+      "TURBO",
+      "UNKNOWN"
+    ],
+    "SUZUKI SWIFT": [
+      "UNKNOWN"
+    ],
+    "SUZUKI SX4": [
+      "BASE",
+      "OTHER",
+      "SPORT",
+      "UNKNOWN"
+    ],
+    "SUZUKI XL7": [
+      "AWD",
+      "UNKNOWN"
+    ],
+    "TESLA MODEL 3": [
+      "LONG RANGE",
+      "OTHER",
+      "PERFORMANCE",
+      "PREMIUM",
+      "STANDARD",
+      "UNKNOWN"
+    ],
+    "TESLA MODEL Y": [
+      "LONG RANGE",
+      "OTHER",
+      "PERFORMANCE",
+      "UNKNOWN"
+    ],
+    "TOYOTA 4RUNNER": [
+      "AWD",
+      "LIMITED",
+      "LTD",
+      "OTHER",
+      "SPORT",
+      "SR5",
+      "TRD",
+      "TRD OFF ROAD",
+      "TRD PRO",
+      "UNKNOWN",
+      "V6"
+    ],
+    "TOYOTA AVALON": [
+      "LIMITED",
+      "LTD",
+      "UNKNOWN",
+      "XL",
+      "XLE",
+      "XLS"
+    ],
+    "TOYOTA C-HR": [
+      "LIMITED",
+      "UNKNOWN",
+      "XLE"
+    ],
+    "TOYOTA CAMRY": [
+      "CE",
+      "HYBRID",
+      "LE",
+      "LIMITED HYBRID",
+      "OTHER",
+      "SE",
+      "SE AWD",
+      "UNKNOWN",
+      "XLE",
+      "XSE"
+    ],
+    "TOYOTA CELICA": [
+      "GT",
+      "GTS",
+      "OTHER",
+      "ST",
+      "UNKNOWN"
+    ],
+    "TOYOTA COROLLA": [
+      "BLACK",
+      "CE",
+      "DX",
+      "L",
+      "LE",
+      "LE AWD",
+      "OTHER",
+      "S",
+      "SE",
+      "SPORT",
+      "SPORTS",
+      "SR5",
+      "UNKNOWN",
+      "XLE",
+      "XRS",
+      "XSE"
+    ],
+    "TOYOTA CROWN": [
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "TOYOTA ECHO": [
+      "BASE",
+      "CE",
+      "LE",
+      "OTHER",
+      "RS",
+      "UNKNOWN"
+    ],
+    "TOYOTA FJ CRUISER": [
+      "4X4",
+      "BASE",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "TOYOTA HIGHLANDER": [
+      "AWD",
+      "BASE",
+      "HYBRID",
+      "HYBRID XLE",
+      "LE",
+      "LE AWD",
+      "LEATHER",
+      "LIMITED",
+      "LIMITED AWD",
+      "LIMITED HYBRID",
+      "LX",
+      "OTHER",
+      "PLATINUM",
+      "SE",
+      "SPORT",
+      "SR5",
+      "UNKNOWN",
+      "V6",
+      "XLE",
+      "XSE"
+    ],
+    "TOYOTA LAND CRUISER": [
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "TOYOTA MATRIX": [
+      "AWD",
+      "BASE",
+      "FWD",
+      "OTHER",
+      "SPORT",
+      "TRD",
+      "UNKNOWN",
+      "XR",
+      "XRS"
+    ],
+    "TOYOTA MR2": [
+      "SPYDER",
+      "UNKNOWN"
+    ],
+    "TOYOTA OTHER": [
+      "4WD",
+      "HYBRID XLE",
+      "LE",
+      "LIMITED",
+      "OTHER",
+      "SE",
+      "SLE",
+      "UNKNOWN",
+      "XLE",
+      "XSE"
+    ],
+    "TOYOTA OTHER PICKUPS": [
+      "LE",
+      "SR5",
+      "UNKNOWN"
+    ],
+    "TOYOTA PREVIA": [
+      "LE",
+      "UNKNOWN"
+    ],
+    "TOYOTA PRIUS": [
+      "AWD",
+      "OTHER",
+      "TOURING",
+      "UNKNOWN",
+      "XLE"
+    ],
+    "TOYOTA PRIUS C": [
+      "C",
+      "OTHER",
+      "TECHNOLOGY",
+      "UNKNOWN"
+    ],
+    "TOYOTA RAV4": [
+      "4WD",
+      "AWD",
+      "BASE",
+      "BLACK",
+      "FULLY LOADED",
+      "GREY",
+      "HYBRID",
+      "HYBRID XLE",
+      "LE",
+      "LE AWD",
+      "LIMITED",
+      "LIMITED HYBRID",
+      "OTHER",
+      "SE",
+      "SE AWD",
+      "SPORT",
+      "SPORTS",
+      "UNKNOWN",
+      "V6",
+      "XLE",
+      "XLE PREMIUM",
+      "XSE"
+    ],
+    "TOYOTA SEQUOIA": [
+      "LIMITED",
+      "OTHER",
+      "PLATINUM",
+      "SR5",
+      "TRD",
+      "UNKNOWN"
+    ],
+    "TOYOTA SIENNA": [
+      "CE",
+      "LE",
+      "LE AWD",
+      "LIMITED",
+      "LIMITED AWD",
+      "LIMITED EDITION",
+      "LTD",
+      "OTHER",
+      "SE",
+      "SPORT",
+      "UNKNOWN",
+      "XLE",
+      "XSE"
+    ],
+    "TOYOTA SOLARA": [
+      "OTHER",
+      "SE",
+      "SLE",
+      "UNKNOWN"
+    ],
+    "TOYOTA TACOMA": [
+      "4X4",
+      "BASE",
+      "CREW CAB",
+      "LIMITED",
+      "OTHER",
+      "PREMIUM",
+      "SPORT",
+      "SR5",
+      "TRD",
+      "TRD OFF ROAD",
+      "TRD OFF-ROAD",
+      "TRD PRO",
+      "TRD SPORT",
+      "UNKNOWN"
+    ],
+    "TOYOTA TERCEL": [
+      "SR5",
+      "UNKNOWN"
+    ],
+    "TOYOTA TUNDRA": [
+      "BASE",
+      "LEATHER",
+      "LIMITED",
+      "LIMITED HYBRID",
+      "OTHER",
+      "PLATINUM",
+      "SR",
+      "SR5",
+      "TRD",
+      "TRD OFF ROAD",
+      "TRD OFF-ROAD",
+      "TRD PRO",
+      "TRD SPORT",
+      "UNKNOWN"
+    ],
+    "TOYOTA VENZA": [
+      "BASE",
+      "LE",
+      "LEATHER",
+      "LIMITED",
+      "LIMITED AWD",
+      "LOADED",
+      "OTHER",
+      "UNKNOWN",
+      "XLE"
+    ],
+    "TOYOTA YARIS": [
+      "BASE",
+      "CE",
+      "LE",
+      "OTHER",
+      "RS",
+      "UNKNOWN",
+      "XR"
+    ],
+    "VOLKSWAGEN ATLAS": [
+      "COMFORTLINE",
+      "EXECLINE",
+      "HIGHLINE",
+      "OTHER",
+      "SEL",
+      "TRENDLINE",
+      "UNKNOWN"
+    ],
+    "VOLKSWAGEN BEETLE": [
+      "GLS",
+      "OTHER",
+      "SPORT",
+      "UNKNOWN",
+      "WOLFSBURG"
+    ],
+    "VOLKSWAGEN BUS/VANAGON": [
+      "GL",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "VOLKSWAGEN CC": [
+      "HIGHLINE",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "VOLKSWAGEN EOS": [
+      "COMFORTLINE",
+      "HIGHLINE",
+      "UNKNOWN"
+    ],
+    "VOLKSWAGEN EUROVAN": [
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "VOLKSWAGEN GLI": [
+      "AUTOBAHN",
+      "FULLY LOADED",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "VOLKSWAGEN GOLF": [
+      "BASE",
+      "CITY",
+      "COMFORTLINE",
+      "GL",
+      "GLS",
+      "HIGHLINE",
+      "OTHER",
+      "R",
+      "S",
+      "STANDARD",
+      "TDI",
+      "TRENDLINE",
+      "TSI",
+      "UNKNOWN"
+    ],
+    "VOLKSWAGEN GOLF R": [
+      "BASE",
+      "OTHER",
+      "R",
+      "TECH PACKAGE",
+      "UNKNOWN"
+    ],
+    "VOLKSWAGEN GTI": [
+      "AUTOBAHN",
+      "OTHER",
+      "S",
+      "UNKNOWN",
+      "WOLFSBURG"
+    ],
+    "VOLKSWAGEN JETTA": [
+      "2.0",
+      "2.5",
+      "CITY",
+      "COMFORTLINE",
+      "EXECLINE",
+      "GL",
+      "GLI",
+      "GLS",
+      "HIGHLINE",
+      "HIGHLINE R-LINE",
+      "HYBRID",
+      "OTHER",
+      "SE",
+      "SEL",
+      "SLE",
+      "SPECIAL EDITION",
+      "SPORT",
+      "TDI",
+      "TRENDLINE",
+      "TSI",
+      "UNKNOWN",
+      "WOLFSBURG",
+      "WOLFSBURG EDITION"
+    ],
+    "VOLKSWAGEN NEW BEETLE": [
+      "CLASSIC",
+      "CONVERTIBLE",
+      "GLS",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "VOLKSWAGEN OTHER": [
+      "2.0",
+      "2.5",
+      "AUTOBAHN",
+      "COMFORTLINE",
+      "EXECLINE",
+      "GLS",
+      "HIGHLINE",
+      "OTHER",
+      "TRENDLINE",
+      "UNKNOWN",
+      "WOLFSBURG EDITION"
+    ],
+    "VOLKSWAGEN PASSAT": [
+      "COMFORTLINE",
+      "GLS",
+      "HIGHLINE",
+      "OTHER",
+      "TDI",
+      "TRENDLINE",
+      "TURBO",
+      "UNKNOWN",
+      "WOLFSBURG EDITION"
+    ],
+    "VOLKSWAGEN RABBIT": [
+      "COMFORTLINE",
+      "TRENDLINE",
+      "UNKNOWN"
+    ],
+    "VOLKSWAGEN ROUTAN": [
+      "UNKNOWN"
+    ],
+    "VOLKSWAGEN TAOS": [
+      "COMFORTLINE",
+      "HIGHLINE",
+      "OTHER",
+      "TRENDLINE",
+      "UNKNOWN"
+    ],
+    "VOLKSWAGEN TIGUAN": [
+      "2.0T",
+      "AWD",
+      "COMFORTLINE",
+      "HIGHLINE",
+      "HIGHLINE R-LINE",
+      "OTHER",
+      "S",
+      "SE",
+      "SEL",
+      "SPECIAL EDITION",
+      "TRENDLINE",
+      "TSI",
+      "UNKNOWN",
+      "WOLFSBURG",
+      "WOLFSBURG EDITION"
+    ],
+    "VOLKSWAGEN TOUAREG": [
+      "COMFORTLINE",
+      "EXECLINE",
+      "HIGHLINE",
+      "OTHER",
+      "SPORT",
+      "TDI",
+      "UNKNOWN",
+      "V8",
+      "WOLFSBURG EDITION"
+    ],
+    "VOLVO 850": [
+      "BASE",
+      "GT",
+      "OTHER",
+      "R",
+      "TURBO",
+      "UNKNOWN"
+    ],
+    "VOLVO C30": [
+      "BASE",
+      "OTHER",
+      "T5"
+    ],
+    "VOLVO C70": [
+      "OTHER",
+      "T5",
+      "UNKNOWN"
+    ],
+    "VOLVO OTHER": [
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "VOLVO S40": [
+      "OTHER",
+      "T5",
+      "UNKNOWN"
+    ],
+    "VOLVO S60": [
+      "AWD",
+      "BASE",
+      "FWD",
+      "OTHER",
+      "PREMIER PLUS",
+      "R",
+      "T5",
+      "T6",
+      "UNKNOWN"
+    ],
+    "VOLVO S80": [
+      "OTHER",
+      "T5",
+      "T6",
+      "UNKNOWN"
+    ],
+    "VOLVO V60": [
+      "OTHER",
+      "PREMIER"
+    ],
+    "VOLVO V70": [
+      "3.2",
+      "OTHER",
+      "R",
+      "T5",
+      "UNKNOWN"
+    ],
+    "VOLVO XC60": [
+      "3.2",
+      "INSCRIPTION",
+      "OTHER",
+      "PLATINUM",
+      "PREMIER",
+      "PREMIER PLUS",
+      "T6",
+      "UNKNOWN"
+    ],
+    "VOLVO XC70": [
+      "3.2",
+      "FULLY LOADED",
+      "OTHER",
+      "T6",
+      "UNKNOWN"
+    ],
+    "VOLVO XC90": [
+      "3.2",
+      "INSCRIPTION",
+      "OTHER",
+      "T6",
+      "UNKNOWN"
+    ]
+  },
+  "numeric_ranges": {
+    "Year": [
+      1900,
+      2027
+    ],
+    "Kilometres": [
+      3,
+      1971000
+    ]
+  },
+  "feature_importance": {
+    "Year": 21.70231330498709,
+    "Kilometres": 22.33943763887944,
+    "Distance_from_Edmonton_KM": 0.8305276307896473,
+    "Distance_from_Calgary_KM": 3.537185037272382,
+    "Condition_Label": 1.626527941377269,
+    "Transmission_Type": 2.2674053844458166,
+    "Drivetrain_Type": 3.928208322908204,
+    "Body_Style": 13.613214676180341,
+    "Colour": 1.6123641190687712,
+    "Seats_Count": 2.689041253464342,
+    "City_Name": 2.5945224868603476,
+    "Base_Model": 18.096808310192724,
+    "Trim": 5.16244389357374
+  },
+  "price_band_metrics": [
+    {
+      "Actual Price": "$0–3k",
+      "N": 932,
+      "MAE": 2611.637687607497,
+      "MedAE": 1571.2942534848935,
+      "R²": -69.45279976981853,
+      "Relative MAE": 1.2894099948298436
+    },
+    {
+      "Actual Price": "$3–6k",
+      "N": 1853,
+      "MAE": 1938.718938235604,
+      "MedAE": 1226.0299973874007,
+      "R²": -11.90495493169872,
+      "Relative MAE": 0.4417717313198867
+    },
+    {
+      "Actual Price": "$6–9k",
+      "N": 1441,
+      "MAE": 2436.4944778991403,
+      "MedAE": 1526.2705145446926,
+      "R²": -28.763429252293008,
+      "Relative MAE": 0.3313067856732194
+    },
+    {
+      "Actual Price": "$9–12k",
+      "N": 940,
+      "MAE": 2781.803488486532,
+      "MedAE": 1981.4289924540453,
+      "R²": -21.97153412180191,
+      "Relative MAE": 0.2699879103737784
+    },
+    {
+      "Actual Price": "$12–15k",
+      "N": 706,
+      "MAE": 3437.578713604044,
+      "MedAE": 2479.1352408763905,
+      "R²": -28.54657389226675,
+      "Relative MAE": 0.25809947970297986
+    },
+    {
+      "Actual Price": "$15–18k",
+      "N": 551,
+      "MAE": 3911.2388753133764,
+      "MedAE": 2956.26408717069,
+      "R²": -33.94137217458312,
+      "Relative MAE": 0.2409441990842133
+    },
+    {
+      "Actual Price": "$18–21k",
+      "N": 400,
+      "MAE": 4588.877199954882,
+      "MedAE": 3511.8106738790866,
+      "R²": -62.59703690195144,
+      "Relative MAE": 0.238468057661284
+    },
+    {
+      "Actual Price": "$21–24k",
+      "N": 290,
+      "MAE": 4741.336780190075,
+      "MedAE": 3427.041332968989,
+      "R²": -51.72078761405969,
+      "Relative MAE": 0.21155762215948598
+    },
+    {
+      "Actual Price": "$24–27k",
+      "N": 234,
+      "MAE": 5445.744194563044,
+      "MedAE": 4166.153214880467,
+      "R²": -81.23115184046611,
+      "Relative MAE": 0.21589238275390102
+    },
+    {
+      "Actual Price": "$27–30k",
+      "N": 202,
+      "MAE": 6597.422709341039,
+      "MedAE": 5120.69468000356,
+      "R²": -93.24472069973615,
+      "Relative MAE": 0.23207080947189707
+    },
+    {
+      "Actual Price": "$30–35k",
+      "N": 205,
+      "MAE": 7236.610740326154,
+      "MedAE": 5526.933597201212,
+      "R²": -43.0570486122492,
+      "Relative MAE": 0.22396047104252767
+    },
+    {
+      "Actual Price": "$35–40k",
+      "N": 213,
+      "MAE": 8489.669816871708,
+      "MedAE": 6765.6517361652,
+      "R²": -40.584457051799525,
+      "Relative MAE": 0.22817670101246396
+    },
+    {
+      "Actual Price": "$40–50k",
+      "N": 251,
+      "MAE": 8719.67555772152,
+      "MedAE": 6734.527112292024,
+      "R²": -16.380012393361024,
+      "Relative MAE": 0.19602150923227502
+    },
+    {
+      "Actual Price": "$50–75k",
+      "N": 263,
+      "MAE": 13371.932726786366,
+      "MedAE": 11315.729592332362,
+      "R²": -5.14500630757659,
+      "Relative MAE": 0.22292730959076965
+    },
+    {
+      "Actual Price": "$75k+",
+      "N": 130,
+      "MAE": 45132.77078662276,
+      "MedAE": 26514.329683737473,
+      "R²": -0.4741340629391211,
+      "Relative MAE": 0.4223344176100357
+    },
+    {
+      "Actual Price": "Overall",
+      "N": 8611,
+      "MAE": 4345.1914473974,
+      "MedAE": 2106.6541697904377,
+      "R²": 0.5117409278865401,
+      "Relative MAE": 0.2880986999657083
+    }
+  ],
+  "prediction_intervals": {
+    "method": "signed_residual_q10_q90_by_predicted_price",
+    "nominal_coverage": 0.8,
+    "split_seed": 73,
+    "calibration_n": 4305,
+    "validation_n": 4306,
+    "minimum_band_n": 100,
+    "policy": "Coverage is measured on held-out evaluation-model rows, separate from residual calibration. Full-data deployment-model coverage is not independently validated; ranges are historical listing-price references, not per-car guarantees.",
+    "bands": [
+      {
+        "label": "$0–3k",
+        "q10": -1096.053521619358,
+        "q90": 2007.322137463971,
+        "band_n": 279,
+        "reference_n": 279,
+        "pooled_fallback": false
+      },
+      {
+        "label": "$3–6k",
+        "q10": -2331.1084250793447,
+        "q90": 2252.31083816517,
+        "band_n": 983,
+        "reference_n": 983,
+        "pooled_fallback": false
+      },
+      {
+        "label": "$6–9k",
+        "q10": -4028.731274427524,
+        "q90": 3362.375367192295,
+        "band_n": 739,
+        "reference_n": 739,
+        "pooled_fallback": false
+      },
+      {
+        "label": "$9–12k",
+        "q10": -5442.180624131663,
+        "q90": 4873.368365039675,
+        "band_n": 539,
+        "reference_n": 539,
+        "pooled_fallback": false
+      },
+      {
+        "label": "$12–15k",
+        "q10": -5626.659538982037,
+        "q90": 5363.980381293708,
+        "band_n": 370,
+        "reference_n": 370,
+        "pooled_fallback": false
+      },
+      {
+        "label": "$15–18k",
+        "q10": -7959.002071024322,
+        "q90": 5957.0731024862,
+        "band_n": 265,
+        "reference_n": 265,
+        "pooled_fallback": false
+      },
+      {
+        "label": "$18–21k",
+        "q10": -7607.791553066581,
+        "q90": 7419.843406267714,
+        "band_n": 220,
+        "reference_n": 220,
+        "pooled_fallback": false
+      },
+      {
+        "label": "$21–24k",
+        "q10": -7913.12387406025,
+        "q90": 7524.907034314923,
+        "band_n": 168,
+        "reference_n": 168,
+        "pooled_fallback": false
+      },
+      {
+        "label": "$24–27k",
+        "q10": -9105.874265480306,
+        "q90": 12405.38745835023,
+        "band_n": 139,
+        "reference_n": 139,
+        "pooled_fallback": false
+      },
+      {
+        "label": "$27–30k",
+        "q10": -9378.217903140547,
+        "q90": 15503.478442566293,
+        "band_n": 100,
+        "reference_n": 100,
+        "pooled_fallback": false
+      },
+      {
+        "label": "$30–35k",
+        "q10": -11907.548731772838,
+        "q90": 10974.524033145686,
+        "band_n": 132,
+        "reference_n": 132,
+        "pooled_fallback": false
+      },
+      {
+        "label": "$35–40k",
+        "q10": -5852.822955437211,
+        "q90": 5428.821058448203,
+        "band_n": 89,
+        "reference_n": 4305,
+        "pooled_fallback": true
+      },
+      {
+        "label": "$40–50k",
+        "q10": -13172.539537250224,
+        "q90": 21248.42788937866,
+        "band_n": 122,
+        "reference_n": 122,
+        "pooled_fallback": false
+      },
+      {
+        "label": "$50–75k",
+        "q10": -15913.098665188301,
+        "q90": 23597.892786736917,
+        "band_n": 128,
+        "reference_n": 128,
+        "pooled_fallback": false
+      },
+      {
+        "label": "$75k+",
+        "q10": -5852.822955437211,
+        "q90": 5428.821058448203,
+        "band_n": 32,
+        "reference_n": 4305,
+        "pooled_fallback": true
+      }
+    ],
+    "validation_coverage": 0.7870413376683697,
+    "validation_mean_width_cad": 11497.073850441246
+  }
+}

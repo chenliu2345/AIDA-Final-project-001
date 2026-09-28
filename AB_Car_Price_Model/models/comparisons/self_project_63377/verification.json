@@ -1,0 +1,51 @@
+{
+  "ok": true,
+  "source_sha256": "7ae22fe302f286b5ae0f7064c371cee669b3f97feaf1621420e20c370d1bfc17",
+  "sold_rows": 43054,
+  "schemes": {
+    "my_scheme": {
+      "ok": true,
+      "train_rows": 25808,
+      "validation_rows": 8646,
+      "test_rows": 8600,
+      "common_test_rows": 1300,
+      "all_metrics_recomputed": true,
+      "common_rows_with_group_seen_in_training": 0,
+      "test_target_max_cad": 330000.0,
+      "test_target_mean_cad": 14749.888139534884
+    },
+    "grouped_70_15_15_es": {
+      "ok": true,
+      "train_rows": 30113,
+      "validation_rows": 6486,
+      "test_rows": 6455,
+      "common_test_rows": 1300,
+      "all_metrics_recomputed": true,
+      "common_rows_with_group_seen_in_training": 0,
+      "test_target_max_cad": 330000.0,
+      "test_target_mean_cad": 14738.04306738962
+    },
+    "original_scheme": {
+      "ok": true,
+      "train_rows": 34443,
+      "validation_rows": 0,
+      "test_rows": 8611,
+      "common_test_rows": 1300,
+      "all_metrics_recomputed": true,
+      "common_rows_with_group_seen_in_training": 226,
+      "test_target_max_cad": 1000000.0,
+      "test_target_mean_cad": 15082.30147485774
+    },
+    "random_80_20_es": {
+      "ok": true,
+      "train_rows": 27554,
+      "validation_rows": 6889,
+      "test_rows": 8611,
+      "common_test_rows": 1300,
+      "all_metrics_recomputed": true,
+      "common_rows_with_group_seen_in_training": 189,
+      "test_target_max_cad": 1000000.0,
+      "test_target_mean_cad": 15082.30147485774
+    }
+  }
+}

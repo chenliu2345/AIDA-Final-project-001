@@ -1,0 +1,579 @@
+{
+  "source": "C:\\Users\\silvi\\AB_Car_Price_Model\\data\\Alberta_owner_sales_car.csv",
+  "source_sha256": "7ae22fe302f286b5ae0f7064c371cee669b3f97feaf1621420e20c370d1bfc17",
+  "batch_id": "6f45e2c9-5019-4faf-8acd-9820bee7b8ef",
+  "etl_rule_version": "final-submit-aligned-v2",
+  "raw_rows": 63377,
+  "accepted_rows": 62643,
+  "rejected_rows": 734,
+  "sold_rows": 43054,
+  "status_counts": {
+    "SOLD": 43054,
+    "ACTIVE_REPOST": 7343,
+    "RESHELVED": 7311,
+    "ACTIVE": 4935
+  },
+  "reposts_changed": 0,
+  "cities": 137,
+  "city_distances": {
+    "ACHESON": [
+      27.11,
+      315.53
+    ],
+    "ACME": [
+      264.49,
+      92.3
+    ],
+    "AIRDRIE": [
+      268.37,
+      38.09
+    ],
+    "ALBERTA": [
+      0.0,
+      300.78
+    ],
+    "ARBOUR LAKE": [
+      297.47,
+      15.49
+    ],
+    "ARDROSSAN": [
+      28.84,
+      323.49
+    ],
+    "ASPEN WOODS": [
+      310.59,
+      9.42
+    ],
+    "ATHABASCA": [
+      152.47,
+      454.19
+    ],
+    "BANFF": [
+      415.91,
+      127.04
+    ],
+    "BANFF / CANMORE": [
+      393.91,
+      105.04
+    ],
+    "BARRHEAD": [
+      123.77,
+      418.39
+    ],
+    "BATURYN": [
+      12.29,
+      326.0
+    ],
+    "BEAUMONT": [
+      26.71,
+      285.14
+    ],
+    "BELLEVUE": [
+      507.83,
+      217.05
+    ],
+    "BLACKFALDS": [
+      137.19,
+      165.4
+    ],
+    "BONNYVILLE": [
+      238.76,
+      544.23
+    ],
+    "BROOKS": [
+      428.29,
+      187.73
+    ],
+    "CALGARY": [
+      300.53,
+      0.0
+    ],
+    "CAMROSE": [
+      92.97,
+      287.85
+    ],
+    "CANMORE": [
+      393.91,
+      105.04
+    ],
+    "CANORA": [
+      8.48,
+      304.41
+    ],
+    "CAROLINE": [
+      243.92,
+      173.5
+    ],
+    "CARSTAIRS": [
+      241.53,
+      67.2
+    ],
+    "CHAPARRAL": [
+      322.09,
+      31.31
+    ],
+    "CHESTERMERE": [
+      309.49,
+      21.02
+    ],
+    "COALDALE": [
+      520.02,
+      229.23
+    ],
+    "COCHRANE": [
+      317.6,
+      36.02
+    ],
+    "COLD LAKE": [
+      292.39,
+      597.86
+    ],
+    "COLEMAN": [
+      519.1,
+      228.32
+    ],
+    "CROSSFIELD": [
+      252.51,
+      53.31
+    ],
+    "DALHOUSIE": [
+      297.53,
+      11.65
+    ],
+    "DE WINTON": [
+      329.21,
+      38.43
+    ],
+    "DEVON": [
+      41.96,
+      287.13
+    ],
+    "DIDSBURY": [
+      233.11,
+      83.91
+    ],
+    "DOWNTOWN": [
+      2.83,
+      299.12
+    ],
+    "DRAYTON VALLEY": [
+      147.87,
+      314.73
+    ],
+    "DRUMHELLER": [
+      278.71,
+      138.5
+    ],
+    "EDGEMONT": [
+      295.74,
+      12.18
+    ],
+    "EDMONTON": [
+      0.0,
+      300.78
+    ],
+    "EDMONTON INTERNATIONAL AIRPORT": [
+      31.74,
+      274.56
+    ],
+    "EDSON": [
+      204.07,
+      453.29
+    ],
+    "ELK POINT": [
+      220.73,
+      517.28
+    ],
+    "EVANSTON": [
+      290.04,
+      20.23
+    ],
+    "FAIRVIEW": [
+      550.87,
+      845.49
+    ],
+    "FOOTHILLS": [
+      300.53,
+      0.0
+    ],
+    "FOOTHILLS COUNTY": [
+      337.5,
+      46.72
+    ],
+    "FORT MCMURRAY": [
+      433.25,
+      738.71
+    ],
+    "FORT SASKATCHEWAN": [
+      36.42,
+      332.97
+    ],
+    "GIBBONS": [
+      40.66,
+      344.57
+    ],
+    "GRANDE PRAIRIE": [
+      462.02,
+      756.64
+    ],
+    "HERITAGE POINTE": [
+      327.33,
+      36.55
+    ],
+    "HERITAGE VALLEY AREA": [
+      19.7,
+      286.92
+    ],
+    "HIDDEN VALLEY": [
+      290.98,
+      16.67
+    ],
+    "HIGH RIVER": [
+      356.3,
+      65.52
+    ],
+    "HINTON": [
+      289.37,
+      538.59
+    ],
+    "HUNTINGTON HILLS": [
+      290.18,
+      9.72
+    ],
+    "INDIAN BATTLE HEIGHTS": [
+      504.74,
+      213.95
+    ],
+    "INNISFAIL": [
+      184.35,
+      120.55
+    ],
+    "LA CRÊTE": [
+      673.97,
+      968.59
+    ],
+    "LAC LA BICHE": [
+      211.48,
+      516.95
+    ],
+    "LACOMBE": [
+      127.13,
+      175.83
+    ],
+    "LAKE BONAVISTA": [
+      312.26,
+      21.48
+    ],
+    "LANGDON": [
+      309.49,
+      21.02
+    ],
+    "LEDUC": [
+      34.6,
+      267.54
+    ],
+    "LETHBRIDGE": [
+      504.74,
+      213.95
+    ],
+    "LINCOLN PARK": [
+      311.42,
+      7.85
+    ],
+    "LINDEN": [
+      255.02,
+      102.69
+    ],
+    "LLOYDMINSTER": [
+      248.32,
+      544.87
+    ],
+    "MARWAYNE": [
+      248.71,
+      545.25
+    ],
+    "MAYERTHORPE": [
+      138.52,
+      433.14
+    ],
+    "MEDICINE HAT": [
+      535.16,
+      294.6
+    ],
+    "MILLARVILLE": [
+      355.78,
+      52.05
+    ],
+    "MORINVILLE": [
+      41.09,
+      342.43
+    ],
+    "NISKU": [
+      28.03,
+      276.18
+    ],
+    "NORTH CENTRAL EDMONTON": [
+      0.0,
+      300.78
+    ],
+    "NORTH LETHBRIDGE": [
+      504.74,
+      213.95
+    ],
+    "NORTHEAST CALGARY": [
+      300.53,
+      0.0
+    ],
+    "NORTHEAST EDMONTON": [
+      0.0,
+      300.78
+    ],
+    "NORTHWEST CALGARY": [
+      300.53,
+      0.0
+    ],
+    "NORTHWEST EDMONTON": [
+      0.0,
+      300.78
+    ],
+    "OKOTOKS": [
+      337.5,
+      46.72
+    ],
+    "OLDS": [
+      213.86,
+      95.01
+    ],
+    "ONOWAY": [
+      70.6,
+      365.22
+    ],
+    "OTHER": [
+      159.72,
+      151.15
+    ],
+    "PARKLAND COUNTY": [
+      43.55,
+      322.39
+    ],
+    "PEACE RIVER": [
+      489.8,
+      784.41
+    ],
+    "PENHOLD": [
+      172.02,
+      132.68
+    ],
+    "PICTURE BUTTE": [
+      495.19,
+      204.41
+    ],
+    "PINCHER CREEK": [
+      509.22,
+      218.44
+    ],
+    "PONOKA": [
+      107.66,
+      202.04
+    ],
+    "RAYMOND": [
+      538.73,
+      247.95
+    ],
+    "RED DEER": [
+      159.72,
+      151.15
+    ],
+    "RED DEER COUNTY": [
+      159.72,
+      151.15
+    ],
+    "REDCLIFF": [
+      524.97,
+      284.41
+    ],
+    "REDWOOD MEADOWS": [
+      331.63,
+      36.45
+    ],
+    "RIMBEY": [
+      145.83,
+      209.52
+    ],
+    "ROCKY MOUNTAIN HOUSE": [
+      218.6,
+      214.47
+    ],
+    "ROCKY VIEW COUNTY": [
+      268.37,
+      38.09
+    ],
+    "SAINT PAUL": [
+      196.37,
+      492.91
+    ],
+    "SCENIC ACRES": [
+      301.55,
+      15.36
+    ],
+    "SEXSMITH": [
+      468.58,
+      763.2
+    ],
+    "SHERWOOD PARK": [
+      14.75,
+      305.78
+    ],
+    "SIGNAL HILL": [
+      316.68,
+      10.27
+    ],
+    "SLAVE LAKE": [
+      258.73,
+      553.35
+    ],
+    "SOUTH LETHBRIDGE": [
+      504.74,
+      213.95
+    ],
+    "SOUTHEAST CALGARY": [
+      300.53,
+      0.0
+    ],
+    "SOUTHEAST EDMONTON": [
+      0.0,
+      300.78
+    ],
+    "SOUTHWEST CALGARY": [
+      300.53,
+      0.0
+    ],
+    "SOUTHWEST EDMONTON": [
+      0.0,
+      300.78
+    ],
+    "SPRUCE GROVE": [
+      37.75,
+      317.05
+    ],
+    "ST. ALBERT": [
+      18.43,
+      321.17
+    ],
+    "STETTLER": [
+      183.05,
+      228.27
+    ],
+    "STONY PLAIN": [
+      43.55,
+      322.39
+    ],
+    "STRATHCONA COUNTY": [
+      14.75,
+      305.78
+    ],
+    "STRATHMORE": [
+      339.12,
+      54.57
+    ],
+    "STURGEON COUNTY": [
+      41.09,
+      342.43
+    ],
+    "SUNDRE": [
+      250.86,
+      114.94
+    ],
+    "SYLVAN LAKE": [
+      162.89,
+      158.7
+    ],
+    "TABER": [
+      521.05,
+      264.52
+    ],
+    "TIMBERLEA": [
+      433.25,
+      738.71
+    ],
+    "TOFIELD": [
+      66.7,
+      344.57
+    ],
+    "TSUU T'INA": [
+      300.53,
+      0.0
+    ],
+    "TWO HILLS": [
+      138.63,
+      435.17
+    ],
+    "UNIVERSITY AREA": [
+      0.0,
+      300.78
+    ],
+    "VALLEYVIEW": [
+      350.77,
+      645.39
+    ],
+    "VEGREVILLE": [
+      102.17,
+      398.71
+    ],
+    "VERMILION": [
+      191.82,
+      488.37
+    ],
+    "VULCAN": [
+      420.02,
+      129.24
+    ],
+    "WAINWRIGHT": [
+      206.01,
+      434.26
+    ],
+    "WARBURG": [
+      92.55,
+      283.98
+    ],
+    "WEMBLEY": [
+      482.34,
+      776.96
+    ],
+    "WEST EDMONTON": [
+      0.0,
+      300.78
+    ],
+    "WEST LETHBRIDGE": [
+      504.74,
+      213.95
+    ],
+    "WESTLOCK": [
+      93.94,
+      388.55
+    ],
+    "WETASKIWIN": [
+      72.21,
+      247.65
+    ],
+    "WHITECOURT": [
+      183.12,
+      477.74
+    ],
+    "WOODBINE": [
+      317.19,
+      19.63
+    ]
+  },
+  "supplemental_location_aliases": {
+    "INDIAN BATTLE HEIGHTS": "Lethbridge",
+    "NORTH LETHBRIDGE": "Lethbridge",
+    "WEST LETHBRIDGE": "Lethbridge",
+    "RED DEER COUNTY": "Red Deer",
+    "PARKLAND COUNTY": "Stony Plain",
+    "STURGEON COUNTY": "Morinville",
+    "SAINT PAUL": "St. Paul",
+    "TIMBERLEA": "Fort McMurray",
+    "UNIVERSITY AREA": "Edmonton"
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "scheme": "my_scheme",
+  "early_stopping": true,
+  "early_stopping_patience": 50,
+  "clip_negative_predictions": true,
+  "features": [
+    "Year",
+    "Kilometres",
+    "Distance_from_Edmonton_KM",
+    "Distance_from_Calgary_KM",
+    "Base_Model",
+    "Trim",
+    "City_Name",
+    "Condition_Label",
+    "Transmission_Type",
+    "Drivetrain_Type",
+    "Body_Style",
+    "Colour",
+    "Seats_Count"
+  ],
+  "model_parameters": {
+    "iterations": 2000,
+    "learning_rate": 0.05,
+    "depth": 8,
+    "l2_leaf_reg": 3,
+    "loss_function": "RMSE",
+    "thread_count": 4,
+    "random_seed": 42,
+    "verbose": false,
+    "allow_writing_files": false,
+    "subsample": 0.8,
+    "cat_features": [
+      "Base_Model",
+      "Trim",
+      "City_Name",
+      "Condition_Label",
+      "Transmission_Type",
+      "Drivetrain_Type",
+      "Body_Style",
+      "Colour",
+      "Seats_Count"
+    ]
+  },
+  "evaluation_trees": 1377,
+  "split_counts": {
+    "train": 25808,
+    "validation": 8646,
+    "test": 8600
+  },
+  "test_metrics": {
+    "r2": 0.7072385108406698,
+    "mae_cad": 4289.278795435368,
+    "rmse_cad": 9037.36205630559
+  },
+  "common_test_rows": 1300,
+  "common_test_metrics": {
+    "r2": 0.6653152601867816,
+    "mae_cad": 4494.779753255511,
+    "rmse_cad": 9859.87542034494
+  },
+  "test_groups_shared_with_training": 0,
+  "common_test_groups_shared_with_training": 0,
+  "evaluation_seconds": 179.78099999995902,
+  "seen_subset_metrics_NOT_a_test": {
+    "r2": 0.7980513429084343,
+    "mae_cad": 3701.6437097672338,
+    "rmse_cad": 7505.941796039334
+  },
+  "seen_subset_policy": "This deployment model was fitted on every SOLD row, including all rows scored here. These are training reuse metrics, not held-out test performance.",
+  "elapsed_seconds": 353.0469999999041,
+  "evaluation_model_sha256": "4401ab8cc3944a2c4f62e3e0758adcac7e979768c5d72d3d39db6b328f67012e",
+  "deployment_model_sha256": "ad81cbd75bef2d0e1958cae7b1968f0a148cbcc6d4128964887e9b659669b966"
+}

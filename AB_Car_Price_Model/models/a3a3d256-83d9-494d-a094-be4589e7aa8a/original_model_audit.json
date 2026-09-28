@@ -1,0 +1,31 @@
+{
+  "reference_notebook": "Final_Submit_Version/Brain_Audit.ipynb",
+  "notebook_cell_12": "Random row split 80/20, seed 42, 7445 / 1862 rows.",
+  "notebook_cell_14": "CatBoost iterations=2000, depth=8, learning_rate=0.05, l2_leaf_reg=3, subsample=0.8, seed=42. No eval_set is passed to fit, so all 2000 iterations run.",
+  "notebook_cell_22": "Loads a previously saved pipeline and scores the 20% subset; does not train a fresh 80%-only model.",
+  "original_training_script": "Data_Science/training/Y1_model_catboost.py: main calls fit_final(X,y) on all prepared SOLD rows.",
+  "saved_notebook_output": {
+    "r2": 0.8885,
+    "mae_cad_rounded": 3041
+  },
+  "readme_claim": {
+    "r2": 0.8886,
+    "mae_cad_rounded": 3039
+  },
+  "replicated_seen_subset_metrics_not_a_test": {
+    "r2": 0.8867715754307787,
+    "mae_cad": 3075.9524742549047,
+    "rmse_cad": 5637.567849784833
+  },
+  "correct_holdout_metrics": {
+    "r2": 0.6677005255069937,
+    "mae_cad": 4224.240053010396,
+    "rmse_cad": 9657.814880801623
+  },
+  "remaining_data_difference": "Live ORS distances were refreshed; Beaumont now resolves to Alberta instead of another same-name Canadian location.",
+  "previous_implementation_differences_fixed": [
+    "category feature order",
+    "60/20/20 grouped split replaced with original 80/20 row split",
+    "validation early stopping removed; complete 2000 iterations retained for deployment"
+  ]
+}

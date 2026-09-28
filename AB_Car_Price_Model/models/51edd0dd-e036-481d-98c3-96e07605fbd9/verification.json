@@ -1,0 +1,40 @@
+{
+  "ok": true,
+  "reference_etl_parity": true,
+  "regression_tests_passed": 9,
+  "features": 13,
+  "sql_status_counts": {
+    "SOLD": 9307,
+    "ACTIVE_REPOST": 1659,
+    "RESHELVED": 1656,
+    "ACTIVE": 5402
+  },
+  "cities_with_both_distances": 53,
+  "isolated_exe_prediction": {
+    "ok": true,
+    "model_directory": "C:\\Users\\silvi\\AppData\\Local\\Temp\\_MEI174122\\bundled_model",
+    "prediction": {
+      "listing_price_cad": 30061.3,
+      "warnings": []
+    },
+    "gui_prediction": {
+      "listing_price_cad": 39286.06,
+      "warnings": []
+    },
+    "odbc_drivers": [
+      "SQL Server",
+      "ODBC Driver 17 for SQL Server",
+      "ODBC Driver 18 for SQL Server",
+      "Microsoft Access Driver (*.mdb, *.accdb)",
+      "Microsoft Excel Driver (*.xls, *.xlsx, *.xlsm, *.xlsb)",
+      "Microsoft Access Text Driver (*.txt, *.csv)",
+      "Microsoft Access dBASE Driver (*.dbf, *.ndx, *.mdx)"
+    ]
+  },
+  "isolated_exe_training_rows": 431,
+  "metrics_recomputed": {
+    "r2": 0.6351599863037004,
+    "mae_cad": 4409.598036634887,
+    "rmse_cad": 9695.589879594234
+  }
+}

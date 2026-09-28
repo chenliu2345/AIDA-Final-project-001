@@ -1,0 +1,111 @@
+{
+  "scheme": "grouped_70_15_15_es",
+  "counts": {
+    "AUTO_KEEP": 34249,
+    "REVIEW": 8738,
+    "AUTO_EXCLUDE": 67
+  },
+  "sold_before": 43054,
+  "sold_v2": 42987,
+  "all_rows_v2": 62576,
+  "non_sold_preserved": 19589,
+  "excluded_fraction": 0.001556185255725368,
+  "excluded_absolute_error": 1464986.6282947317,
+  "excluded_error_fraction": 0.008121712690480943,
+  "review_error_fraction": 0.3972895853922551,
+  "error_contribution_policy": "Existing evaluation model over all SOLD: training rows are in-sample, validation and test are held out. This is an audit diagnostic, not a test score.",
+  "baseline_model_sha256": "22694e8540e3bd2de467e746da93544b5ce25c2424cb24635287aaf9619771e1",
+  "split_counts_before": {
+    "train": 30113,
+    "validation": 6486,
+    "test": 6455
+  },
+  "split_counts_v2": {
+    "train": 30068,
+    "validation": 6476,
+    "test_retained": 6443,
+    "test_original": 6455
+  },
+  "exclusion_category_counts": {
+    "possible_extra_zero": 5,
+    "possible_missing_zero": 60,
+    "lease_payment": 1,
+    "parts_project": 2
+  },
+  "ordered_partition_policy": "Preserve original define_splits order, including the random train permutation; remove excluded rows without reordering.",
+  "training_source_row_order_sha256": "393057b81e47877021f22587a01e72ab0d696ef37a7f754fe0480c409a226d67",
+  "grouped_fit_reused_after_validation": true,
+  "early_stopping": true,
+  "early_stopping_patience": 50,
+  "metrics": {
+    "original_test": {
+      "N": 6455,
+      "before": {
+        "r2": 0.6926379728355354,
+        "mae_cad": 4395.24150131015,
+        "rmse_cad": 9336.81239042705
+      },
+      "v2": {
+        "r2": 0.6895131942719013,
+        "mae_cad": 4328.833088721783,
+        "rmse_cad": 9384.153458130026
+      }
+    },
+    "retained_test": {
+      "N": 6443,
+      "before": {
+        "r2": 0.7494901999500138,
+        "mae_cad": 4302.432033339016,
+        "rmse_cad": 8070.972771722791
+      },
+      "v2": {
+        "r2": 0.7465472048221775,
+        "mae_cad": 4235.918723485703,
+        "rmse_cad": 8118.243333842208
+      }
+    }
+  },
+  "trees_before": 692,
+  "trees_v2": 1187,
+  "features": [
+    "Year",
+    "Kilometres",
+    "Distance_from_Edmonton_KM",
+    "Distance_from_Calgary_KM",
+    "Base_Model",
+    "Trim",
+    "City_Name",
+    "Condition_Label",
+    "Transmission_Type",
+    "Drivetrain_Type",
+    "Body_Style",
+    "Colour",
+    "Seats_Count"
+  ],
+  "model_parameters": {
+    "iterations": 2000,
+    "learning_rate": 0.05,
+    "depth": 8,
+    "l2_leaf_reg": 3,
+    "loss_function": "RMSE",
+    "thread_count": 4,
+    "random_seed": 42,
+    "verbose": false,
+    "allow_writing_files": false,
+    "subsample": 0.8,
+    "cat_features": [
+      "Base_Model",
+      "Trim",
+      "City_Name",
+      "Condition_Label",
+      "Transmission_Type",
+      "Drivetrain_Type",
+      "Body_Style",
+      "Colour",
+      "Seats_Count"
+    ]
+  },
+  "evaluation_model_sha256": "3638239f1abaafcd7a2920afb5d4fa5c2b27fe8d919bb8891eac511bd93cc171",
+  "policy": "Original split membership frozen before filtering; ratios change slightly after exclusions. No test row used in fitting or comparable reference. Detector uses existing evaluation model and ORIGINAL TRAIN reference only. V2 test filtering is label-dependent: retained-test scores are conditional and not an unbiased new production benchmark. Both models are also scored on the unchanged full test. Per-scheme decisions differ because training references differ. No parameter tuning or price correction.",
+  "verification": "passed: baseline metrics, saved predictions, evidence guards, unchanged prices, non-SOLD preservation, grouped isolation"
+}

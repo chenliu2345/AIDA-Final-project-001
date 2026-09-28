@@ -1,0 +1,13 @@
+{
+  "database": "AB_Car_Price_Model",
+  "batch_id": "6f45e2c9-5019-4faf-8acd-9820bee7b8ef",
+  "source_sha256": "7ae22fe302f286b5ae0f7064c371cee669b3f97feaf1621420e20c370d1bfc17",
+  "raw_rows": 63377,
+  "accepted_rows": 62643,
+  "link_policy": "Only Link_SHA256 exists in this import. Link remains empty; no URL is invented.",
+  "created_utc": "2026-09-27T20:40:15.737064+00:00",
+  "sold_rows": 43054,
+  "primary_scheme": "original_scheme",
+  "reference_policy": "For each original scheme, comparable reference and baseline model use only its original training partition. Same-group listings excluded; each comparable group contributes one median. Prefer exact trim/body/drivetrain when >=5 rows; special vehicles require five matching groups. AUTO_EXCLUDE requires same-direction >4x model AND comparable deviations plus a factor-ten pattern from either reference, or explicit title+dual extreme price evidence. P75/P25 > 3 blocks exclusion. Parts/damaged vehicles require dual EXTREME deviations; commercial, modified, bundled and potentially collectible older vehicles receive special protection. REVIEW retained. No SQL writes.",
+  "script_sha256": "5358922882317bec0a3e841d7b63af983449a9ff7eb76a79e459a5ebb966f025"
+}

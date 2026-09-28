@@ -1,0 +1,44 @@
+{
+  "ok": true,
+  "regression_tests_passed": 10,
+  "original_notebook_prediction_parity": true,
+  "model_trees": 2000,
+  "features": 13,
+  "split_counts": {
+    "train": 7445,
+    "test": 1862
+  },
+  "independent_test_metrics": {
+    "r2": 0.6677005255069937,
+    "mae_cad": 4224.240053010396,
+    "rmse_cad": 9657.814880801623
+  },
+  "deployment_seen_subset_metrics_not_a_test": {
+    "r2": 0.8867715754307787,
+    "mae_cad": 3075.9524742549047,
+    "rmse_cad": 5637.567849784833
+  },
+  "embedded_model_hash_matches": true,
+  "isolated_exe_prediction": {
+    "ok": true,
+    "model_directory": "C:\\Users\\silvi\\AppData\\Local\\Temp\\_MEI45202\\bundled_model",
+    "prediction": {
+      "listing_price_cad": 31276.62,
+      "warnings": []
+    },
+    "gui_prediction": {
+      "listing_price_cad": 39527.66,
+      "warnings": []
+    },
+    "odbc_drivers": [
+      "SQL Server",
+      "ODBC Driver 17 for SQL Server",
+      "ODBC Driver 18 for SQL Server",
+      "Microsoft Access Driver (*.mdb, *.accdb)",
+      "Microsoft Excel Driver (*.xls, *.xlsx, *.xlsm, *.xlsb)",
+      "Microsoft Access Text Driver (*.txt, *.csv)",
+      "Microsoft Access dBASE Driver (*.dbf, *.ndx, *.mdx)"
+    ]
+  },
+  "isolated_exe_training_rows": 431
+}

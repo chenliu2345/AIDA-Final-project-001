@@ -1,0 +1,33 @@
+{
+  "primary_scheme": "original_scheme",
+  "units": {
+    "prices_and_errors": "CAD",
+    "Relative MAE": "MAE / mean actual price, stored as a fraction; multiply by 100 for percent",
+    "Bias": "mean(predicted - actual), CAD"
+  },
+  "primary_counts": {
+    "AUTO_KEEP": 34924,
+    "REVIEW": 8071,
+    "AUTO_EXCLUDE": 59
+  },
+  "exclude_categories_may_overlap": {
+    "possible_extra_zero": 4,
+    "possible_missing_zero": 50,
+    "lease_payment": 3,
+    "parts_project": 4
+  },
+  "other_price_error_exclusions": 0,
+  "primary_selection_only_MAE_reduction_CAD": 42.901199975629424,
+  "primary_retraining_only_MAE_reduction_on_same_retained_test_CAD": -36.10271325137728,
+  "interpretation": "Positive values mean lower MAE. Selection-only measures dropping test labels with the OLD model. Retraining-only compares OLD and V2 models on exactly the same retained test rows. Per-scheme clean datasets differ, so rank each before/after pair rather than comparing different test sets.",
+  "outputs": {
+    "primary_v2": "original_scheme/database_clean_v2.csv",
+    "primary_sold_v2": "original_scheme/sold_training_v2.csv",
+    "excluded_top30": "original_scheme/price_auto_excluded_top30.csv",
+    "review_top30": "original_scheme/price_manual_review_top30.csv",
+    "review_largest_error_top30": "original_scheme/price_manual_review_extreme_top30.csv",
+    "known_cases": "known_cases.csv",
+    "all_metrics": "comparison.csv",
+    "all_bands": "price_band_comparison_all_schemes.csv"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "verified_utc": "2026-09-26T05:57:35.623379+00:00",
+  "exe_sha256": "4513edd44bb195f5066d7bbc56f513b4cf87e745a3448369dda9e044ebb3c09b",
+  "unit_tests_passed": 4,
+  "documented_functions": 43,
+  "standalone_prediction_and_gui_self_test": true,
+  "python_and_conda_removed_from_runtime_path": true,
+  "packaged_training_test": {
+    "raw_rows": 600,
+    "accepted_rows": 547,
+    "iterations": 20,
+    "passed": true
+  },
+  "production_model_version": "6610f277-7bed-4f2a-b30a-a48f232a7daf"
+}

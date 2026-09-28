@@ -1,0 +1,4 @@
+﻿Listing title,Price(CA$),Link,Location,Scrape_Date,Status,Sold_Date,Condition,Kilometres,Transmission,Drivetrain,Seats,Body Style,Colour,Model
+SYNTHETIC EXAMPLE - 2018 Toyota Corolla,15500,https://example.invalid/car-001,Edmonton,2026-09-01,SOLD,2026-09-05,USED,"88,000",AUTOMATIC,FRONT-WHEEL DRIVE (FWD),5 SEATS,SEDAN,WHITE,"2018 Toyota Corolla, LE"
+SYNTHETIC EXAMPLE - 2020 Honda Civic,21800,https://example.invalid/car-002,Calgary,2026-09-02,SOLD,2026-09-06,USED,62000,MANUAL,FRONT-WHEEL DRIVE (FWD),5 SEATS,SEDAN,BLUE,"2020 Honda Civic, SPORT"
+SYNTHETIC EXAMPLE - 2019 Ford Escape,18900,https://example.invalid/car-003,Red Deer,2026-09-03,ACTIVE,,USED,105000,AUTOMATIC,ALL-WHEEL DRIVE (AWD),5 SEATS,"SUV, CROSSOVER",GREY,"2019 Ford Escape, SE"

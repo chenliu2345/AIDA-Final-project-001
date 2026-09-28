@@ -1,0 +1,881 @@
+{
+  "created_utc": "2026-09-27T07:25:54.635853+00:00",
+  "dataset": {
+    "source": "C:\\Users\\silvi\\AB_Car_Price_Model\\data\\Alberta_owner_sales_car.csv",
+    "source_sha256": "7ae22fe302f286b5ae0f7064c371cee669b3f97feaf1621420e20c370d1bfc17",
+    "batch_id": "6f45e2c9-5019-4faf-8acd-9820bee7b8ef",
+    "etl_rule_version": "final-submit-aligned-v2",
+    "raw_rows": 63377,
+    "accepted_rows": 62643,
+    "rejected_rows": 734,
+    "sold_rows": 43054,
+    "status_counts": {
+      "SOLD": 43054,
+      "ACTIVE_REPOST": 7343,
+      "RESHELVED": 7311,
+      "ACTIVE": 4935
+    },
+    "reposts_changed": 0,
+    "cities": 137,
+    "city_distances": {
+      "ACHESON": [
+        27.11,
+        315.53
+      ],
+      "ACME": [
+        264.49,
+        92.3
+      ],
+      "AIRDRIE": [
+        268.37,
+        38.09
+      ],
+      "ALBERTA": [
+        0.0,
+        300.78
+      ],
+      "ARBOUR LAKE": [
+        297.47,
+        15.49
+      ],
+      "ARDROSSAN": [
+        28.84,
+        323.49
+      ],
+      "ASPEN WOODS": [
+        310.59,
+        9.42
+      ],
+      "ATHABASCA": [
+        152.47,
+        454.19
+      ],
+      "BANFF": [
+        415.91,
+        127.04
+      ],
+      "BANFF / CANMORE": [
+        393.91,
+        105.04
+      ],
+      "BARRHEAD": [
+        123.77,
+        418.39
+      ],
+      "BATURYN": [
+        12.29,
+        326.0
+      ],
+      "BEAUMONT": [
+        26.71,
+        285.14
+      ],
+      "BELLEVUE": [
+        507.83,
+        217.05
+      ],
+      "BLACKFALDS": [
+        137.19,
+        165.4
+      ],
+      "BONNYVILLE": [
+        238.76,
+        544.23
+      ],
+      "BROOKS": [
+        428.29,
+        187.73
+      ],
+      "CALGARY": [
+        300.53,
+        0.0
+      ],
+      "CAMROSE": [
+        92.97,
+        287.85
+      ],
+      "CANMORE": [
+        393.91,
+        105.04
+      ],
+      "CANORA": [
+        8.48,
+        304.41
+      ],
+      "CAROLINE": [
+        243.92,
+        173.5
+      ],
+      "CARSTAIRS": [
+        241.53,
+        67.2
+      ],
+      "CHAPARRAL": [
+        322.09,
+        31.31
+      ],
+      "CHESTERMERE": [
+        309.49,
+        21.02
+      ],
+      "COALDALE": [
+        520.02,
+        229.23
+      ],
+      "COCHRANE": [
+        317.6,
+        36.02
+      ],
+      "COLD LAKE": [
+        292.39,
+        597.86
+      ],
+      "COLEMAN": [
+        519.1,
+        228.32
+      ],
+      "CROSSFIELD": [
+        252.51,
+        53.31
+      ],
+      "DALHOUSIE": [
+        297.53,
+        11.65
+      ],
+      "DE WINTON": [
+        329.21,
+        38.43
+      ],
+      "DEVON": [
+        41.96,
+        287.13
+      ],
+      "DIDSBURY": [
+        233.11,
+        83.91
+      ],
+      "DOWNTOWN": [
+        2.83,
+        299.12
+      ],
+      "DRAYTON VALLEY": [
+        147.87,
+        314.73
+      ],
+      "DRUMHELLER": [
+        278.71,
+        138.5
+      ],
+      "EDGEMONT": [
+        295.74,
+        12.18
+      ],
+      "EDMONTON": [
+        0.0,
+        300.78
+      ],
+      "EDMONTON INTERNATIONAL AIRPORT": [
+        31.74,
+        274.56
+      ],
+      "EDSON": [
+        204.07,
+        453.29
+      ],
+      "ELK POINT": [
+        220.73,
+        517.28
+      ],
+      "EVANSTON": [
+        290.04,
+        20.23
+      ],
+      "FAIRVIEW": [
+        550.87,
+        845.49
+      ],
+      "FOOTHILLS": [
+        300.53,
+        0.0
+      ],
+      "FOOTHILLS COUNTY": [
+        337.5,
+        46.72
+      ],
+      "FORT MCMURRAY": [
+        433.25,
+        738.71
+      ],
+      "FORT SASKATCHEWAN": [
+        36.42,
+        332.97
+      ],
+      "GIBBONS": [
+        40.66,
+        344.57
+      ],
+      "GRANDE PRAIRIE": [
+        462.02,
+        756.64
+      ],
+      "HERITAGE POINTE": [
+        327.33,
+        36.55
+      ],
+      "HERITAGE VALLEY AREA": [
+        19.7,
+        286.92
+      ],
+      "HIDDEN VALLEY": [
+        290.98,
+        16.67
+      ],
+      "HIGH RIVER": [
+        356.3,
+        65.52
+      ],
+      "HINTON": [
+        289.37,
+        538.59
+      ],
+      "HUNTINGTON HILLS": [
+        290.18,
+        9.72
+      ],
+      "INDIAN BATTLE HEIGHTS": [
+        504.74,
+        213.95
+      ],
+      "INNISFAIL": [
+        184.35,
+        120.55
+      ],
+      "LA CRÊTE": [
+        673.97,
+        968.59
+      ],
+      "LAC LA BICHE": [
+        211.48,
+        516.95
+      ],
+      "LACOMBE": [
+        127.13,
+        175.83
+      ],
+      "LAKE BONAVISTA": [
+        312.26,
+        21.48
+      ],
+      "LANGDON": [
+        309.49,
+        21.02
+      ],
+      "LEDUC": [
+        34.6,
+        267.54
+      ],
+      "LETHBRIDGE": [
+        504.74,
+        213.95
+      ],
+      "LINCOLN PARK": [
+        311.42,
+        7.85
+      ],
+      "LINDEN": [
+        255.02,
+        102.69
+      ],
+      "LLOYDMINSTER": [
+        248.32,
+        544.87
+      ],
+      "MARWAYNE": [
+        248.71,
+        545.25
+      ],
+      "MAYERTHORPE": [
+        138.52,
+        433.14
+      ],
+      "MEDICINE HAT": [
+        535.16,
+        294.6
+      ],
+      "MILLARVILLE": [
+        355.78,
+        52.05
+      ],
+      "MORINVILLE": [
+        41.09,
+        342.43
+      ],
+      "NISKU": [
+        28.03,
+        276.18
+      ],
+      "NORTH CENTRAL EDMONTON": [
+        0.0,
+        300.78
+      ],
+      "NORTH LETHBRIDGE": [
+        504.74,
+        213.95
+      ],
+      "NORTHEAST CALGARY": [
+        300.53,
+        0.0
+      ],
+      "NORTHEAST EDMONTON": [
+        0.0,
+        300.78
+      ],
+      "NORTHWEST CALGARY": [
+        300.53,
+        0.0
+      ],
+      "NORTHWEST EDMONTON": [
+        0.0,
+        300.78
+      ],
+      "OKOTOKS": [
+        337.5,
+        46.72
+      ],
+      "OLDS": [
+        213.86,
+        95.01
+      ],
+      "ONOWAY": [
+        70.6,
+        365.22
+      ],
+      "OTHER": [
+        159.72,
+        151.15
+      ],
+      "PARKLAND COUNTY": [
+        43.55,
+        322.39
+      ],
+      "PEACE RIVER": [
+        489.8,
+        784.41
+      ],
+      "PENHOLD": [
+        172.02,
+        132.68
+      ],
+      "PICTURE BUTTE": [
+        495.19,
+        204.41
+      ],
+      "PINCHER CREEK": [
+        509.22,
+        218.44
+      ],
+      "PONOKA": [
+        107.66,
+        202.04
+      ],
+      "RAYMOND": [
+        538.73,
+        247.95
+      ],
+      "RED DEER": [
+        159.72,
+        151.15
+      ],
+      "RED DEER COUNTY": [
+        159.72,
+        151.15
+      ],
+      "REDCLIFF": [
+        524.97,
+        284.41
+      ],
+      "REDWOOD MEADOWS": [
+        331.63,
+        36.45
+      ],
+      "RIMBEY": [
+        145.83,
+        209.52
+      ],
+      "ROCKY MOUNTAIN HOUSE": [
+        218.6,
+        214.47
+      ],
+      "ROCKY VIEW COUNTY": [
+        268.37,
+        38.09
+      ],
+      "SAINT PAUL": [
+        196.37,
+        492.91
+      ],
+      "SCENIC ACRES": [
+        301.55,
+        15.36
+      ],
+      "SEXSMITH": [
+        468.58,
+        763.2
+      ],
+      "SHERWOOD PARK": [
+        14.75,
+        305.78
+      ],
+      "SIGNAL HILL": [
+        316.68,
+        10.27
+      ],
+      "SLAVE LAKE": [
+        258.73,
+        553.35
+      ],
+      "SOUTH LETHBRIDGE": [
+        504.74,
+        213.95
+      ],
+      "SOUTHEAST CALGARY": [
+        300.53,
+        0.0
+      ],
+      "SOUTHEAST EDMONTON": [
+        0.0,
+        300.78
+      ],
+      "SOUTHWEST CALGARY": [
+        300.53,
+        0.0
+      ],
+      "SOUTHWEST EDMONTON": [
+        0.0,
+        300.78
+      ],
+      "SPRUCE GROVE": [
+        37.75,
+        317.05
+      ],
+      "ST. ALBERT": [
+        18.43,
+        321.17
+      ],
+      "STETTLER": [
+        183.05,
+        228.27
+      ],
+      "STONY PLAIN": [
+        43.55,
+        322.39
+      ],
+      "STRATHCONA COUNTY": [
+        14.75,
+        305.78
+      ],
+      "STRATHMORE": [
+        339.12,
+        54.57
+      ],
+      "STURGEON COUNTY": [
+        41.09,
+        342.43
+      ],
+      "SUNDRE": [
+        250.86,
+        114.94
+      ],
+      "SYLVAN LAKE": [
+        162.89,
+        158.7
+      ],
+      "TABER": [
+        521.05,
+        264.52
+      ],
+      "TIMBERLEA": [
+        433.25,
+        738.71
+      ],
+      "TOFIELD": [
+        66.7,
+        344.57
+      ],
+      "TSUU T'INA": [
+        300.53,
+        0.0
+      ],
+      "TWO HILLS": [
+        138.63,
+        435.17
+      ],
+      "UNIVERSITY AREA": [
+        0.0,
+        300.78
+      ],
+      "VALLEYVIEW": [
+        350.77,
+        645.39
+      ],
+      "VEGREVILLE": [
+        102.17,
+        398.71
+      ],
+      "VERMILION": [
+        191.82,
+        488.37
+      ],
+      "VULCAN": [
+        420.02,
+        129.24
+      ],
+      "WAINWRIGHT": [
+        206.01,
+        434.26
+      ],
+      "WARBURG": [
+        92.55,
+        283.98
+      ],
+      "WEMBLEY": [
+        482.34,
+        776.96
+      ],
+      "WEST EDMONTON": [
+        0.0,
+        300.78
+      ],
+      "WEST LETHBRIDGE": [
+        504.74,
+        213.95
+      ],
+      "WESTLOCK": [
+        93.94,
+        388.55
+      ],
+      "WETASKIWIN": [
+        72.21,
+        247.65
+      ],
+      "WHITECOURT": [
+        183.12,
+        477.74
+      ],
+      "WOODBINE": [
+        317.19,
+        19.63
+      ]
+    },
+    "supplemental_location_aliases": {
+      "INDIAN BATTLE HEIGHTS": "Lethbridge",
+      "NORTH LETHBRIDGE": "Lethbridge",
+      "WEST LETHBRIDGE": "Lethbridge",
+      "RED DEER COUNTY": "Red Deer",
+      "PARKLAND COUNTY": "Stony Plain",
+      "STURGEON COUNTY": "Morinville",
+      "SAINT PAUL": "St. Paul",
+      "TIMBERLEA": "Fort McMurray",
+      "UNIVERSITY AREA": "Edmonton"
+    }
+  },
+  "iterations_limit": 2000,
+  "comparison_policy": "Same cleaned SOLD data and 13 feature meanings; original per-scheme category order, split and early-stopping policy are retained. Grouped fractions refer to groups, so row fractions may differ. Own test sets differ. Common test is the intersection of all four test sets, fixed before training. No metrics are used to tune parameters.",
+  "random_early_stopping_policy": "Outer random 80/20 split is identical to original_scheme; 20% of its 80% development portion becomes validation (64/16/20 overall), seed 43. Test is never used for early stopping.",
+  "results": {
+    "my_scheme": {
+      "scheme": "my_scheme",
+      "early_stopping": true,
+      "early_stopping_patience": 50,
+      "clip_negative_predictions": true,
+      "features": [
+        "Year",
+        "Kilometres",
+        "Distance_from_Edmonton_KM",
+        "Distance_from_Calgary_KM",
+        "Base_Model",
+        "Trim",
+        "City_Name",
+        "Condition_Label",
+        "Transmission_Type",
+        "Drivetrain_Type",
+        "Body_Style",
+        "Colour",
+        "Seats_Count"
+      ],
+      "model_parameters": {
+        "iterations": 2000,
+        "learning_rate": 0.05,
+        "depth": 8,
+        "l2_leaf_reg": 3,
+        "loss_function": "RMSE",
+        "thread_count": 4,
+        "random_seed": 42,
+        "verbose": false,
+        "allow_writing_files": false,
+        "subsample": 0.8,
+        "cat_features": [
+          "Base_Model",
+          "Trim",
+          "City_Name",
+          "Condition_Label",
+          "Transmission_Type",
+          "Drivetrain_Type",
+          "Body_Style",
+          "Colour",
+          "Seats_Count"
+        ]
+      },
+      "evaluation_trees": 1377,
+      "split_counts": {
+        "train": 25808,
+        "validation": 8646,
+        "test": 8600
+      },
+      "test_metrics": {
+        "r2": 0.7072385108406698,
+        "mae_cad": 4289.278795435368,
+        "rmse_cad": 9037.36205630559
+      },
+      "common_test_rows": 1300,
+      "common_test_metrics": {
+        "r2": 0.6653152601867816,
+        "mae_cad": 4494.779753255511,
+        "rmse_cad": 9859.87542034494
+      },
+      "test_groups_shared_with_training": 0,
+      "common_test_groups_shared_with_training": 0,
+      "evaluation_seconds": 179.78099999995902,
+      "seen_subset_metrics_NOT_a_test": {
+        "r2": 0.7980513429084343,
+        "mae_cad": 3701.6437097672338,
+        "rmse_cad": 7505.941796039334
+      },
+      "seen_subset_policy": "This deployment model was fitted on every SOLD row, including all rows scored here. These are training reuse metrics, not held-out test performance.",
+      "elapsed_seconds": 353.0469999999041,
+      "evaluation_model_sha256": "4401ab8cc3944a2c4f62e3e0758adcac7e979768c5d72d3d39db6b328f67012e",
+      "deployment_model_sha256": "ad81cbd75bef2d0e1958cae7b1968f0a148cbcc6d4128964887e9b659669b966"
+    },
+    "grouped_70_15_15_es": {
+      "scheme": "grouped_70_15_15_es",
+      "early_stopping": true,
+      "early_stopping_patience": 50,
+      "clip_negative_predictions": true,
+      "features": [
+        "Year",
+        "Kilometres",
+        "Distance_from_Edmonton_KM",
+        "Distance_from_Calgary_KM",
+        "Base_Model",
+        "Trim",
+        "City_Name",
+        "Condition_Label",
+        "Transmission_Type",
+        "Drivetrain_Type",
+        "Body_Style",
+        "Colour",
+        "Seats_Count"
+      ],
+      "model_parameters": {
+        "iterations": 2000,
+        "learning_rate": 0.05,
+        "depth": 8,
+        "l2_leaf_reg": 3,
+        "loss_function": "RMSE",
+        "thread_count": 4,
+        "random_seed": 42,
+        "verbose": false,
+        "allow_writing_files": false,
+        "subsample": 0.8,
+        "cat_features": [
+          "Base_Model",
+          "Trim",
+          "City_Name",
+          "Condition_Label",
+          "Transmission_Type",
+          "Drivetrain_Type",
+          "Body_Style",
+          "Colour",
+          "Seats_Count"
+        ]
+      },
+      "evaluation_trees": 692,
+      "split_counts": {
+        "train": 30113,
+        "validation": 6486,
+        "test": 6455
+      },
+      "test_metrics": {
+        "r2": 0.6926379728355354,
+        "mae_cad": 4395.24150131015,
+        "rmse_cad": 9336.81239042705
+      },
+      "common_test_rows": 1300,
+      "common_test_metrics": {
+        "r2": 0.6701397659087194,
+        "mae_cad": 4513.608536201709,
+        "rmse_cad": 9788.552031059686
+      },
+      "test_groups_shared_with_training": 0,
+      "common_test_groups_shared_with_training": 0,
+      "evaluation_seconds": 94.65600000007544,
+      "seen_subset_metrics_NOT_a_test": {
+        "r2": 0.7617141457954952,
+        "mae_cad": 3953.07942946425,
+        "rmse_cad": 8220.962309441526
+      },
+      "seen_subset_policy": "This deployment model was fitted on every SOLD row, including all rows scored here. These are training reuse metrics, not held-out test performance.",
+      "elapsed_seconds": 186.93700000003446,
+      "evaluation_model_sha256": "22694e8540e3bd2de467e746da93544b5ce25c2424cb24635287aaf9619771e1",
+      "deployment_model_sha256": "1c1e54631349f7d2bc18fee67ac4ae477e4449d144544b2c4b25a668119115d5"
+    },
+    "original_scheme": {
+      "scheme": "original_scheme",
+      "early_stopping": false,
+      "early_stopping_patience": null,
+      "clip_negative_predictions": false,
+      "features": [
+        "Year",
+        "Kilometres",
+        "Distance_from_Edmonton_KM",
+        "Distance_from_Calgary_KM",
+        "Condition_Label",
+        "Transmission_Type",
+        "Drivetrain_Type",
+        "Body_Style",
+        "Colour",
+        "Seats_Count",
+        "City_Name",
+        "Base_Model",
+        "Trim"
+      ],
+      "model_parameters": {
+        "iterations": 2000,
+        "learning_rate": 0.05,
+        "depth": 8,
+        "l2_leaf_reg": 3,
+        "loss_function": "RMSE",
+        "thread_count": 4,
+        "random_seed": 42,
+        "verbose": false,
+        "allow_writing_files": false,
+        "subsample": 0.8,
+        "early_stopping_rounds": 50,
+        "cat_features": [
+          "Condition_Label",
+          "Transmission_Type",
+          "Drivetrain_Type",
+          "Body_Style",
+          "Colour",
+          "Seats_Count",
+          "City_Name",
+          "Base_Model",
+          "Trim"
+        ]
+      },
+      "evaluation_trees": 2000,
+      "split_counts": {
+        "train": 34443,
+        "validation": 0,
+        "test": 8611
+      },
+      "test_metrics": {
+        "r2": 0.5117409278865401,
+        "mae_cad": 4345.1914473974,
+        "rmse_cad": 14141.96627858175
+      },
+      "common_test_rows": 1300,
+      "common_test_metrics": {
+        "r2": 0.6922404203631785,
+        "mae_cad": 4270.54824012681,
+        "rmse_cad": 9454.950560660323
+      },
+      "test_groups_shared_with_training": 1228,
+      "common_test_groups_shared_with_training": 192,
+      "evaluation_seconds": 258.405999999959,
+      "seen_subset_metrics_NOT_a_test": {
+        "r2": 0.6565903066371419,
+        "mae_cad": 3775.112552997658,
+        "rmse_cad": 11860.169928111176
+      },
+      "seen_subset_policy": "This deployment model was fitted on every SOLD row, including all rows scored here. These are training reuse metrics, not held-out test performance.",
+      "elapsed_seconds": 586.094000000041,
+      "evaluation_model_sha256": "35c41592d899ef2ec547220662970676c01bf0cda225db42c1d32d18b2b9cf8f",
+      "deployment_model_sha256": "5713202db5733c2a77778f6f1a73ccc0ec7c3bc34e98062e4a1e35ad89a12ae4"
+    },
+    "random_80_20_es": {
+      "scheme": "random_80_20_es",
+      "early_stopping": true,
+      "early_stopping_patience": 50,
+      "clip_negative_predictions": false,
+      "features": [
+        "Year",
+        "Kilometres",
+        "Distance_from_Edmonton_KM",
+        "Distance_from_Calgary_KM",
+        "Condition_Label",
+        "Transmission_Type",
+        "Drivetrain_Type",
+        "Body_Style",
+        "Colour",
+        "Seats_Count",
+        "City_Name",
+        "Base_Model",
+        "Trim"
+      ],
+      "model_parameters": {
+        "iterations": 2000,
+        "learning_rate": 0.05,
+        "depth": 8,
+        "l2_leaf_reg": 3,
+        "loss_function": "RMSE",
+        "thread_count": 4,
+        "random_seed": 42,
+        "verbose": false,
+        "allow_writing_files": false,
+        "subsample": 0.8,
+        "early_stopping_rounds": 50,
+        "cat_features": [
+          "Condition_Label",
+          "Transmission_Type",
+          "Drivetrain_Type",
+          "Body_Style",
+          "Colour",
+          "Seats_Count",
+          "City_Name",
+          "Base_Model",
+          "Trim"
+        ]
+      },
+      "evaluation_trees": 552,
+      "split_counts": {
+        "train": 27554,
+        "validation": 6889,
+        "test": 8611
+      },
+      "test_metrics": {
+        "r2": 0.49060724097797304,
+        "mae_cad": 4728.799789430316,
+        "rmse_cad": 14444.782942473064
+      },
+      "common_test_rows": 1300,
+      "common_test_metrics": {
+        "r2": 0.6711697205690819,
+        "mae_cad": 4551.7664386113465,
+        "rmse_cad": 9773.258209815647
+      },
+      "test_groups_shared_with_training": 1062,
+      "common_test_groups_shared_with_training": 161,
+      "evaluation_seconds": 74.53200000000652,
+      "seen_subset_metrics_NOT_a_test": {
+        "r2": 0.5618692462559773,
+        "mae_cad": 4290.210619627775,
+        "rmse_cad": 13396.350627573907
+      },
+      "seen_subset_policy": "This deployment model was fitted on every SOLD row, including all rows scored here. These are training reuse metrics, not held-out test performance.",
+      "elapsed_seconds": 150.079000000027,
+      "evaluation_model_sha256": "674a66f0525e50eddf5dc2aa297c8b2163793cfe937c03b01bd76e5b8476791e",
+      "deployment_model_sha256": "f06ca4d10a8b6e6e7159e3d310a066042836b79de8b11bccad707fe23e6f287a"
+    }
+  }
+}

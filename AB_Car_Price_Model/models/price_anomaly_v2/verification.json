@@ -1,0 +1,34 @@
+{
+  "status": "passed",
+  "source_and_script_hashes_verified": true,
+  "schemes": {
+    "original_scheme": {
+      "status": "passed",
+      "excluded": 59,
+      "comparable_reference_checks": 89,
+      "test_rows": 8611,
+      "retained_test_rows": 8598
+    },
+    "my_scheme": {
+      "status": "passed",
+      "excluded": 64,
+      "comparable_reference_checks": 94,
+      "test_rows": 8600,
+      "retained_test_rows": 8585
+    },
+    "grouped_70_15_15_es": {
+      "status": "passed",
+      "excluded": 67,
+      "comparable_reference_checks": 97,
+      "test_rows": 6455,
+      "retained_test_rows": 6443
+    },
+    "random_80_20_es": {
+      "status": "passed",
+      "excluded": 73,
+      "comparable_reference_checks": 103,
+      "test_rows": 8611,
+      "retained_test_rows": 8597
+    }
+  }
+}

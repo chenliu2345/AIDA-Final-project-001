@@ -1,0 +1,130 @@
+# 取消父目录对本项目文件和子目录的忽略，以下仅列明确排除的文件。
+# Override parent ignores for this project; only explicitly listed files below are excluded.
+!*/
+!*
+
+# 以下 CSV 已按字段逐一检查，包含原始或逐条车辆数据。
+# These individually inspected CSV files contain raw or per-listing vehicle data.
+/data/Alberta_owner_sales_car.csv
+/models/51edd0dd-e036-481d-98c3-96e07605fbd9/etl_cleaned.csv
+/models/51edd0dd-e036-481d-98c3-96e07605fbd9/rejected_rows.csv
+/models/51edd0dd-e036-481d-98c3-96e07605fbd9/test_predictions.csv
+/models/6610f277-7bed-4f2a-b30a-a48f232a7daf/rejected_rows.csv
+/models/6610f277-7bed-4f2a-b30a-a48f232a7daf/test_predictions.csv
+/models/a3a3d256-83d9-494d-a094-be4589e7aa8a/deployment_training_subset_predictions.csv
+/models/a3a3d256-83d9-494d-a094-be4589e7aa8a/etl_cleaned.csv
+/models/a3a3d256-83d9-494d-a094-be4589e7aa8a/rejected_rows.csv
+/models/a3a3d256-83d9-494d-a094-be4589e7aa8a/test_predictions.csv
+/models/comparisons/self_project_63377/etl_cleaned.csv
+/models/comparisons/self_project_63377/grouped_70_15_15_es/common_test_predictions.csv
+/models/comparisons/self_project_63377/grouped_70_15_15_es/test_dataset.csv
+/models/comparisons/self_project_63377/grouped_70_15_15_es/test_predictions.csv
+/models/comparisons/self_project_63377/my_scheme/common_test_predictions.csv
+/models/comparisons/self_project_63377/my_scheme/test_dataset.csv
+/models/comparisons/self_project_63377/my_scheme/test_predictions.csv
+/models/comparisons/self_project_63377/original_scheme/common_test_predictions.csv
+/models/comparisons/self_project_63377/original_scheme/test_dataset.csv
+/models/comparisons/self_project_63377/original_scheme/test_predictions.csv
+/models/comparisons/self_project_63377/random_80_20_es/common_test_predictions.csv
+/models/comparisons/self_project_63377/random_80_20_es/test_dataset.csv
+/models/comparisons/self_project_63377/random_80_20_es/test_predictions.csv
+/models/comparisons/self_project_63377/rejected_rows.csv
+/models/price_anomaly_v2/database_clean_snapshot.csv
+/models/price_anomaly_v2/grouped_70_15_15_es/before_after_test_predictions.csv
+/models/price_anomaly_v2/grouped_70_15_15_es/database_clean_v2.csv
+/models/price_anomaly_v2/grouped_70_15_15_es/price_anomaly_decisions.csv
+/models/price_anomaly_v2/grouped_70_15_15_es/price_auto_excluded.csv
+/models/price_anomaly_v2/grouped_70_15_15_es/price_auto_excluded_top30.csv
+/models/price_anomaly_v2/grouped_70_15_15_es/price_manual_review.csv
+/models/price_anomaly_v2/grouped_70_15_15_es/price_manual_review_extreme_top30.csv
+/models/price_anomaly_v2/grouped_70_15_15_es/price_manual_review_top30.csv
+/models/price_anomaly_v2/grouped_70_15_15_es/sold_training_v2.csv
+/models/price_anomaly_v2/known_cases.csv
+/models/price_anomaly_v2/my_scheme/before_after_test_predictions.csv
+/models/price_anomaly_v2/my_scheme/database_clean_v2.csv
+/models/price_anomaly_v2/my_scheme/price_anomaly_decisions.csv
+/models/price_anomaly_v2/my_scheme/price_auto_excluded.csv
+/models/price_anomaly_v2/my_scheme/price_auto_excluded_top30.csv
+/models/price_anomaly_v2/my_scheme/price_manual_review.csv
+/models/price_anomaly_v2/my_scheme/price_manual_review_extreme_top30.csv
+/models/price_anomaly_v2/my_scheme/price_manual_review_top30.csv
+/models/price_anomaly_v2/my_scheme/sold_training_v2.csv
+/models/price_anomaly_v2/original_scheme/before_after_test_predictions.csv
+/models/price_anomaly_v2/original_scheme/database_clean_v2.csv
+/models/price_anomaly_v2/original_scheme/price_anomaly_decisions.csv
+/models/price_anomaly_v2/original_scheme/price_auto_excluded.csv
+/models/price_anomaly_v2/original_scheme/price_auto_excluded_top30.csv
+/models/price_anomaly_v2/original_scheme/price_manual_review.csv
+/models/price_anomaly_v2/original_scheme/price_manual_review_extreme_top30.csv
+/models/price_anomaly_v2/original_scheme/price_manual_review_top30.csv
+/models/price_anomaly_v2/original_scheme/sold_training_v2.csv
+/models/price_anomaly_v2/random_80_20_es/before_after_test_predictions.csv
+/models/price_anomaly_v2/random_80_20_es/database_clean_v2.csv
+/models/price_anomaly_v2/random_80_20_es/price_anomaly_decisions.csv
+/models/price_anomaly_v2/random_80_20_es/price_auto_excluded.csv
+/models/price_anomaly_v2/random_80_20_es/price_auto_excluded_top30.csv
+/models/price_anomaly_v2/random_80_20_es/price_manual_review.csv
+/models/price_anomaly_v2/random_80_20_es/price_manual_review_extreme_top30.csv
+/models/price_anomaly_v2/random_80_20_es/price_manual_review_top30.csv
+/models/price_anomaly_v2/random_80_20_es/sold_training_v2.csv
+/models/random2000_63377_ranges_v1/interval_audit.csv
+/models/random2000_63377_ranges_v1/test_predictions.csv
+
+# 两个已确认包含逐条训练数据的快照，不按 PKL 扩展名一概排除。
+# These two snapshots contain per-listing training data; other PKL files are not blanket-excluded.
+/models/comparisons/self_project_63377/etl_checkpoint.pkl
+/models/comparisons/self_project_63377/training_frame.pkl
+
+# 保留此前明确要求的真实密钥文件保护。
+# Keep the previously requested protection for the actual secret file.
+/.env
+
+# 所有环境密钥文件、私钥和专用凭据文件不得提交；空白示例可提交。
+# Exclude environment secrets, private keys and dedicated credentials; allow the blank example.
+.env
+.env.*
+*.env
+*.key
+*.pem
+*.p12
+*.pfx
+id_rsa
+id_ed25519
+id_ecdsa
+id_dsa
+.envrc
+*.keystore
+credentials.*
+secrets.*
+service-account*.json
+service_account*.json
+!/.env.example
+
+# 逐个核查的划分清单含 Listing_Key，属于逐条记录标识，全部排除。
+# Individually checked split manifests contain Listing_Key identifiers and are all excluded.
+/models/51edd0dd-e036-481d-98c3-96e07605fbd9/split_manifest.csv
+/models/6610f277-7bed-4f2a-b30a-a48f232a7daf/split_manifest.csv
+/models/a3a3d256-83d9-494d-a094-be4589e7aa8a/split_manifest.csv
+/models/comparisons/self_project_63377/grouped_70_15_15_es/split_manifest.csv
+/models/comparisons/self_project_63377/my_scheme/split_manifest.csv
+/models/comparisons/self_project_63377/original_scheme/split_manifest.csv
+/models/comparisons/self_project_63377/random_80_20_es/split_manifest.csv
+/models/price_anomaly_v2/grouped_70_15_15_es/split_manifest.csv
+/models/price_anomaly_v2/my_scheme/split_manifest.csv
+/models/price_anomaly_v2/original_scheme/split_manifest.csv
+/models/price_anomaly_v2/random_80_20_es/split_manifest.csv
+/models/random2000_63377_ranges_v1/split_manifest.csv
+
+# 仅此示例含完全虚构数据，允许提交；真实原始 CSV 仍排除。
+# This example contains entirely synthetic data and is allowed; actual raw CSV stays excluded.
+!/data/example.csv
+
+# 按用户要求排除本地虚拟环境和 Python 自动生成的缓存，不删除本地文件。
+# Exclude local virtual environments and Python-generated caches as requested, without deleting local files.
+/.venv/
+/.venv-user/
+__pycache__/
+
+# 按用户要求排除可重新生成的打包目录，保留本地文件。
+# Exclude the regenerable packaging directory as requested, retaining local files.
+/.packaging/
